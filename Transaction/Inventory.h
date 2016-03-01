@@ -18,6 +18,8 @@
 #include "../Movie/MovieInventory.h"
 #include "../Customer/CustomerInventory.h"
 
+using namespace std;
+
 class Inventory: public Transaction {
 
 public:
@@ -25,6 +27,6 @@ public:
 	~Inventory();
 		
 	// perform inventory
-	virtual void perform(MovieInventory& movieStock, CustomerInventory& customStock); 
+	virtual void perform(MovieInventory&, CustomerInventory&); 
 };
 #endif

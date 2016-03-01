@@ -22,14 +22,14 @@ public:
 	MovieInventory();
 	~MovieInventory();
 	
-	Movie getMovie (Movie*) // retrieves movie equal to the parameter movie
-	bool movieExist (Movie*) // checks if movie exists 
-	void printInventory() // print all the movies in the stock
+	Movie getMovie (Movie*); // retrieves movie equal to the parameter movie
+	bool movieExist (Movie*); // checks if movie exists 
+	void printInventory(); // print all the movies in the stock
 	
-	bool addMovie (Movie*) // add new movie
-	bool removeMovie (Movie*) // remove a movie
-	bool borrowMovie (Movie*) // borrow a movie 
-	bool returnMovie (Movie*) // return a movie
+	bool addMovie (Movie*); // add new movie
+	bool removeMovie (Movie*); // remove a movie
+	bool borrowMovie (Movie*); // borrow a movie 
+	bool returnMovie (Movie*); // return a movie
 	
 private:
 	set<Movie> movies[3]; // array of BSTs there are 3 for each genre of movies

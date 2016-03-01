@@ -13,6 +13,7 @@
 #define COMEDY_H
 
 #include "Movie.h"
+using namespace std;
 
 class Comedy:public Movie {
 
@@ -20,6 +21,6 @@ public:
 	Comedy();
 	~Comedy();
 	
-	virtual string display() // print out movie data and return string
+	virtual string display(); // print out movie data and return string
 };
 #endif

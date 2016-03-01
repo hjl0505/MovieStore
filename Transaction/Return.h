@@ -16,6 +16,7 @@
 #include "../Movie/Movie.h"
 #include "../Movie/MovieInventory.h"
 #include "../Customer/CustomerInventory.h"
+using namespace std;
 
 class Return: public Transaction {
 
@@ -27,7 +28,7 @@ public:
 	int getCustomerID(); // get ID of the customer of the transaction
 	
 	// perform Return movie
-	virtual void perform(MovieInventory& movieStock, CustomerInventory& customStock); 
+	virtual void perform(MovieInventory&, CustomerInventory&); 
 
 private:
 	Movie* movie; // movie to Return 

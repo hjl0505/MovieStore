@@ -13,6 +13,7 @@
 #define CLASSIC_H
 
 #include "Movie.h"
+using namespace std;
 
 class Classic:public Movie {
 
@@ -20,13 +21,13 @@ public:
 	Classic();
 	~Classic();
 	
-	virtual bool operator == (const Movie& rhs) // check if movies are equal
-	virtual bool operator != (const Movie& rhs) // check if movies are not equal
-	virtual bool operator > (const Movie& rhs) // check if this movie is greater than rhs movie
-	virtual bool operator < (const Movie& rhs) // check if this movie is less than rhs movie
-	virtual const Movie &operator=( const Movie& rhs ); // assign this movie to rhs
+	virtual bool operator == (const Movie&); // check if movies are equal
+	virtual bool operator != (const Movie&); // check if movies are not equal
+	virtual bool operator > (const Movie&); // check if this movie is greater than rhs movie
+	virtual bool operator < (const Movie&); // check if this movie is less than rhs movie
+	virtual const Movie &operator=(const Movie&); // assign this movie to rhs
 
-	virtual string display() // print out movie data and return string
+	virtual string display(); // print out movie data and return string
 	
 	// get methods 
 	int getMonth();

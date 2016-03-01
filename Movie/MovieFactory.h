@@ -14,7 +14,8 @@
 #include "Movie.h"
 #include "Comedy.h"
 #include "Drama.h"
-#include "Classic.h"
+#include "Classic.h" 
+using namespace std;
 
 class MovieFactory {
 

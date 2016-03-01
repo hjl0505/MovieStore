@@ -14,19 +14,21 @@
 #ifndef MOVIE_H
 #define MOVIE_H
 
+using namespace std;
+
 class Movie {
 	
 public:
 	Movie();
 	~Movie();
 	
-	virtual bool operator == (const Movie& rhs) // check if movies are equal
-	virtual bool operator != (const Movie& rhs) // check if movies are not equal
-	virtual bool operator > (const Movie& rhs) // check if this movie is greater than rhs movie
-	virtual bool operator < (const Movie& rhs) // check if this movie is less than rhs movie
-	virtual const Movie &operator=( const Movie& ) // assignment operator
+ 	virtual bool operator == (const Movie&); // check if movies are equal
+	virtual bool operator != (const Movie&); // check if movies are not equal
+	virtual bool operator > (const Movie&); // check if this movie is greater than rhs movie
+	virtual bool operator < (const Movie&); // check if this movie is less than rhs movie
+	virtual const Movie &operator=(const Movie&); // assignment operator
 	
-	virtual string display() // print out movie data and return string
+	virtual string display(); // print out movie data and return string 
 
 	// Get methods
 	char getGenre();
@@ -40,11 +42,11 @@ public:
 	bool subtractFromStock(); // subtract from stock by 1 
 	
 private:
-	char genre // genre of the movie
-	char mediaType // media type of the movie
-	string title // title of movie
-	string director // director of movie
-	int stock // number of movie left in stock
-	int yearReleased // year released
+	char genre; // genre of the movie
+	char mediaType; // media type of the movie
+	string title; // title of movie
+	string director; // director of movie
+	int stock; // number of movie left in stock
+	int yearReleased; // year released
 };
 #endif

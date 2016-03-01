@@ -17,6 +17,8 @@
 #include "../Customer/Customer.h"
 #include "../Customer/CustomerInventory.h"
 
+using namespace std;
+
 class History: public Transaction {
 
 public:
@@ -26,9 +28,9 @@ public:
 	int getCustomerID();
 		
 	// perform history
-	virtual void perform(MovieInventory& movieStock, CustomerInventory& customStock); 
+	virtual void perform(MovieInventory&, CustomerInventory&); 
 
 private:
-	int customerID // customer responsible for the transacti
+	int customerID; // customer responsible for the transacti
 };
 #endif

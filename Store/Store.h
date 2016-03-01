@@ -16,14 +16,15 @@
 #define STORE_H
 
 #include <iostream>
-#include <string>
+#include <fstream>
 #include "../Customer/CustomerInventory.h"
 #include "../Customer/Customer.h"
 #include "../Movie/MovieInventory.h"
 #include "../Movie/MovieFactory.h"
-#include "../Movie/Movie.h"
-#include "../Transaction/TransactionFactory.h"
-#include "../Transaction/Transaction.h"
+#include "../Movie/Movie.h" 
+#include "../Transaction/TransactionFactory.h" 
+#include "../Transaction/Transaction.h" 
+using namespace std;
 
 class Store {
 

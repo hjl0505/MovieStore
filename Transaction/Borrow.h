@@ -17,6 +17,8 @@
 #include "../Movie/MovieInventory.h"
 #include "../Customer/CustomerInventory.h"
 
+using namespace std;
+
 class Borrow: public Transaction {
 
 public:
@@ -27,7 +29,7 @@ public:
 	int getCustomerID(); // get ID of the customer of the transaction
 	
 	// perform borrow movie
-	virtual void perform(MovieInventory& movieStock, CustomerInventory& customStock); 
+	virtual void perform(MovieInventory&, CustomerInventory&); 
 
 private:
 	Movie* movie; // movie to borrow 

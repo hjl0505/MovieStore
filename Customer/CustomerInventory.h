@@ -14,11 +14,12 @@
 #define CUSTOMERINVENTORY_H
 
 #include "Customer.h"
+using namespace std;
 
 class CustomerInventory {
 
 public:
-	static const int MAX = 10000 // max ID
+	static const int MAX = 10000; // max ID
 	
 	CustomerInventory();
 	~CustomerInventory();
@@ -31,6 +32,6 @@ public:
 
 private:
 	Customer* hashTable [MAX]; // hash table
-	int hashFunction (int) // calculate hash key
+	int hashFunction (int); // calculate hash key
 };
 #endif

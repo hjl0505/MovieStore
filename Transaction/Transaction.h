@@ -12,16 +12,20 @@
 #ifndef TRANSACTION_H
 #define TRANSACTION_H
 
+#include "../Customer/CustomerInventory.h"
 #include "../Movie/Movie.h"
+#include "../Movie/MovieInventory.h"
+using namespace std;
 
 class Transaction {
 	
 public:
-	virtual void perform() // perform transaction
-	virtual string getSummary() //return summary of transactions
+	// perform transaction
+	virtual void perform(MovieInventory&, CustomerInventory&);
+	virtual string getSummary(); //return summary of transactions
 
 private:
-	char transType // type of transaction
-	string summary // summary of transaction include all attributes
+	char transType; // type of transaction
+	string summary; // summary of transaction include all attributes
 };
 #endif

@@ -16,8 +16,9 @@
 #include "Borrow.h"
 #include "Return.h"
 #include "Inventory.h"
-#include "History.h"
-
+#include "History.h" 
+#include "../Movie/Movie.h"
+using namespace std;
 
 class TransactionFactory {
 

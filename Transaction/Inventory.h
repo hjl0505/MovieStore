@@ -1,0 +1,30 @@
+// Inventory.h--------------------------------------------------------------------
+// Hyungjin Lee, Chris Knakal
+// CSS 343 HW 4: Movie Store
+// 2/29/2016
+// ----------------------------------------------------------------------------
+// Inventory Transaction
+// ----------------------------------------------------------------------------
+// Sub class of Inventory
+// prints the inventory of the movies by genre then categories of
+// Director, title year rleleased, and actor and release date for classics
+// ----------------------------------------------------------------------------
+
+#ifndef INVENTORY_H
+#define INVENTORY_H
+
+#include "Transaction.h"
+#include "../Movie/Movie.h"
+#include "../Movie/MovieInventory.h"
+#include "../Customer/CustomerInventory.h"
+
+class Inventory: public Transaction {
+
+public:
+	Inventory();
+	~Inventory();
+		
+	// perform inventory
+	virtual void perform(MovieInventory& movieStock, CustomerInventory& customStock); 
+};
+#endif

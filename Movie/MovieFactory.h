@@ -14,15 +14,16 @@
 #include "Movie.h"
 #include "Comedy.h"
 #include "Drama.h"
-#include "Classic.h" 
+#include "Classic.h"
 using namespace std;
 
-class MovieFactory {
+class MovieFactory
+{
 
 public:
 	MovieFactory();
 	~MovieFactory();
-	
+
 	// create movie
 	Movie create(char, char, string, string, string, int, int, int);
 };

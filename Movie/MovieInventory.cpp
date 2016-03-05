@@ -5,12 +5,15 @@
 // ----------------------------------------------------------------------------
 // Holds inventory of the movies.
 // ----------------------------------------------------------------------------
-// This class keeps track of all the movies the store owns 
-// in an array of binary search trees. 
+// This class keeps track of all the movies the store owns
+// in an array of binary search trees.
 // ----------------------------------------------------------------------------
 
 #include "MovieInventory.h"
 
+//////////////////////////////////////////////////
+//////////   Constructors/Destructor   ///////////
+//////////////////////////////////////////////////
 MovieInventory::MovieInventory()
 {
 	
@@ -18,40 +21,62 @@ MovieInventory::MovieInventory()
 
 MovieInventory::~MovieInventory()
 {
-	
+
 }
+
+//////////////////////////////////////////////////
+//////////     Public Methods    /////////////////
+//////////////////////////////////////////////////
 
 Movie MovieInventory::getMovie (Movie*)
 {
-	
+
 }
 
 bool MovieInventory::movieExist (Movie*)
 {
-	
+
 }
 
 void MovieInventory::printInventory()
 {
-	
+
 }
 
 bool MovieInventory::addMovie (Movie*)
 {
-	
+
 }
 
 bool MovieInventory::removeMovie (Movie*)
 {
-	
+
 }
 
 bool MovieInventory::borrowMovie (Movie*)
 {
-	
+
 }
 
 bool MovieInventory::returnMovie (Movie*)
 {
-	
+
 }
+
+//////////////////////////////////////////////////
+////////////   Private Methods   /////////////////
+//////////////////////////////////////////////////
+
+//////////////////////////////////////////////////
+//////////     Operator Overloads   //////////////
+//////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////
+//////////////    I/O Stream   ///////////////////
+//////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////
+//////////////   Extra Code   ////////////////////
+//////////////////////////////////////////////////

@@ -6,8 +6,8 @@
 // Super class of Movie
 // ----------------------------------------------------------------------------
 // Stores data for each movie in the store
-// It tracks the current amount of in stock movies for 
-// each movie, the media type, director, year released, title, and movie code. 
+// It tracks the current amount of in stock movies for
+// each movie, the media type, director, year released, title, and movie code.
 // It has functions to add and remove from the movie stock compare movies,
 // ----------------------------------------------------------------------------
 
@@ -24,7 +24,7 @@ Movie::Movie()
 
 Movie::~Movie()
 {
-  
+
 }
 
 //////////////////////////////////////////////////
@@ -33,47 +33,47 @@ Movie::~Movie()
 
 virtual string Movie::display()
 {
-	
+
 }
 
 char Movie::getGenre()
 {
-	
+
 }
 
 char Movie::getMediaType()
 {
-	
+
 }
 
 string Movie::getTitle()
 {
-	
+
 }
 
 string Movie::getDirector()
 {
-	
+
 }
 
 int Movie::getStock()
 {
-	
+
 }
 
 int Movie::getYearReleased()
 {
-	
+
 }
 
 bool Movie::addToStock()
 {
-	
+
 }
 
 bool Movie::subtractFromStock()
 {
-	
+
 }
 
 //////////////////////////////////////////////////
@@ -86,29 +86,29 @@ bool Movie::subtractFromStock()
 
 virtual bool operator == (const Movie&)
 {
-	
+
 }
 
 
 virtual bool operator != (const Movie&)
 {
-	
+
 }
 
 
 virtual bool operator > (const Movie&)
 {
-	
+
 }
 
 virtual bool operator < (const Movie&)
 {
-	
+
 }
 
 virtual const Movie &operator=(const Movie&)
 {
-	
+
 }
 
 

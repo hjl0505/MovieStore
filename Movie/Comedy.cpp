@@ -23,7 +23,7 @@ Comedy::Comedy()
 
 Comedy::~Comedy()
 {
-  
+
 }
 
 
@@ -33,7 +33,7 @@ Comedy::~Comedy()
 
 virtual Compedy::string display()
 {
-	
+
 }
 
 //////////////////////////////////////////////////

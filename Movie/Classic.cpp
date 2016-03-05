@@ -15,12 +15,24 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
+//Default constructor
 Classic::Classic()
 {
-
+  monthReleased = 0;
+  actor = "";
 }
 
+//Input constructor
+//Sets the monthReleased and actor based on passed in values
+Classic::Classic(int monthReleased, string actor)
+{
+  this.monthReleased = monthReleased;
+  this.actor = actor;
+}
 
+//Destructor
+//No dynamic memory is allocated
+//Nothing to delete
 Classic::~Classic()
 {
 
@@ -30,21 +42,26 @@ Classic::~Classic()
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
+//Display
+//Displays the monthReleased and actor
 virtual string Classic::display()
 {
-
+  cout << "Month Released: " << monthReleased;
+  cout << "Actor: " << actor << endl;
 }
 
-
+//Get month
+//Returns the monthReleased
 int Classic::getMonth()
 {
-
+  return monthReleased;
 }
 
-
+//Get actor
+//Returns the actor
 string Classic::getActor()
 {
-
+  return actor;
 }
 
 //////////////////////////////////////////////////
@@ -54,33 +71,52 @@ string Classic::getActor()
 //////////////////////////////////////////////////
 //////////     Operator Overloads   //////////////
 //////////////////////////////////////////////////
-virtual bool Classic::operator == (const Movie&)
-{
 
+//Equivalence operator
+//Compares if the monthReleased is the same for both movies
+//Movies with different actors, but the same monthReleased are
+//considered to be equivalent
+virtual bool Classic::operator == (const Movie& rhs)
+{
+  if (monthReleased == rhs.monthReleased)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 }
 
-
-virtual bool Classic::operator != (const Movie&)
+//Not equivalent operator
+//Returns the negation of the equivalence operator
+virtual bool Classic::operator != (const Movie& rhs)
 {
-
+  return !(this == rhs);
 }
 
-
-virtual bool Classic::operator > (const Movie&)
+//Greater than operator
+//Returns true if this movie was released after the
+//right hand side movie
+virtual bool Classic::operator > (const Movie& rhs)
 {
-
+  return this.getMonth > rhs.getMonth;
 }
 
-
-virtual bool Classic::operator < (const Movie&)
+//Less than operator
+//Returns true if this movie was released before the
+//right hand side movie
+virtual bool Classic::operator < (const Movie& rhs)
 {
-
+  return this.getMonth < rhs.getMonth;
 }
 
-
-virtual const Classic::Movie &operator=(const Movie&)
+//Assignment operator
+//Copies all values from the source movie to this movie
+virtual const Classic::Movie &operator=(const Movie& source)
 {
-
+  monthReleased = source.getMonth;
+  actor = source.getActor;
 }
 
 

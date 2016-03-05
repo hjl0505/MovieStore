@@ -20,6 +20,7 @@ class Classic:public Movie
 
 public:
 	Classic();
+	Classic(int monthReleased, string actor);
 	~Classic();
 
 	virtual bool operator == (const Movie&); // check if movies are equal

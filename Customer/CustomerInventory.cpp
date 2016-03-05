@@ -16,9 +16,44 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
+CustomerInentory::CustomerInventory()
+{
+
+}
+
+CustomerInentory::~CustomerInentory()
+{
+
+}
+
 //////////////////////////////////////////////////
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
+
+Customer CustomerInentory::getCustomer (int)
+{
+
+}
+
+bool CustomerInentory::customerExist (int)
+{
+
+}
+
+bool CustomerInentory::addCustomer(Customer)
+{
+
+}
+
+bool CustomerInentory::removeCustomer(int)
+{
+
+}
+
+int CustomerInentory::hashFunction (int)
+{
+
+}
 
 //////////////////////////////////////////////////
 ////////////   Private Methods   /////////////////
@@ -37,38 +72,3 @@
 //////////////////////////////////////////////////
 //////////////   Extra Code   ////////////////////
 //////////////////////////////////////////////////
-
-CustomerInventory()
-{
-
-}
-
-~CustomerInventory()
-{
-
-}
-
-Customer getCustomer (int)
-{
-
-}
-
-bool customerExist (int)
-{
-
-}
-
-bool addCustomer(Customer)
-{
-
-}
-
-bool removeCustomer(int)
-{
-
-}
-
-int hashFunction (int)
-{
-
-}

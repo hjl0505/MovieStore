@@ -1,10 +1,14 @@
-//
-//  Drama.cpp
-//  MovieStore
-//
-//  Created by Chris Knakal on 3/2/16.
-//  Copyright © 2016 Chris Knakal. All rights reserved.
-//
+// Drama.cpp--------------------------------------------------------------------
+// Hyungjin Lee, Chris Knakal
+// CSS 343 HW 4: Movie Store
+// 2/29/2016
+// ----------------------------------------------------------------------------
+// Sub class of Movie, Drama
+// ----------------------------------------------------------------------------
+// Inherits methods from the Movie object
+// Contains overriden display method
+// ----------------------------------------------------------------------------
+
 
 #include <stdio.h>
 #include "Drama.h"
@@ -13,9 +17,16 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
+Drama::Drama();
+Drama::~Drama();
+	
+
+
 //////////////////////////////////////////////////
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
+
+virtual string Drama::display();
 
 //////////////////////////////////////////////////
 ////////////   Private Methods   /////////////////

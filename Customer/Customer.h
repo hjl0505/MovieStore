@@ -12,7 +12,7 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
-#include "../Transaction/Transaction.h"
+//#include "../Transaction/Transaction.h"
 #include "../Movie/Movie.h"
 using namespace std;
 
@@ -28,9 +28,9 @@ public:
 	int getID(); //return ID of customer
 	string getName();
 	
- 	void addHistory(Transaction); // add transaction to history
-	bool addCheckedOut(Transaction); // add movie to customer's checkedOut list
-	bool removeCheckedOut(Transaction); // remove movie from checkedOut list 
+ 	void addHistory(string); // add transaction to history
+	bool addCheckedOut(Movie*); // add movie to customer's checkedOut list
+	bool removeCheckedOut(Movie*); // remove movie from checkedOut list 
 	
 
 private:
@@ -42,7 +42,7 @@ private:
 	
 	struct checkedOutNode { // Node to keep track of movies borrowed
 		checkedOutNode* next;
-		//Movie* movieBorrowed; // pointer to movies borrowed
+		Movie* movieBorrowed; // pointer to movies borrowed
 	};
 	
 	string lastName;

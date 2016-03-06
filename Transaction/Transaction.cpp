@@ -21,12 +21,12 @@ Transaction::~Transaction()
 	
 }
 
-virtual void Transaction::perform(MovieInventory&, CustomerInventory*)
+void Transaction::perform(MovieInventory& movies, CustomerInventory& customers)
 {
 	
 }
 
-virtual string Transaction::getSummary()
+string Transaction::getSummary()
 {
 	
 }

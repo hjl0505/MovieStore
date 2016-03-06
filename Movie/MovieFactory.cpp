@@ -10,17 +10,17 @@
 
 #include "MovieFactory.h"
 
-MovieFactory()
+MovieFactory::MovieFactory()
 {
 	
 }
 
-~MovieFactory()
+MovieFactory::~MovieFactory()
 {
 	
 }
 
-Movie create(char, char, string, string, string, int, int, int)
+Movie* MovieFactory::create(char genre, string title, string director, string actor, int month, int year, int stock)
 {
 	
 }

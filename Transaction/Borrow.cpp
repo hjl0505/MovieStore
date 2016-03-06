@@ -22,7 +22,7 @@ Borrow::~Borrow()
 }
 
 
-virtual string Borrow::getSummary()
+string Borrow::getSummary()
 {
 	
 }
@@ -33,7 +33,7 @@ int Borrow::getCustomerID()
 }
 
 
-virtual void Borrow::perform(MovieInventory&, CustomerInventory&)
+void Borrow::perform(MovieInventory&, CustomerInventory&)
 {
 	
 }

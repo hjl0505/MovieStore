@@ -26,7 +26,7 @@ int History::getCustomerID()
 	
 }
 
-virtual void History::perform(MovieInventory&, CustomerInventory&)
+void History::perform(MovieInventory&, CustomerInventory&)
 {
 	
 }

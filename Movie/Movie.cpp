@@ -31,7 +31,7 @@ Movie::~Movie()
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
-virtual string Movie::display()
+string Movie::display()
 {
 	
 }
@@ -84,29 +84,29 @@ bool Movie::subtractFromStock()
 //////////     Operator Overloads   //////////////
 //////////////////////////////////////////////////
 
-virtual bool operator == (const Movie&)
+bool Movie::operator== (const Movie& otherMovie) const
 {
 	
 }
 
 
-virtual bool operator != (const Movie&)
+bool Movie::operator!= (const Movie& otherMovie) const
 {
 	
 }
 
 
-virtual bool operator > (const Movie&)
+bool Movie::operator> (const Movie& otherMovie)
 {
 	
 }
 
-virtual bool operator < (const Movie&)
+bool Movie::operator< (const Movie& otherMovie)
 {
 	
 }
 
-virtual const Movie &operator=(const Movie&)
+Movie& Movie::operator=(const Movie& otherMovie)
 {
 	
 }

@@ -12,37 +12,52 @@
 
 #include "CustomerInventory.h"
 
-CustomerInventory()
+// intialize hash table of NULL pointers
+CustomerInventory::CustomerInventory()
 {
+	for (int i = 0; i < MAX; i++) 
+		hashTable[i] = NULL;
+}
+
+CustomerInventory::~CustomerInventory()
+{
+	for (int i = 0; i < MAX; i++) 
+	{
+		delete hashTable[i];
+		hashTable[i] = NULL;
+	}
+	//delete[] hashTable;
+}
+
+// return customer ptr or NULL if customer doesn't exist
+Customer* CustomerInventory::getCustomer (int customerID)
+{
+	if (customerExist(customerID))
+		return hashTable[customerID];
+	return NULL;
+}
+
+bool CustomerInventory::customerExist (int customerID)
+{
+	if (hashTable[customerID] == NULL)
+		return false; // customer does not exist
+	return true;
+}
+	
+bool CustomerInventory::addCustomer(Customer* customer)
+{
+	int id = customer -> getID();
+	if (!customerExist(id)) // add new customer if customer ID is unique
+	{
+		hashTable[id] = customer;
+		return true;
+	}
+	return false; // there is already customer with the ID.
 	
 }
 
-~CustomerInventory()
+bool CustomerInventory::removeCustomer(int customerID)
 {
-	
-}
-
-Customer getCustomer (int)
-{
-	
-}
-
-bool customerExist (int)
-{
-	
-}
-	
-bool addCustomer(Customer)
-{
-	
-}
-
-bool removeCustomer(int)
-{
-	
-}
-
-int hashFunction (int)
-{
-	
+	delete hashTable[customerID];
+	hashTable[customerID] = NULL;
 }

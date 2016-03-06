@@ -20,31 +20,31 @@ Store::Store()
 }
 
 
-Store::~Store();
+Store::~Store()
 {
 	
 }	
 	
 	
-bool Store::readCustomerFile (ifstream); 
+bool Store::readCustomerFile (ifstream in) 
 {
 	
 }
 
 
-bool Store::readMovieFile (ifstream);
+bool Store::readMovieFile (ifstream in)
 {
 	
 }
 
 
-bool Store::readTransactionFile (ifstream); 
+bool Store::readTransactionFile (ifstream in) 
 {
 	
 }
 
 
-bool Store::performTransaction (Transaction)
+bool Store::performTransaction (Transaction t)
 {
 	
 }

@@ -25,7 +25,7 @@ public:
 	virtual bool operator != (const Movie&); // check if movies are not equal
 	virtual bool operator > (const Movie&); // check if this movie is greater than rhs movie
 	virtual bool operator < (const Movie&); // check if this movie is less than rhs movie
-	virtual const Movie &operator=(const Movie&); // assign this movie to rhs
+	virtual Movie &operator=(const Movie&); // assign this movie to rhs
 
 	virtual string display(); // print out movie data and return string
 	

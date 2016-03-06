@@ -14,6 +14,7 @@
 #ifndef MOVIE_H
 #define MOVIE_H
 
+#include <iostream> // input and output
 using namespace std;
 
 class Movie {
@@ -22,11 +23,11 @@ public:
 	Movie();
 	~Movie();
 	
- 	virtual bool operator == (const Movie&); // check if movies are equal
-	virtual bool operator != (const Movie&); // check if movies are not equal
-	virtual bool operator > (const Movie&); // check if this movie is greater than rhs movie
-	virtual bool operator < (const Movie&); // check if this movie is less than rhs movie
-	virtual const Movie &operator=(const Movie&); // assignment operator
+ 	virtual bool operator== (const Movie&) const; // check if movies are equal
+	virtual bool operator!= (const Movie&) const; // check if movies are not equal
+	virtual bool operator> (const Movie&); // check if this movie is greater than rhs movie
+	virtual bool operator< (const Movie&); // check if this movie is less than rhs movie
+	virtual Movie& operator=(const Movie&); // assignment operator
 	
 	virtual string display(); // print out movie data and return string 
 

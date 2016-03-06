@@ -23,37 +23,37 @@ Classic::~Classic()
 }
 
 
-virtual bool Classic::operator == (const Movie&)
+bool Classic::operator == (const Movie&)
 {
 	
 }
 
 
-virtual bool Classic::operator != (const Movie&)
+bool Classic::operator != (const Movie&)
 {
 	
 }
 
 
-virtual bool Classic::operator > (const Movie&)
-{
-	
-}
- 
- 
-virtual bool Classic::operator < (const Movie&)
+bool Classic::operator > (const Movie&)
 {
 	
 }
  
  
-virtual const Classic::Movie &operator=(const Movie&)
+bool Classic::operator < (const Movie&)
+{
+	
+}
+ 
+ 
+Movie& Classic::operator=(const Movie&)
 {
 	
 }
 
 
-virtual string Classic::display()
+string Classic::display()
 {
 	
 }

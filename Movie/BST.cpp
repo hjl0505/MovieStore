@@ -19,7 +19,7 @@ BST::BST ()
 	root = NULL;
 }
 
-/* // Destructor -----------------------------------------------------------------
+ // Destructor -----------------------------------------------------------------
 // Empty out the tree and deletes the root
 // Preconditions: NONE
 // Postconditions: BST is completely empty
@@ -29,14 +29,14 @@ BST::~BST ()
 	makeEmptyHelper(root);
 }
 
-Movie*& BST::getMovie (Movie* movieSearch)
+bool BST::getMovie (const Movie& movieSearch, Movie*& found) const
 {
-	
+	return retrieveHelper (movieSearch, found, root);
 }
 
 bool BST::addMovie(Movie* movieAdd)
 {
-	
+	return insertHelper(root, movieAdd);
 }
 
 bool BST::removeMovie(Movie* movieRemove)
@@ -46,30 +46,48 @@ bool BST::removeMovie(Movie* movieRemove)
 
 ostream& operator<< (ostream& out, const BST& bst) 
 {
-	bst.printHelper(bst.root);
+  	bst.printHelper(bst.root);
 	cout << endl;
-	return out;
+	return out;  
 }
 
-Movie*& BST::retrieveHelper (const Movie& movie, Node* cur) const 
+bool BST::insertHelper(Node* &cur, Movie* newMovie) 
 {
-	if (cur == NULL) // movie not found
-		return false;
-	else if (*cur -> movie == movie) // movie found
+	if (cur == NULL) // insert	
 	{
-		foundData = cur -> movie;
+		cur = new Node;
+		cur -> right = NULL;
+		cur -> left = NULL;
+		cur -> movie = newMovie;
 		return true;
 	}
-	else if (*cur -> movie > movie) 
-		return retrieveHelper (movie, cur -> left);
-	else 						  
-		return retrieveHelper (movie, cur -> right);
+	else if (*cur -> movie == *newMovie) // duplicate exists, data not inserted
+		return false;
+	else if (*cur -> movie > *newMovie) 
+		return insertHelper (cur -> left, newMovie);
+	else							
+		return insertHelper (cur -> right, newMovie);
+}
 
+bool BST::retrieveHelper (const Movie& movieSearch, Movie*& found, Node* cur) const 
+{
+  	if (cur == NULL) // movie not found
+		return false;
+	else if (*cur -> movie == movieSearch) // movie found
+	{
+		found = cur -> movie;
+		return true;
+	}
+	else if (*cur -> movie > movieSearch) 
+		return retrieveHelper (movieSearch, found, cur -> left);
+	else 						  
+		return retrieveHelper (movieSearch, found, cur -> right); 
+ 
 }
 
 void BST::makeEmptyHelper(Node* &cur)
 {
-	if (cur != NULL)
+  	if (cur != NULL)
 	{
 		makeEmptyHelper(cur -> left);
 		makeEmptyHelper(cur -> right);
@@ -78,16 +96,17 @@ void BST::makeEmptyHelper(Node* &cur)
 		cur -> movie = NULL;
 		delete cur;	
 		cur = NULL;
-	}
-}
+	} 
+} 
 
+// inorder
 void BST::printHelper (Node* cur) const
 {
-	if (cur != NULL) 
+  	if (cur != NULL) 
 	{
 		printHelper(cur -> left);
-		cout << *cur ->movie << " ";
+		cout << cur -> movie << endl;
 		printHelper(cur -> right);
-	}
-} */
+	}  
+} 
 

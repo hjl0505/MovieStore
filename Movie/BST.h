@@ -37,7 +37,7 @@ public:
 	// Desctructor
 	~BST ();
 	
-	Movie*& getMovie (const Movie*) const; // get movie from the tree 
+	bool getMovie (const Movie&, Movie*&) const; // get movie from the tree 
 	bool addMovie(Movie*); // add movie node
 	bool removeMovie(Movie*); // removie movie node
 	
@@ -48,6 +48,8 @@ private:
 	// private functions
 	void makeEmptyHelper (Node* &);
 	void printHelper (Node* cur) const;
+	bool insertHelper (Node *&, Movie*);
+	bool retrieveHelper (const Movie&, Movie*& , Node*) const ;
 	
 };
 #endif

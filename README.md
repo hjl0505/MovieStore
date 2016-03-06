@@ -1,1 +1,3 @@
 # MovieStore
+
+compile with ./moviestore

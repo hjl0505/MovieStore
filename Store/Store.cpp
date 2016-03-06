@@ -35,7 +35,7 @@ Store::~Store()
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
-bool Store::readCustomerFile (ifstream in);
+bool Store::readCustomerFile (ifstream in)
 {
 
 }

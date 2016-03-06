@@ -12,7 +12,8 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
-//#include "../Transaction/Transaction.h"
+#include <iostream> // input and output
+#include <iomanip> // formatting output
 #include "../Movie/Movie.h"
 using namespace std;
 
@@ -31,7 +32,6 @@ public:
  	void addHistory(string); // add transaction to history
 	bool addCheckedOut(Movie*); // add movie to customer's checkedOut list
 	bool removeCheckedOut(Movie*); // remove movie from checkedOut list 
-	
 
 private:
 

@@ -19,7 +19,7 @@ BST::BST ()
 	root = NULL;
 }
 
-// Destructor -----------------------------------------------------------------
+/* // Destructor -----------------------------------------------------------------
 // Empty out the tree and deletes the root
 // Preconditions: NONE
 // Postconditions: BST is completely empty
@@ -89,5 +89,5 @@ void BST::printHelper (Node* cur) const
 		cout << *cur ->movie << " ";
 		printHelper(cur -> right);
 	}
-}
+} */
 

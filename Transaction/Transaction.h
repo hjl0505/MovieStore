@@ -24,7 +24,7 @@ public:
 	~Transaction();
 
 	// perform transaction
-	virtual void perform(MovieInventory&, CustomerInventory*);
+	virtual void perform(MovieInventory&, CustomerInventory&);
 	virtual string getSummary(); //return summary of transactions
 
 private:

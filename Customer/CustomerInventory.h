@@ -14,6 +14,7 @@
 #define CUSTOMERINVENTORY_H
 
 #include "Customer.h"
+#include <iostream> // input and output
 using namespace std;
 
 class CustomerInventory {
@@ -24,14 +25,13 @@ public:
 	CustomerInventory();
 	~CustomerInventory();
 	
-	Customer getCustomer (int); // get Customer with ID
+	Customer* getCustomer (int); // get Customer with ID
 	bool customerExist (int); // Check if customer exists with ID
 		
-	bool addCustomer(Customer); // add customer to inventory
+	bool addCustomer(Customer*); // add customer to inventory
 	bool removeCustomer(int); // remove customer from inventory
 
 private:
-	Customer* hashTable [MAX]; // hash table
-	int hashFunction (int); // calculate hash key
+	Customer* hashTable[MAX]; // hash table
 };
 #endif

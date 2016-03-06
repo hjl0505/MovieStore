@@ -15,12 +15,13 @@
 #include "Movie.h"
 using namespace std;
 
-class Drama:public Movie {
+class Drama:public Movie
+{
 
 public:
 	Drama();
 	~Drama();
-	
+
 	virtual string display(); // print out movie data and return string
 };
 #endif

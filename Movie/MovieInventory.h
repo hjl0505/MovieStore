@@ -5,8 +5,8 @@
 // ----------------------------------------------------------------------------
 // Holds inventory of the movies.
 // ----------------------------------------------------------------------------
-// This class keeps track of all the movies the store owns 
-// in an array of binary search trees. 
+// This class keeps track of all the movies the store owns
+// in an array of binary search trees.
 // ----------------------------------------------------------------------------
 
 #ifndef MOVIEINVENTORY_H
@@ -15,22 +15,23 @@
 #include <set> // set? TREE??
 #include "Movie.h"
 
-class MovieInventory {
+class MovieInventory
+{
 
 public:
-	
+
 	MovieInventory();
 	~MovieInventory();
-	
+
 	Movie getMovie (Movie*); // retrieves movie equal to the parameter movie
-	bool movieExist (Movie*); // checks if movie exists 
+	bool movieExist (Movie*); // checks if movie exists
 	void printInventory(); // print all the movies in the stock
-	
+
 	bool addMovie (Movie*); // add new movie
 	bool removeMovie (Movie*); // remove a movie
-	bool borrowMovie (Movie*); // borrow a movie 
+	bool borrowMovie (Movie*); // borrow a movie
 	bool returnMovie (Movie*); // return a movie
-	
+
 private:
 	set<Movie> movies[3]; // array of BSTs there are 3 for each genre of movies
 							// idx 0 for comedy, 1 for drama, 2 for classic

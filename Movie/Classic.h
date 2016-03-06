@@ -15,12 +15,13 @@
 #include "Movie.h"
 using namespace std;
 
-class Classic:public Movie {
+class Classic:public Movie
+{
 
 public:
 	Classic();
 	~Classic();
-	
+
 	virtual bool operator == (const Movie&); // check if movies are equal
 	virtual bool operator != (const Movie&); // check if movies are not equal
 	virtual bool operator > (const Movie&); // check if this movie is greater than rhs movie
@@ -28,11 +29,11 @@ public:
 	virtual Movie &operator=(const Movie&); // assign this movie to rhs
 
 	virtual string display(); // print out movie data and return string
-	
-	// get methods 
+
+	// get methods
 	int getMonth();
 	string getActor();
-	
+
 private:
 	int monthReleased; // month of the movie release
 	string actor; // major actor of the movie

@@ -6,8 +6,8 @@
 // Super class of Movie
 // ----------------------------------------------------------------------------
 // Stores data for each movie in the store
-// It tracks the current amount of in stock movies for 
-// each movie, the media type, director, year released, title, and movie code. 
+// It tracks the current amount of in stock movies for
+// each movie, the media type, director, year released, title, and movie code.
 // It has functions to add and remove from the movie stock compare movies,
 // ----------------------------------------------------------------------------
 
@@ -17,12 +17,13 @@
 #include <iostream> // input and output
 using namespace std;
 
-class Movie {
-	
+class Movie
+{
+
 public:
 	Movie();
 	~Movie();
-	
+
  	virtual bool operator== (const Movie&) const; // check if movies are equal
 	virtual bool operator!= (const Movie&) const; // check if movies are not equal
 	virtual bool operator> (const Movie&); // check if this movie is greater than rhs movie
@@ -38,10 +39,10 @@ public:
 	string getDirector();
 	int getStock();
 	int getYearReleased();
-	
-	bool addToStock(); // add to stock by 1 
-	bool subtractFromStock(); // subtract from stock by 1 
-	
+
+	bool addToStock(); // add to stock by 1
+	bool subtractFromStock(); // subtract from stock by 1
+
 private:
 	char genre; // genre of the movie
 	char mediaType; // media type of the movie

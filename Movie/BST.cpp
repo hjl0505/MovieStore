@@ -39,11 +39,6 @@ bool BST::addMovie(Movie* movieAdd)
 	return insertHelper(root, movieAdd);
 }
 
-bool BST::removeMovie(Movie* movieRemove)
-{
-	
-}
-
 ostream& operator<< (ostream& out, const BST& bst) 
 {
   	bst.printHelper(bst.root);

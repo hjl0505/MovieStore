@@ -37,7 +37,7 @@ CustomerInventory::~CustomerInventory()
 		delete hashTable[i];
 		hashTable[i] = NULL; 
 	}   	
-	//delete hashTable[9999];
+	delete hashTable[9999];
 }
 
 // return customer ptr or NULL if customer doesn't exist

@@ -41,26 +41,25 @@ Customer::Customer(int id, string first, string last)
 
 Customer::~Customer()
 {
-	// delete history list
+ 	// delete history list
 	historyNode* temp = history;
-	while (history != NULL)
+	while (temp != NULL)
 	{
-		history = history -> next;
-		delete temp;
-		temp = history;
+  		history = history -> next;
+		delete temp; 
+		temp = history; 
 	}
 	
 	// delete checked out list
-	checkedOutNode* cur = checkedOut;
-	Movie* movieTemp = checkedOut -> movieBorrowed;
-	while (checkedOut != NULL)
+ 	checkedOutNode* cur = checkedOut;
+ 	while (cur != NULL)
 	{
-		checkedOut = checkedOut -> next;
-		delete movieTemp;
+  		checkedOut = checkedOut -> next;
+		delete cur -> movieBorrowed;
+		cur -> movieBorrowed = NULL;
 		delete cur;
-		cur = checkedOut;
-		movieTemp = cur -> movieBorrowed;
-	}	
+		cur = checkedOut; 
+	} 	 
 }
 
 //////////////////////////////////////////////////

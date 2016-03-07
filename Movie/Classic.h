@@ -30,6 +30,7 @@ public:
 	virtual Classic& operator=(const Classic&); // assign this movie to rhs
 
 	virtual void display() const; // print out movie data and return string
+    virtual string getMovieInfo() const; //returns string of movie data variables
 
 	// get methods
 	int getMonth() const;

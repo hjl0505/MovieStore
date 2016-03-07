@@ -10,6 +10,7 @@
 // ----------------------------------------------------------------------------
 
 #include "Classic.h"
+#include <string>
 
 //////////////////////////////////////////////////
 //////////   Constructors/Destructor   ///////////
@@ -57,6 +58,14 @@ void Classic::display() const
     cout << "Stock: " << stock << endl;
     cout << "Month Released: " << monthReleased << endl;
     cout << "Actor: " << actor << endl;
+}
+
+string Classic::getMovieInfo() const
+{
+    string s;
+    s = title + " " + director + " " + to_string(yearReleased) + " " + genre + " " + mediaType + " " + to_string(stock) + " " + to_string(monthReleased) + " " + actor;
+    return s;
+    
 }
 
 //Get month

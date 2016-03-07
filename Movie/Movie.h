@@ -15,6 +15,7 @@
 #define MOVIE_H
 
 #include <iostream> // input and output
+#include <string>
 using namespace std;
 
 class Movie
@@ -31,7 +32,8 @@ public:
 	virtual bool operator < (const Movie& otherMovie) const; // check if this movie is less than rhs movie
 	virtual Movie& operator=(const Movie& source); // assignment operator
 
-	virtual void display(); // print out movie data and return string
+	virtual void display() const; // print out movie data and return string
+    virtual string getMovieInfo() const; //returns string of movie data variables
 
 	// Get methods
 	char getGenre() const;

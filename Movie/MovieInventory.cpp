@@ -74,28 +74,84 @@ void MovieInventory::printInventory()
 {
     for (int i = 0; i < movieType.size(); i++)
     {
-        cout << movieType[i] << endl;
+        cout << "---------------------------" << endl;
+        switch (i)
+        {
+            case 0:
+                cout << "Comedies:" << endl;
+                break;
+                
+            case 1:
+                cout << "Classics:" << endl;
+                break;
+            
+            case 2:
+                cout << "Dramas:" << endl;
+                break;
+                
+            default:
+                break;
+        }
+        cout << movieType[i];
     }
 }
 
 bool MovieInventory::addMovie (Movie* moviePtr)
 {
-
+    switch (moviePtr->getGenre())
+    {
+        case 'F':
+            movieType[0].addMovie(moviePtr);
+            return true;
+            break;
+            
+        case 'C':
+            movieType[1].addMovie(moviePtr);
+            return true;
+            break;
+            
+        case 'D':
+            movieType[2].addMovie(moviePtr);
+            return true;
+            break;
+            
+        default:
+            return false;
+            break;
+    }
 }
 
+/*
 bool MovieInventory::removeMovie (Movie* moviePtr)
 {
 
 }
+ */
 
 bool MovieInventory::borrowMovie (Movie* moviePtr)
 {
-
+    if (movieExist(moviePtr))
+    {
+        if (getMovie(moviePtr)->getStock() >= 1)
+        {
+            getMovie(moviePtr)->subtractFromStock();
+            return true;
+        }
+    }
+    return false;
 }
 
 bool MovieInventory::returnMovie (Movie* moviePtr)
 {
-
+    if (movieExist(moviePtr))
+    {
+        getMovie(moviePtr)->addToStock();
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 //////////////////////////////////////////////////

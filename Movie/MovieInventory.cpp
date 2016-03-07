@@ -16,7 +16,10 @@
 //////////////////////////////////////////////////
 MovieInventory::MovieInventory()
 {
-	
+    BST comedy, classic, drama;
+    movieType.push_back(comedy);
+    movieType.push_back(classic);
+    movieType.push_back(drama);
 }
 
 MovieInventory::~MovieInventory()
@@ -28,37 +31,69 @@ MovieInventory::~MovieInventory()
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
-Movie MovieInventory::getMovie (Movie*)
+Movie* MovieInventory::getMovie (Movie* moviePtr)
 {
-
+    Movie *foundPtr;
+    switch (moviePtr->getGenre())
+    {
+        case 'F':
+            movieType[0].getMovie(*moviePtr, foundPtr);
+            return foundPtr;
+            break;
+            
+        case 'C':
+            movieType[1].getMovie(*moviePtr, foundPtr);
+            return foundPtr;
+            break;
+        
+        case 'D':
+            movieType[2].getMovie(*moviePtr, foundPtr);
+            return foundPtr;
+            break;
+            
+        default:
+            foundPtr = NULL;
+            break;
+    }
+    return foundPtr;
 }
 
-bool MovieInventory::movieExist (Movie*)
+bool MovieInventory::movieExist (Movie* moviePtr)
 {
-
+    if (getMovie(moviePtr) != NULL)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 void MovieInventory::printInventory()
 {
-
+    for (int i = 0; i < movieType.size(); i++)
+    {
+        cout << movieType[i] << endl;
+    }
 }
 
-bool MovieInventory::addMovie (Movie*)
+bool MovieInventory::addMovie (Movie* moviePtr)
 {
 
 }
 
-bool MovieInventory::removeMovie (Movie*)
+bool MovieInventory::removeMovie (Movie* moviePtr)
 {
 
 }
 
-bool MovieInventory::borrowMovie (Movie*)
+bool MovieInventory::borrowMovie (Movie* moviePtr)
 {
 
 }
 
-bool MovieInventory::returnMovie (Movie*)
+bool MovieInventory::returnMovie (Movie* moviePtr)
 {
 
 }

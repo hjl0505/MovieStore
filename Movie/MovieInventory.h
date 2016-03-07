@@ -12,8 +12,9 @@
 #ifndef MOVIEINVENTORY_H
 #define MOVIEINVENTORY_H
 
-#include <set> // set? TREE??
+#include <vector> // set? TREE??
 #include "Movie.h"
+#include "BST.h"
 
 class MovieInventory
 {
@@ -23,7 +24,7 @@ public:
 	MovieInventory();
 	~MovieInventory();
 
-	Movie getMovie (Movie*); // retrieves movie equal to the parameter movie
+	Movie* getMovie (Movie*); // retrieves movie equal to the parameter movie
 	bool movieExist (Movie*); // checks if movie exists
 	void printInventory(); // print all the movies in the stock
 
@@ -33,7 +34,7 @@ public:
 	bool returnMovie (Movie*); // return a movie
 
 private:
-	set<Movie> movies[3]; // array of BSTs there are 3 for each genre of movies
+	vector<BST> movieType; // array of BSTs there are 3 for each genre of movies
 							// idx 0 for comedy, 1 for drama, 2 for classic
 };
 #endif

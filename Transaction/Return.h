@@ -21,14 +21,13 @@ using namespace std;
 class Return: public Transaction {
 
 public:
-	Return();
-	~Return();
+	Return(int, Movie*);
+	virtual ~Return();
 	
-	virtual string getSummary(); // get summary of borrow transaction
 	int getCustomerID(); // get ID of the customer of the transaction
 	
 	// perform Return movie
-	virtual void perform(MovieInventory&, CustomerInventory&); 
+	virtual bool perform(MovieInventory&, CustomerInventory&); 
 
 private:
 	Movie* movie; // movie to Return 

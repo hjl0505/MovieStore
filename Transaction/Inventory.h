@@ -24,9 +24,9 @@ class Inventory: public Transaction {
 
 public:
 	Inventory();
-	~Inventory();
+	virtual ~Inventory();
 		
 	// perform inventory
-	virtual void perform(MovieInventory&, CustomerInventory&); 
+	virtual bool perform(MovieInventory&, CustomerInventory&); 
 };
 #endif

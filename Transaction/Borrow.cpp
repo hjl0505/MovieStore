@@ -15,34 +15,66 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
-Borrow::Borrow()
+Borrow::Borrow(int id, Movie* m)
 {
-
+	customerID = id;
+	movie = m;
 }
 
 Borrow::~Borrow()
 {
-
+	delete movie;
+	movie = NULL;
 }
 
 //////////////////////////////////////////////////
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
-string Borrow::getSummary()
-{
-
-}
-
 int Borrow::getCustomerID()
 {
-
+	return customerID;
 }
 
 
-void Borrow::perform(MovieInventory&, CustomerInventory&)
+bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 {
-
+	// check if customer exists
+	if (customers.customerExist(customerID));
+	{
+		cout << "Borrow Transaction Failed" << endl;
+		cout << "Customer does not exist" << endl;
+		return false;
+	}
+	
+	Customer* customer = customers.getCustomer(customerID);
+	
+	// movie exists in the stock
+	if (movies.movieExist(movie))
+	{		
+		// There was enough stock of movie to borrow from
+		if (movies.borrowMovie(movie)) {
+			
+			// update summary of transaction if borrow performed correctly
+			string summary = "Borrow " + borrowMovie.display();
+			Transaction:setSummary(summary);
+			
+			customer -> addCheckedOut (borrowMovie);
+			customer -> addHistory(summary);
+			
+		} 
+		else
+		{
+			out << "Borrow Transaction Failed" << endl;
+			cout << "Not enough in the Stock" << endl;
+		}
+	}
+	else
+	{
+		cout << "Borrow Transaction Failed" << endl;
+		cout << "Movie does not Exist in the Inventory" << endl;
+	}
+			
 }
 
 //////////////////////////////////////////////////

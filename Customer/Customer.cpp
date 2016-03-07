@@ -41,7 +41,26 @@ Customer::Customer(int id, string first, string last)
 
 Customer::~Customer()
 {
-	// get rid of linked lists
+	// delete history list
+	historyNode* temp = history;
+	while (history != NULL)
+	{
+		history = history -> next;
+		delete temp;
+		temp = history;
+	}
+	
+	// delete checked out list
+	checkedOutNode* cur = checkedOut;
+	Movie* movieTemp = checkedOut -> movieBorrowed;
+	while (checkedOut != NULL)
+	{
+		checkedOut = checkedOut -> next;
+		delete movieTemp;
+		delete cur;
+		cur = checkedOut;
+		movieTemp = cur -> movieBorrowed;
+	}	
 }
 
 //////////////////////////////////////////////////
@@ -96,16 +115,16 @@ void Customer::addHistory(string summary)
 
 // insert new checked out movie in front of the list of checked out list
 // customer can check out 2 copies of the same movie (do not check for double)
-bool Customer::addCheckedOut(Movie* moviePtr)
+bool Customer::addCheckedOut(Movie* movie)
 {
 	checkedOutNode* newMovie = new checkedOutNode;
-	newMovie -> movieBorrowed = moviePtr;
+	newMovie -> movieBorrowed = movie;
 	newMovie -> next = checkedOut;
 	checkedOut = newMovie;
 	return true;
 }
 
-bool Customer::removeCheckedOut(Movie* moviePtr)
+bool Customer::removeCheckedOut(Movie* movie)
 {
 	checkedOutNode* before = checkedOut;
 	if (before != NULL) 
@@ -113,15 +132,13 @@ bool Customer::removeCheckedOut(Movie* moviePtr)
 		checkedOutNode* cur = checkedOut -> next;
 		while (cur != NULL) 
 		{
-			if (*cur -> movieBorrowed == *moviePtr) 
+			if (cur -> movieBorrowed == movie) 
 			{
 				// remove movie from the list
 				before -> next = cur -> next; 
 				
 				// delete pointers
 				cur -> next = NULL;
-				cur -> movieBorrowed = NULL;
-				delete cur -> movieBorrowed;
 				delete cur;
 				return true;
 			}

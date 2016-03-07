@@ -32,7 +32,7 @@ Inventory::~Inventory()
 
 void Inventory::perform(MovieInventory& movies, CustomerInventory& customers)
 {
-
+	movies.printInventory();
 }
 
 //////////////////////////////////////////////////

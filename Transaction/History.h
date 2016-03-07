@@ -22,13 +22,13 @@ using namespace std;
 class History: public Transaction {
 
 public:
-	History();
-	~History();
+	History(int);
+	virtual ~History();
 	
 	int getCustomerID();
 		
 	// perform history
-	virtual void perform(MovieInventory&, CustomerInventory&); 
+	virtual bool perform(MovieInventory&, CustomerInventory&); 
 
 private:
 	int customerID; // customer responsible for the transacti

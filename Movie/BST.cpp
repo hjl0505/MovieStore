@@ -89,7 +89,7 @@ void BST::makeEmptyHelper(Node* &cur)
 		
 		delete cur -> movie;
 		cur -> movie = NULL;
-		delete cur;	
+		delete cur;
 		cur = NULL;
 	} 
 } 
@@ -100,7 +100,8 @@ void BST::printHelper (Node* cur) const
   	if (cur != NULL) 
 	{
 		printHelper(cur -> left);
-		cout << cur -> movie << endl;
+        cur -> movie -> display();
+        cout << endl;
 		printHelper(cur -> right);
 	}  
 } 

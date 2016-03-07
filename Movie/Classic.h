@@ -20,20 +20,20 @@ class Classic : public Movie
 
 public:
 	Classic();
-	Classic(int monthReleased, string actor);
+	Classic(char genre, char mediaType, string title, string director, int stock, int yearRelease, int monthReleased, string actor);
 	~Classic();
 
-	virtual bool operator == (const Movie&); // check if movies are equal
-	virtual bool operator != (const Movie&); // check if movies are not equal
-	virtual bool operator > (const Movie&); // check if this movie is greater than rhs movie
-	virtual bool operator < (const Movie&); // check if this movie is less than rhs movie
-	virtual Movie &operator=(const Movie&); // assign this movie to rhs
+	virtual bool operator == (const Classic&) const; // check if movies are equal
+	virtual bool operator != (const Classic&) const; // check if movies are not equal
+	virtual bool operator > (const Classic&) const; // check if this movie is greater than rhs movie
+	virtual bool operator < (const Classic&) const; // check if this movie is less than rhs movie
+	virtual Classic& operator=(const Classic&); // assign this movie to rhs
 
-	virtual string display(); // print out movie data and return string
+	virtual void display() const; // print out movie data and return string
 
 	// get methods
-	int getMonth();
-	string getActor();
+	int getMonth() const;
+	string getActor() const;
 
 private:
 	int monthReleased; // month of the movie release

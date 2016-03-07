@@ -11,11 +11,11 @@
 
 #include <iostream>
 #include <fstream>
-#include "Store/Store.h" // (Movie) Store class
+#include "Comedy.h" // (Movie) Store class
 using namespace std;
 
 int main() {
-	
+	/*
 	ifstream customerFile("Store/data4customers.txt");
 	ifstream movieFile("Store/data4movies.txt");
 	ifstream transactionFile("Store/data4commands.txt");
@@ -31,6 +31,12 @@ int main() {
  	//movieStore.readCustomerFile(customerFile); //create customer profiles from file
 	//movieStore.readMovieFile(movieFile); //create movie inventory from file
 	//movieStore.readTransactionFile(transactionFile); //process transactions from file
+     */
+    
+    Comedy comedy;
+    
+    
+    
 	 
 	return 0;
 }

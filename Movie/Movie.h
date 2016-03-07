@@ -22,38 +22,29 @@ class Movie
 
 public:
 	Movie();
+    Movie(char genre, char mediaType, string title, string director, int stock, int yearReleased);
 	~Movie();
 
-<<<<<<< HEAD
- 	virtual bool operator == (const Movie&); // check if movies are equal
-	virtual bool operator != (const Movie&); // check if movies are not equal
-	virtual bool operator > (const Movie&); // check if this movie is greater than rhs movie
-	virtual bool operator < (const Movie&); // check if this movie is less than rhs movie
-	virtual const Movie &operator=(const Movie&); // assignment operator
+ 	virtual bool operator==(const Movie& otherMovie) const; // check if movies are equal
+	virtual bool operator != (const Movie& otherMovie) const; // check if movies are not equal
+	virtual bool operator > (const Movie& otherMovie) const; // check if this movie is greater than rhs movie
+	virtual bool operator < (const Movie& otherMovie) const; // check if this movie is less than rhs movie
+	virtual Movie& operator=(const Movie& source); // assignment operator
 
-	virtual string display() = 0; // print out movie data and return string
-=======
- 	virtual bool operator== (const Movie&) const; // check if movies are equal
-	virtual bool operator!= (const Movie&) const; // check if movies are not equal
-	virtual bool operator> (const Movie&); // check if this movie is greater than rhs movie
-	virtual bool operator< (const Movie&); // check if this movie is less than rhs movie
-	virtual Movie& operator=(const Movie&); // assignment operator
-	
-	virtual string display(); // print out movie data and return string 
->>>>>>> master
+	virtual void display(); // print out movie data and return string
 
 	// Get methods
-	char getGenre();
-	char getMediaType();
-	string getTitle();
-	string getDirector();
-	int getStock();
-	int getYearReleased();
+	char getGenre() const;
+	char getMediaType() const;
+	string getTitle() const;
+	string getDirector() const;
+	int getStock() const;
+	int getYearReleased() const;
 
 	bool addToStock(); // add to stock by 1
 	bool subtractFromStock(); // subtract from stock by 1
 
-prtected:
+protected:
 	char genre; // genre of the movie
 	char mediaType; // media type of the movie
 	string title; // title of movie

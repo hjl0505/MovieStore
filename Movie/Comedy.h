@@ -15,13 +15,14 @@
 #include "Movie.h"
 using namespace std;
 
-class Comedy:public Movie
+class Comedy : public Movie
 {
 
 public:
 	Comedy();
+    Comedy(char genre, char mediaType, string title, string director, int stock, int yearRelease);
 	~Comedy();
 
-	virtual string display(); // print out movie data and return string
+	//virtual string display(); // print out movie data and return string
 };
 #endif

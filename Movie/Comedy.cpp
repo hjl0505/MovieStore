@@ -31,7 +31,7 @@ Comedy::~Comedy()
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
-virtual Compedy::string display()
+string Comedy::display()
 {
 
 }

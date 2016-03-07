@@ -30,13 +30,7 @@ Inventory::~Inventory()
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
-virtual string Inventory::getSummary()
-{
-
-}
-
-
-virtual void Inventory::perform(MovieInventory&, CustomerInventory&)
+void Inventory::perform(MovieInventory& movies, CustomerInventory& customers)
 {
 
 }

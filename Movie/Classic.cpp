@@ -44,16 +44,23 @@ Classic::~Classic()
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
+<<<<<<< HEAD
 //Display
 //Displays the monthReleased and actor
 virtual string Classic::display()
+=======
+string Classic::display()
+>>>>>>> master
 {
   cout << "Month Released: " << monthReleased;
   cout << "Actor: " << actor << endl;
 }
 
+<<<<<<< HEAD
 //Get month
 //Returns the monthReleased
+=======
+>>>>>>> master
 int Classic::getMonth()
 {
   return monthReleased;
@@ -66,6 +73,7 @@ string Classic::getActor()
   return actor;
 }
 
+
 //////////////////////////////////////////////////
 ////////////   Private Methods   /////////////////
 //////////////////////////////////////////////////
@@ -73,6 +81,11 @@ string Classic::getActor()
 //////////////////////////////////////////////////
 //////////     Operator Overloads   //////////////
 //////////////////////////////////////////////////
+<<<<<<< HEAD
+=======
+bool Classic::operator == (const Movie& otherMovie)
+{
+>>>>>>> master
 
 //Equivalence operator
 //Compares if the monthReleased is the same for both movies
@@ -89,33 +102,53 @@ virtual bool Classic::operator == (const Movie& rhs)
     return false;
   }
 }
+ 
 
+<<<<<<< HEAD
 //Not equivalent operator
 //Returns the negation of the equivalence operator
 virtual bool Classic::operator != (const Movie& rhs)
+=======
+bool Classic::operator != (const Movie& otherMovie)
+>>>>>>> master
 {
   return !(this == rhs);
 }
 
+<<<<<<< HEAD
 //Greater than operator
 //Returns true if this movie was released after the
 //right hand side movie
 virtual bool Classic::operator > (const Movie& rhs)
+=======
+
+bool Classic::operator > (const Movie& otherMovie)
+>>>>>>> master
 {
   return this.getMonth > rhs.getMonth;
 }
 
+<<<<<<< HEAD
 //Less than operator
 //Returns true if this movie was released before the
 //right hand side movie
 virtual bool Classic::operator < (const Movie& rhs)
+=======
+
+bool Classic::operator < (const Movie& otherMovie)
+>>>>>>> master
 {
   return this.getMonth < rhs.getMonth;
 }
 
+<<<<<<< HEAD
 //Assignment operator
 //Copies all values from the source movie to this movie
 virtual const Classic::Movie &operator=(const Movie& source)
+=======
+
+Movie& Classic::operator=(const Movie& otherMovie)
+>>>>>>> master
 {
   monthReleased = source.getMonth;
   actor = source.getActor;

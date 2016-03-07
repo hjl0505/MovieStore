@@ -23,7 +23,7 @@
 #include "../Movie/MovieFactory.h"
 #include "../Movie/Movie.h" 
 #include "../Transaction/TransactionFactory.h" 
-#include "../Transaction/Transaction.h" 
+#include "../Transaction/Transaction.h"  
 using namespace std;
 
 class Store {

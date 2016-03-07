@@ -27,10 +27,10 @@ int main() {
 	if (!transactionFile)  // repeat for movieFile and transactionFile
 		cout << "Transaction file cannot be oppened" << endl;
 
-	Store* movieStore; //create a store
-/* 	movieStore.readCustomerFile(customerFile); //create customer profiles from file
-	movieStore.readMovieFile(movieFile); //create movie inventory from file
-	movieStore.readTransactionFile(transactionFile); //process transactions from file
-	 */
+	Store movieStore; //create a store
+ 	//movieStore.readCustomerFile(customerFile); //create customer profiles from file
+	//movieStore.readMovieFile(movieFile); //create movie inventory from file
+	//movieStore.readTransactionFile(transactionFile); //process transactions from file
+	 
 	return 0;
 }

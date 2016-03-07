@@ -25,12 +25,12 @@ TransactionFactory::~TransactionFactory()
 {
 
 }
-
 //////////////////////////////////////////////////
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
-TransactionFactory::Transaction create(char type, int customerID, Movie* m)
+
+Transaction TransactionFactory::create(char type, int customerID, Movie* m)
 {
 
 }

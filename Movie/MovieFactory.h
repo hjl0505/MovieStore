@@ -25,6 +25,6 @@ public:
 	~MovieFactory();
 
 	// create movie
-	Movie create(char, char, string, string, string, int, int, int);
+	Movie* create(char, string, string, string, int, int, int);
 };
 #endif

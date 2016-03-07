@@ -29,7 +29,7 @@ Return::~Return()
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
-virtual string Return::getSummary()
+string Return::getSummary()
 {
 
 }
@@ -40,7 +40,7 @@ int Return::getCustomerID()
 }
 
 
-virtual void Return::perform(MovieInventory&, CustomerInventory&)
+void Return::perform(MovieInventory& movies, CustomerInventory& customers)
 {
 
 }

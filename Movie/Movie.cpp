@@ -42,7 +42,7 @@ Movie::~Movie()
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
-void Movie::display()
+void Movie::display() const
 {
     cout << "Title: " << title << endl;
     cout << "Director: " << director << endl;
@@ -50,6 +50,13 @@ void Movie::display()
     cout << "Genre: " << getGenre() << endl;
     cout << "Media Type: " << mediaType << endl;
     cout << "Stock: " << stock << endl;
+}
+
+string Movie::getMovieInfo() const
+{
+    string s;
+    s = title + " " + director + " " + to_string(yearReleased) + " " + genre + " " + mediaType + " " + to_string(stock);
+    return s;
 }
 
 char Movie::getGenre() const

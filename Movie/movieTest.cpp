@@ -29,7 +29,7 @@ int main()
     Comedy holyGrail('C', 'D', "Monty Python and the Holy Grail", "Terry Gilliam and Terry Jones", 5, 1975);
     holyGrail.display();
     cout << endl;
-    
+
     Drama socialNetwork('D', 'B', "The Social Network", "David Fincher", 7, 2010);
     socialNetwork.display();
     cout << endl;
@@ -38,10 +38,6 @@ int main()
     {
         cout << "Play Time is not equal to Holy Grail" << endl;
     }
-
-
-
-
-
+    
 	return 0;
 }

@@ -11,15 +11,17 @@
 
 #include <iostream>
 #include <fstream>
-#include "Store/Store.h" // (Movie) Store class
+#include "Comedy.h" // (Movie) Store class
+#include "Classic.h"
+#include "Drama.h"
 using namespace std;
 
 int main() {
-	
+
 	ifstream customerFile("Store/data4customers.txt");
 	ifstream movieFile("Store/data4movies.txt");
 	ifstream transactionFile("Store/data4commands.txt");
-	
+
 	if (!customerFile)  // repeat for movieFile and transactionFile
 		cout << "Customer file cannot be oppened" << endl;
 	if (!movieFile)  // repeat for movieFile and transactionFile
@@ -31,6 +33,6 @@ int main() {
  	//movieStore.readCustomerFile(customerFile); //create customer profiles from file
 	//movieStore.readMovieFile(movieFile); //create movie inventory from file
 	//movieStore.readTransactionFile(transactionFile); //process transactions from file
-	 
+
 	return 0;
 }

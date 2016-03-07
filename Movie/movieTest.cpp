@@ -12,47 +12,36 @@
 #include <iostream>
 #include <fstream>
 #include "Comedy.h" // (Movie) Store class
+#include "Classic.h"
+#include "Drama.h"
 using namespace std;
 
 int main()
 {
-	/*
-	ifstream customerFile("Store/data4customers.txt");
-	ifstream movieFile("Store/data4movies.txt");
-	ifstream transactionFile("Store/data4commands.txt");
-	
-	if (!customerFile)  // repeat for movieFile and transactionFile
-		cout << "Customer file cannot be oppened" << endl;
-	if (!movieFile)  // repeat for movieFile and transactionFile
-		cout << "Movie file cannot be oppened" << endl;
-	if (!transactionFile)  // repeat for movieFile and transactionFile
-		cout << "Transaction file cannot be oppened" << endl;
-
-	Store movieStore; //create a store
- 	//movieStore.readCustomerFile(customerFile); //create customer profiles from file
-	//movieStore.readMovieFile(movieFile); //create movie inventory from file
-	//movieStore.readTransactionFile(transactionFile); //process transactions from file
-     */
-    
     Comedy playTime('C', 'D', "Play Time", "Jacques Tati", 5, 1968);
-    comedy.display();
+    playTime.display();
     cout << endl;
-    
-    Classic classic('C', 'B', "The Leopard", "Luchino Visconti", 10, 1963, 7, "Alain Delon");
-    classic.display();
-    
+
+    Classic leopard('C', 'B', "The Leopard", "Luchino Visconti", 10, 1963, 7, "Alain Delon");
+    leopard.display();
+    cout << endl;
+
     Comedy holyGrail('C', 'D', "Monty Python and the Holy Grail", "Terry Gilliam and Terry Jones", 5, 1975);
     holyGrail.display();
     cout << endl;
     
+    Drama socialNetwork('D', 'B', "The Social Network", "David Fincher", 7, 2010);
+    socialNetwork.display();
+    cout << endl;
+
     if (playTime != holyGrail)
     {
         cout << "Play Time is not equal to Holy Grail" << endl;
     }
 
-    
-    
-    
-	 
+
+
+
+
 	return 0;
 }

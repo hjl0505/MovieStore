@@ -15,9 +15,9 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
-History::History()
+History::History(int id)
 {
-
+	customerID = id;
 }
 
 History::~History()
@@ -31,12 +31,13 @@ History::~History()
 
 int History::getCustomerID()
 {
-
+	return customerID;
 }
 
-void History::perform(MovieInventory&, CustomerInventory&)
+void History::perform(MovieInventory& movies, CustomerInventory& customers)
 {
-
+	Customer* c = getCustomer(customerID);
+	c -> displayHistory();
 }
 
 //////////////////////////////////////////////////

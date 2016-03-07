@@ -22,14 +22,14 @@ using namespace std;
 class Borrow: public Transaction {
 
 public:
-	Borrow();
-	~Borrow();
+	Borrow(int, Movie*);
+	virtual ~Borrow();
 	
 	virtual string getSummary(); // get summary of borrow transaction
 	int getCustomerID(); // get ID of the customer of the transaction
 	
 	// perform borrow movie
-	virtual void perform(MovieInventory&, CustomerInventory&); 
+	virtual bool perform(MovieInventory&, CustomerInventory&); 
 
 private:
 	Movie* movie; // movie to borrow 

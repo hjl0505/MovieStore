@@ -21,7 +21,7 @@ class Customer {
 
 public:
 	Customer();
-	Customer(int, string, string);
+	Customer(int, string, string); 
 	~Customer();
 	
 	void display(); // display customer's name and id
@@ -30,8 +30,8 @@ public:
 	string getName();
 	
  	void addHistory(string); // add transaction to history
-	bool addCheckedOut(Movie*); // add movie to customer's checkedOut list
-	bool removeCheckedOut(Movie*); // remove movie from checkedOut list 
+	bool addCheckedOut(string); // add movie to customer's checkedOut list
+	bool removeCheckedOut(string); // remove movie from checkedOut list 
 
 private:
 

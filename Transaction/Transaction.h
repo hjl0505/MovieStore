@@ -21,11 +21,12 @@ class Transaction {
 	
 public:
 	Transaction();
-	~Transaction();
+	virtual ~Transaction();
 
 	// perform transaction
-	virtual void perform(MovieInventory&, CustomerInventory&);
-	virtual string getSummary(); //return summary of transactions
+	virtual bool perform(MovieInventory&, CustomerInventory&);
+	string getSummary(); //return summary of transactions
+	void setSummary(string); 
 
 private:
 	char transType; // type of transaction

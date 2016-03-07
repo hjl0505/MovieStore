@@ -15,24 +15,38 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
+// nothing initialized
 TransactionFactory::TransactionFactory()
 {
-
 }
 
-
+// no memory leak possible
 TransactionFactory::~TransactionFactory()
 {
-
 }
+
 //////////////////////////////////////////////////
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
 
-Transaction TransactionFactory::create(char type, int customerID, Movie* m)
+Transaction* TransactionFactory::create(char type, int customerID, Movie* m)
 {
-
+	Transaction* transaction = NULL;
+	switch(type) 
+	{
+		case 'B':
+			transaction = new Borrow(customerID, m);
+		case 'R':
+			transaction = new Return(customerID, m);
+		case 'I':
+			transaction = new Inventory;
+		case 'H':
+			transaction = new History(customerID);
+		default:
+			transaction = NULL;
+	}
+	return transaction;
 }
 
 //////////////////////////////////////////////////

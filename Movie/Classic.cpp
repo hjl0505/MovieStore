@@ -63,7 +63,7 @@ void Classic::display() const
 string Classic::getMovieInfo() const
 {
     string s;
-    s = title + " " + director + " " + to_string(yearReleased) + " " + genre + " " + mediaType + " " + to_string(stock) + " " + to_string(monthReleased) + " " + actor;
+    //s = title + " " + director + " " + to_string(yearReleased) + " " + genre + " " + mediaType + " " + to_string(stock) + " " + to_string(monthReleased) + " " + actor;
     return s;
     
 }

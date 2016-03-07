@@ -55,7 +55,7 @@ void Movie::display() const
 string Movie::getMovieInfo() const
 {
     string s;
-    s = title + " " + director + " " + to_string(yearReleased) + " " + genre + " " + mediaType + " " + to_string(stock);
+    //s = title + " " + director + " " + to_string(yearReleased) + " " + genre + " " + mediaType + " " + to_string(stock);
     return s;
 }
 

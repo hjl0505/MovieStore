@@ -32,12 +32,12 @@ CustomerInventory::CustomerInventory()
 
 CustomerInventory::~CustomerInventory()
 {
-/*     for (int i = 0; i < MAX; i++) 
+      for (int i = 0; i < MAX - 1; i++) 
 	{
 		delete hashTable[i];
-		//hashTable[i] = NULL; 
-	}  */
-	
+		hashTable[i] = NULL; 
+	}   	
+	//delete hashTable[9999];
 }
 
 // return customer ptr or NULL if customer doesn't exist

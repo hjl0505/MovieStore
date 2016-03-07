@@ -3,7 +3,7 @@
 // CSS 343 HW 4: Movie Store
 // 2/29/2016
 // ----------------------------------------------------------------------------
-// Super class of Movie
+// Super class of Movie. Abstract base class.
 // ----------------------------------------------------------------------------
 // Stores data for each movie in the store
 // It tracks the current amount of in stock movies for
@@ -29,7 +29,7 @@ public:
 	virtual bool operator < (const Movie&); // check if this movie is less than rhs movie
 	virtual const Movie &operator=(const Movie&); // assignment operator
 
-	virtual string display(); // print out movie data and return string
+	virtual string display() = 0; // print out movie data and return string
 
 	// Get methods
 	char getGenre();
@@ -42,7 +42,7 @@ public:
 	bool addToStock(); // add to stock by 1
 	bool subtractFromStock(); // subtract from stock by 1
 
-private:
+prtected:
 	char genre; // genre of the movie
 	char mediaType; // media type of the movie
 	string title; // title of movie

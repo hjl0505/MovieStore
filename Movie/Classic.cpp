@@ -22,9 +22,11 @@ Classic::Classic()
   actor = "";
 }
 
-//Input constructor
+//Overload constructor
 //Sets the monthReleased and actor based on passed in values
-Classic::Classic(int monthReleased, string actor)
+Classic::Classic(char genre, char mediaType, string title, string director,
+   int stock, int yearReleased, int monthReleased, string actor)
+    : Movie(genre, mediaType, title, director, stock, yearReleased)
 {
   this.monthReleased = monthReleased;
   this.actor = actor;

@@ -34,9 +34,9 @@ int History::getCustomerID()
 	return customerID;
 }
 
-void History::perform(MovieInventory& movies, CustomerInventory& customers)
+bool History::perform(MovieInventory& movies, CustomerInventory& customers)
 {
-	Customer* c = getCustomer(customerID);
+	Customer* c = customers.getCustomer(customerID);
 	c -> displayHistory();
 }
 

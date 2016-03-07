@@ -25,7 +25,6 @@ public:
 	Borrow(int, Movie*);
 	virtual ~Borrow();
 	
-	virtual string getSummary(); // get summary of borrow transaction
 	int getCustomerID(); // get ID of the customer of the transaction
 	
 	// perform borrow movie

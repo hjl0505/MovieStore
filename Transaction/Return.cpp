@@ -15,14 +15,16 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
-Return::Return()
+Return::Return(int id, Movie* m)
 {
-
+	movie = m;
+	customerID = id;
 }
 
 Return::~Return()
 {
-
+	delete movie;
+	movie = NULL;
 }
 
 //////////////////////////////////////////////////
@@ -35,7 +37,7 @@ int Return::getCustomerID()
 }
 
 
-void Return::perform(MovieInventory& movies, CustomerInventory& customers)
+bool Return::perform(MovieInventory& movies, CustomerInventory& customers)
 {
 
 	// check if customer exists
@@ -61,10 +63,10 @@ void Return::perform(MovieInventory& movies, CustomerInventory& customers)
 				movies.returnMovie(movie);
 				
 				// update summary of transaction if borrow performed correctly
-				summary = "Return " + returnMovie.display();
-				Transaction:setSummary(summary);
+				string returnSummary = "Return "; //+ movie -> getMovieInfo();
+				Transaction::setSummary(returnSummary);
 				
-				customer -> addHistory(summary);
+				customer -> addHistory(returnSummary);
 		}
 		else
 		{

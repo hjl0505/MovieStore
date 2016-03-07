@@ -30,7 +30,7 @@ Inventory::~Inventory()
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
-void Inventory::perform(MovieInventory& movies, CustomerInventory& customers)
+bool Inventory::perform(MovieInventory& movies, CustomerInventory& customers)
 {
 	movies.printInventory();
 }

@@ -16,7 +16,8 @@
 #define STORE_H
 
 #include <iostream>
-#include <fstream>
+#include <fstream> // reading file
+#include <sstream> // reading string as input
 #include "../Customer/CustomerInventory.h"
 #include "../Customer/Customer.h"
 #include "../Movie/MovieInventory.h"
@@ -32,11 +33,11 @@ public:
 	Store();
 	~Store();
 	
-	bool readCustomerFile (ifstream); // load customers into customerTable
-	bool readMovieFile (ifstream); // load movies into movieTable
-	bool readTransactionFile (ifstream); // read transactions and execute 
+	bool readCustomerFile (ifstream&); // load customers into customerTable
+	bool readMovieFile (ifstream&); // load movies into movieTable
+	bool readTransactionFile (ifstream&); // read transactions and execute 
 	
-	bool performTransaction (Transaction); // execute a transaction
+	bool performTransaction (Transaction*); // execute a transaction
 	
 private: 
 	MovieInventory movieTree; // BST of movies

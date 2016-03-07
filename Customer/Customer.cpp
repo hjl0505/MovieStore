@@ -79,7 +79,11 @@ void Customer::display()
 		zeros = "0";
 	
 	// print customer info
-	cout << firstName << setw(10) << lastName << setw(8) << zeros << ID << endl;  
+	cout << zeros << ID  << "    ";
+	cout.width(10);
+	cout << left << firstName;
+	cout.width(10);
+	cout << left << lastName << endl;  
 }
 
 // Most recent to Least recent (newest transaction to oldest transaction)

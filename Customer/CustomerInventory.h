@@ -20,7 +20,7 @@ using namespace std;
 class CustomerInventory {
 
 public:
-	static const int MAX = 10000; // max ID
+	static const int MAX = 10; // max number of IDs
 	
 	CustomerInventory();
 	~CustomerInventory();
@@ -28,10 +28,15 @@ public:
 	Customer* getCustomer (int); // get Customer with ID
 	bool customerExist (int); // Check if customer exists with ID
 		
-	bool addCustomer(Customer*); // add customer to inventory
+	bool addCustomer(int, string, string); // add customer to inventory
 	bool removeCustomer(int); // remove customer from inventory
 
 private:
-	Customer* hashTable[MAX]; // hash table
+/* 	struct HashEntry { // 
+		Customer* customer;
+	};
+	HashEntry* hashTable; // hash table */
+	
+	Customer* hashTable[MAX];
 };
 #endif

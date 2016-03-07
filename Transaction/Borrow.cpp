@@ -56,16 +56,16 @@ bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 		if (movies.borrowMovie(movie)) {
 			
 			// update summary of transaction if borrow performed correctly
-			string summary = "Borrow " + borrowMovie.display();
-			Transaction:setSummary(summary);
+			string borrowSummary = "Borrow "; //+ movie -> getMovieInfo();
+			Transaction::setSummary(borrowSummary);
 			
-			customer -> addCheckedOut (borrowMovie);
-			customer -> addHistory(summary);
+			customer -> addCheckedOut (movie);
+			customer -> addHistory(borrowSummary);
 			
 		} 
 		else
 		{
-			out << "Borrow Transaction Failed" << endl;
+			cout << "Borrow Transaction Failed" << endl;
 			cout << "Not enough in the Stock" << endl;
 		}
 	}

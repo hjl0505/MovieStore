@@ -20,42 +20,59 @@
 
 Store::Store()
 {
-
 }
 
 
 Store::~Store()
-{
-	
+{	
 }	
-	
 	
 
 //////////////////////////////////////////////////
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
-bool Store::readCustomerFile (ifstream in)
+bool Store::readCustomerFile (ifstream& in)
+{
+	// variables for customer
+	int id;
+	string firstName;
+	string lastName;
+	
+	// read file by line
+	string line;
+	getline(in,line);
+		
+	while(!in.eof())
+	{		
+		// read string as input
+		stringstream readLine(line);
+		readLine >> id;
+		readLine >> firstName;
+		readLine >> lastName;
+		
+		customerTable.addCustomer(id, firstName, lastName); 
+		
+		// read file by line
+		getline(in,line);
+	}
+}
+
+
+bool Store::readMovieFile (ifstream& in)
+{
+}
+
+
+bool Store::readTransactionFile (ifstream& in) 
 {
 
 }
 
 
-bool Store::readMovieFile (ifstream in)
+bool Store::performTransaction (Transaction* t)
 {
-
-}
-
-
-bool Store::readTransactionFile (ifstream in) 
-{
-
-}
-
-
-bool Store::performTransaction (Transaction t)
-{
-
+	t -> perform(movieTree, customerTable);
 }
 
 //////////////////////////////////////////////////

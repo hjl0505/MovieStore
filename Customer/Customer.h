@@ -13,7 +13,6 @@
 #define CUSTOMER_H
 
 #include <iostream> // input and output
-#include <iomanip> // formatting output
 #include "../Movie/Movie.h"
 using namespace std;
 
@@ -21,7 +20,7 @@ class Customer {
 
 public:
 	Customer();
-	Customer(int, string, string); 
+	Customer(int, string, string); // ID, first, last
 	~Customer();
 	
 	void display(); // display customer's name and id
@@ -30,8 +29,8 @@ public:
 	string getName();
 	
  	void addHistory(string); // add transaction to history
-	bool addCheckedOut(string); // add movie to customer's checkedOut list
-	bool removeCheckedOut(string); // remove movie from checkedOut list 
+	bool addCheckedOut(Movie*); // add movie to customer's checkedOut list
+	bool removeCheckedOut(Movie*); // remove movie from checkedOut list 
 
 private:
 

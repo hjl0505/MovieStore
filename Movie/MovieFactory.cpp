@@ -29,7 +29,7 @@ MovieFactory::~MovieFactory()
 Movie* MovieFactory::create(char genre, string title, string director, string actor, int month, int year, int stock)
 {
 	Movie* newMovie = NULL;
-	switch(genre) 
+	switch(genre)
 	{
 		case 'C':
 			newMovie = new Classic (genre, 'D', title, director, stock, year, month, actor);
@@ -38,9 +38,11 @@ Movie* MovieFactory::create(char genre, string title, string director, string ac
 		case 'D':
 			newMovie = new Drama (genre, 'D', title, director, stock, year);
             return newMovie;
+			break;
 		case 'F':
 			newMovie = new Comedy (genre, 'D', title, director, stock, year);
             return newMovie;
+			break;
 		default:
 			return newMovie;
             break;

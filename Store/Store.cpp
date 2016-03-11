@@ -62,14 +62,11 @@ bool Store::readCustomerFile (ifstream& in)
 bool Store::readMovieFile (ifstream& in)
 {
 	// variables for movie
-	char type;
-	int stock;
-	string director;
-	string title;
-	string actor = "";
-	int month = 0;
-	int year;
+	char genre;
+	int stock, month, year;
+	string director, title, actor;
 	
+	// read file by line
 	string line;
 	getline(in, line);
 	
@@ -79,31 +76,14 @@ bool Store::readMovieFile (ifstream& in)
 		string temp;
 		
 		readLine >> temp; // temporary string including commas
-		type = temp[0]; // read type
-		readLine >> stock; // read stock
-		
-		// ',' as temp and first part of director
-		readLine >> temp >> director; 
-		
-		// read director until next ','
-		while(director[director.length() - 1] != ',') 
-		{
-			readLine >> temp;
-			director = director + " " + temp;
-		}
-		director = director.substr(0, director.length() - 1);
-
-		// read title until next ','
-		readLine >> title;
-		while(title[title.length() - 1] != ',') 
-		{
-			readLine >> temp;
-			title = title + " " + temp;
-		}
-		title = title.substr(0, title.length() - 1);
+		genre = temp[0]; // get first character as genre
+		readLine >> stock; 
+		readLine >> temp; // read over the ','
+		director = readStringStream(readLine); 
+		title = readStringStream(readLine); 
 		
  		// read classics actor and month
-		if (type == 'C')
+		if (genre == 'C')
 		{
  			readLine >> actor >> temp;
 			while (!isdigit(temp[0]))
@@ -114,13 +94,12 @@ bool Store::readMovieFile (ifstream& in)
 			istringstream(temp) >> month;
 			
 		} 
+		readLine >> year; // read year
 		
-		// read year
-		readLine >> year;
-		
-		Movie* newMovie = movieFactory.create(type, title, director, actor, month, year, stock);
+		// Create movie and add to the movieTree
+		//Movie* newMovie = movieFactory.create(type, title, director, actor, month, year, stock);
 		//movieTree.addMovie(newMovie);
-			
+		
 		actor = "";
 		month = 0;		
 		getline(in,line);
@@ -131,29 +110,87 @@ bool Store::readMovieFile (ifstream& in)
 
 bool Store::readTransactionFile (ifstream& in) 
 {
-
+	char transType, mediaType, genre;
+	int id, month, year;
+	string actor, director, title, temp;
+	Movie* movie = NULL;
+	
+	// read file by line
+	string line;
+	getline(in, line);
+	
+	while(!in.eof())
+	{
+		stringstream readLine(line);
+		readLine >> transType; // read transaction type
+		
+		// continue reading for history, borrow and return transactions
+		if(transType != 'I') 
+		{
+			readLine >> id;
+			
+			// continue reading for borrow and return transactions
+			if(transType != 'H') 
+			{	
+				readLine >> mediaType;
+				if (mediaType != 'D') // invalid media type
+					cout << "Invalid Media Type. Try Again." << endl;
+				else 
+				{
+					readLine >> genre;
+					switch (genre)
+					{
+						case 'C': // classics
+							readLine >> month >> year;
+							actor = readStringStream(readLine);
+							break;
+						case 'D': // drama
+							director = readStringStream(readLine);
+							title = readStringStream(readLine);	
+							break;
+						case 'F': // comedy
+							title = readStringStream(readLine);
+							readLine >> year;
+							break;
+					}
+					// create new movie
+					//movie = movieFactory(genre, title, director, actor, month, year, 0)
+				}
+			}
+			
+			//create new transaction and perform
+			Transaction* newTrans = transFactory.create(transType, id, movie);
+			//performTransaction(newTrans);
+		}
+		getline(in,line);
+	}
 }
 
 
 bool Store::performTransaction (Transaction* t)
 {
-	t -> perform(movieTree, customerTable);
+	if (t != NULL)
+		t -> perform(movieTree, customerTable);
 }
 
 //////////////////////////////////////////////////
 ////////////   Private Methods   /////////////////
 //////////////////////////////////////////////////
 
-//////////////////////////////////////////////////
-//////////     Operator Overloads   //////////////
-//////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////
-//////////////    I/O Stream   ///////////////////
-//////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////
-//////////////   Extra Code   ////////////////////
-//////////////////////////////////////////////////
+// read part of the string stream and 
+//return words that are separated by comma or end of line
+string Store::readStringStream (stringstream& in)
+{
+	string words, temp;
+	in >> words;
+	while(words[words.length() - 1] != ',' && !in.eof()) 
+	{
+		in >> temp;
+		words = words + " " + temp;
+	}
+	
+	if (words[words.length() - 1] == ',')
+		words = words.substr(0, words.length() - 1);	
+	
+	return words;
+}

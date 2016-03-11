@@ -24,7 +24,7 @@ class Movie
 public:
 	Movie();
     Movie(char genre, char mediaType, string title, string director, int stock, int yearReleased);
-	~Movie();
+	virtual ~Movie();
 
  	virtual bool operator==(const Movie& otherMovie) const; // check if movies are equal
 	virtual bool operator != (const Movie& otherMovie) const; // check if movies are not equal

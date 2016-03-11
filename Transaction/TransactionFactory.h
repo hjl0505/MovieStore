@@ -18,6 +18,7 @@
 #include "Inventory.h"
 #include "History.h" 
 #include "../Movie/Movie.h"
+#include <sstream> // reading string as input
 using namespace std;
 
 class TransactionFactory {

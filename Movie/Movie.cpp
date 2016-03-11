@@ -62,7 +62,6 @@ string Movie::getMovieInfo() const
 char Movie::getGenre() const
 {
     return genre;
-
 }
 
 char Movie::getMediaType() const

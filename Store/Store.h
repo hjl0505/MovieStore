@@ -44,5 +44,7 @@ private:
 	CustomerInventory customerTable; // hash table of customers
 	MovieFactory movieFactory; // movie factory
 	TransactionFactory transFactory; // transaction factory
+	
+	string readStringStream(stringstream&);
 };
 #endif

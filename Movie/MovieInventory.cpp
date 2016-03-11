@@ -118,7 +118,7 @@ bool MovieInventory::addMovie (Movie* moviePtr)
         default:
             return false;
             break;
-    }
+    }  
 }
 
 /*

@@ -42,5 +42,7 @@ public:
 private: 
 	MovieInventory movieTree; // BST of movies
 	CustomerInventory customerTable; // hash table of customers
+	MovieFactory movieFactory; // movie factory
+	TransactionFactory transFactory; // transaction factory
 };
 #endif

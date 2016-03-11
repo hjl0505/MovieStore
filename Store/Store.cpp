@@ -48,22 +48,25 @@ bool Store::readCustomerFile (ifstream& in)
 		// read string as input
 		stringstream readLine(line);
 		readLine >> id;
-		readLine >> firstName;
 		readLine >> lastName;
+		readLine >> firstName;
 		
 		customerTable.addCustomer(id, firstName, lastName); 
 		
 		// read file by line
 		getline(in,line);
 	}
+	return true;
 }
 
 
 bool Store::readMovieFile (ifstream& in)
 {
 	// variables for movie
-	char genre;
-	int stock, month, year;
+	char genre = 'Z';
+	int stock = 0;
+	int month = 0;
+	int year = 0;
 	string director, title, actor;
 	
 	// read file by line
@@ -97,8 +100,8 @@ bool Store::readMovieFile (ifstream& in)
 		readLine >> year; // read year
 		
 		// Create movie and add to the movieTree
-		//Movie* newMovie = movieFactory.create(type, title, director, actor, month, year, stock);
-		//movieTree.addMovie(newMovie);
+		Movie* newMovie = movieFactory.create(genre, title, director, actor, month, year, stock);
+		movieTree.addMovie(newMovie);
 		
 		actor = "";
 		month = 0;		
@@ -154,13 +157,13 @@ bool Store::readTransactionFile (ifstream& in)
 							break;
 					}
 					// create new movie
-					//movie = movieFactory(genre, title, director, actor, month, year, 0)
+					movie = movieFactory.create(genre, title, director, actor, month, year, 0);
 				}
 			}
 			
 			//create new transaction and perform
 			Transaction* newTrans = transFactory.create(transType, id, movie);
-			//performTransaction(newTrans);
+			performTransaction(newTrans);
 		}
 		getline(in,line);
 	}

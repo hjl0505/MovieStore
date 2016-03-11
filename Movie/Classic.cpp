@@ -56,6 +56,7 @@ void Classic::display() const
     cout << "Genre: " << getGenre() << endl;
     cout << "Media Type: " << mediaType << endl;
     cout << "Stock: " << stock << endl;
+
     cout << "Month Released: " << monthReleased << endl;
     cout << "Actor: " << actor << endl;
 }

@@ -33,12 +33,17 @@ Movie* MovieFactory::create(char genre, string title, string director, string ac
 	{
 		case 'C':
 			newMovie = new Classic (genre, 'D', title, director, stock, year, month, actor);
+            return newMovie;
+            break;
 		case 'D':
 			newMovie = new Drama (genre, 'D', title, director, stock, year);
+            return newMovie;
 		case 'F':
 			newMovie = new Comedy (genre, 'D', title, director, stock, year);
+            return newMovie;
 		default:
 			return newMovie;
+            break;
 	}
 }
 //////////////////////////////////////////////////

@@ -38,7 +38,7 @@ public:
 	~BST ();
 	
 	bool getMovie (const Movie&, Movie*&) const; // get movie from the tree 
-	bool addMovie(Movie*); // add movie node
+	bool addMovie(Movie*&); // add movie node
 	
 	
 private:
@@ -47,7 +47,7 @@ private:
 	// private functions
 	void makeEmptyHelper (Node* &);
 	void printHelper (Node* cur) const;
-	bool insertHelper (Node *&, Movie*);
+	bool insertHelper (Node *&, Movie*&);
 	bool retrieveHelper (const Movie&, Movie*& , Node*) const ;
 	
 };

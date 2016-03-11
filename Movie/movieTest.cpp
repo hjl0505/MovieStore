@@ -11,27 +11,25 @@
 
 #include <iostream>
 #include <fstream>
-#include "Comedy.h" // (Movie) Store class
+#include "Comedy.h"
 #include "Classic.h"
 #include "Drama.h"
 #include "MovieInventory.h"
+#include "MovieFactory.h"
 using namespace std;
 
 int main()
 {
     MovieInventory store;
+    MovieFactory factory;
     
-    Comedy *playTime;
-    playTime = new Comedy('F', 'D', "Play Time", "Jacques Tati", 5, 1968);
+    Movie* playTime = factory.create('F', "Play Time", "Jacques Tati", "", -1, 1968, 5);
     
-    Classic *leopard;
-    leopard = new Classic('C', 'B', "The Leopard", "Luchino Visconti", 10, 1963, 7, "Alain Delon");
+    Movie* leopard = factory.create('C', "The Leopard", "Luchino Visconti", "Alain Delon", 10, 1963, 7);
 
-    Comedy *holyGrail;
-    holyGrail = new Comedy('F', 'D', "Monty Python and the Holy Grail", "Terry Gilliam and Terry Jones", 5, 1975);
+    Movie* holyGrail = factory.create('F', "Monty Python and the Holy Grail", "Terry Gilliam and Terry Jones", "", -1, 1975, 14);
     
-    Drama *socialNetwork;
-    socialNetwork = new Drama('D', 'B', "The Social Network", "David Fincher", 7, 2010);
+    Movie* socialNetwork = factory.create('D', "The Social Network", "David Fincher", "", -1, 2010, 7);
     
     store.addMovie(playTime);
     store.addMovie(leopard);
@@ -39,6 +37,7 @@ int main()
     store.addMovie(socialNetwork);
     
     store.printInventory();
+
     
 	return 0;
 }
@@ -46,25 +45,24 @@ int main()
 
 
 /*
- Comedy playTime('C', 'D', "Play Time", "Jacques Tati", 5, 1968);
- playTime.display();
- cout << endl;
+ MovieInventory store;
  
- Classic leopard('C', 'B', "The Leopard", "Luchino Visconti", 10, 1963, 7, "Alain Delon");
- leopard.display();
- cout << endl;
+ Movie* playTime;
+ playTime = new Comedy('F', 'D', "Play Time", "Jacques Tati", 5, 1968);
  
- Comedy holyGrail('C', 'D', "Monty Python and the Holy Grail", "Terry Gilliam and Terry Jones", 5, 1975);
- holyGrail.display();
- cout << endl;
+ Movie* leopard;
+ leopard = new Classic('C', 'B', "The Leopard", "Luchino Visconti", 10, 1963, 7, "Alain Delon");
  
- Drama socialNetwork('D', 'B', "The Social Network", "David Fincher", 7, 2010);
- socialNetwork.display();
- cout << endl;
+ Movie* holyGrail;
+ holyGrail = new Comedy('F', 'D', "Monty Python and the Holy Grail", "Terry Gilliam and Terry Jones", 5, 1975);
  
- if (playTime != holyGrail)
- {
- cout << "Play Time is not equal to Holy Grail" << endl;
- cout << endl;
- }
+ Movie* socialNetwork;
+ socialNetwork = new Drama('D', 'B', "The Social Network", "David Fincher", 7, 2010);
+ 
+ store.addMovie(playTime);
+ store.addMovie(leopard);
+ store.addMovie(holyGrail);
+ store.addMovie(socialNetwork);
+ 
+ store.printInventory();
  */

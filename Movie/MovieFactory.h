@@ -25,6 +25,6 @@ public:
 	~MovieFactory();
 
 	// create movie
-	Movie* create(char, string, string, string, int, int, int);
+	Movie* create(char genre, string title, string director, string actor, int month, int year, int stock);
 };
 #endif

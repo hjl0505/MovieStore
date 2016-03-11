@@ -34,7 +34,7 @@ bool BST::getMovie (const Movie& movieSearch, Movie*& found) const
 	return retrieveHelper (movieSearch, found, root);
 }
 
-bool BST::addMovie(Movie* movieAdd)
+bool BST::addMovie(Movie*& movieAdd)
 {
 	return insertHelper(root, movieAdd);
 }
@@ -46,7 +46,7 @@ ostream& operator<< (ostream& out, const BST& bst)
 	return out;  
 }
 
-bool BST::insertHelper(Node* &cur, Movie* newMovie) 
+bool BST::insertHelper(Node* &cur, Movie*& newMovie)
 {
 	if (cur == NULL) // insert	
 	{

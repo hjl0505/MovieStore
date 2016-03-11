@@ -32,7 +32,7 @@ Store::~Store()
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
-bool Store::readCustomerFile (ifstream& in)
+void Store::readCustomerFile (ifstream& in)
 {
 	// variables for customer
 	int id;
@@ -52,15 +52,15 @@ bool Store::readCustomerFile (ifstream& in)
 		readLine >> firstName;
 		
 		customerTable.addCustomer(id, firstName, lastName); 
+			
 		
 		// read file by line
 		getline(in,line);
 	}
-	return true;
 }
 
 
-bool Store::readMovieFile (ifstream& in)
+void Store::readMovieFile (ifstream& in)
 {
 	// variables for movie
 	char genre = 'Z';
@@ -100,18 +100,18 @@ bool Store::readMovieFile (ifstream& in)
 		readLine >> year; // read year
 		
 		// Create movie and add to the movieTree
-		Movie* newMovie = movieFactory.create(genre, title, director, actor, month, year, stock);
-		movieTree.addMovie(newMovie);
+ 		Movie* newMovie = movieFactory.create(genre, title, director, actor, month, year, stock);
+		movieTree.addMovie(newMovie); 
+	
 		
 		actor = "";
 		month = 0;		
 		getline(in,line);
 	}
-	
 }
 
 
-bool Store::readTransactionFile (ifstream& in) 
+void Store::readTransactionFile (ifstream& in) 
 {
 	char transType, mediaType, genre;
 	int id, month, year;

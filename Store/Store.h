@@ -33,9 +33,9 @@ public:
 	Store();
 	~Store();
 	
-	bool readCustomerFile (ifstream&); // load customers into customerTable
-	bool readMovieFile (ifstream&); // load movies into movieTable
-	bool readTransactionFile (ifstream&); // read transactions and execute 
+	void readCustomerFile (ifstream&); // load customers into customerTable
+	void readMovieFile (ifstream&); // load movies into movieTable
+	void readTransactionFile (ifstream&); // read transactions and execute 
 	
 	bool performTransaction (Transaction*); // execute a transaction
 	

@@ -98,27 +98,29 @@ void MovieInventory::printInventory()
 
 bool MovieInventory::addMovie (Movie* moviePtr)
 {
-    switch (moviePtr->getGenre())
-    {
-        case 'F':
-            movieType[0].addMovie(moviePtr);
-            return true;
-            break;
-            
-        case 'C':
-            movieType[1].addMovie(moviePtr);
-            return true;
-            break;
-            
-        case 'D':
-            movieType[2].addMovie(moviePtr);
-            return true;
-            break;
-            
-        default:
-            return false;
-            break;
-    }  
+	if (moviePtr) {
+		 switch (moviePtr->getGenre())
+		{
+			case 'F':
+				movieType[0].addMovie(moviePtr);
+				return true;
+				break;
+				
+			case 'C':
+				movieType[1].addMovie(moviePtr);
+				return true;
+				break;
+				
+			case 'D':
+				movieType[2].addMovie(moviePtr);
+				return true;
+				break;
+				
+			default:
+				return false;
+				break;
+		}  
+	}
 }
 
 /*

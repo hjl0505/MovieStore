@@ -45,8 +45,10 @@ public:
 	virtual string getActor() const;
 	virtual int getMonth() const;
 
-	bool addToStock(); // add to stock by 1
-	bool subtractFromStock(); // subtract from stock by 1
+	bool addToStock(int); // add to stock
+	bool subtractFromStock(int); // subtract from stock
+	virtual void addActor(string, int); // add actor to list
+	virtual bool actorExists(string) const;
 
 protected:
 	char genre; // genre of the movie

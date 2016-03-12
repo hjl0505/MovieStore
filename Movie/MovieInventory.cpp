@@ -98,6 +98,7 @@ void MovieInventory::printInventory()
 
 bool MovieInventory::addMovie (Movie* moviePtr)
 {
+	Movie* classicMovie = NULL;
 	if (moviePtr) {
 		 switch (moviePtr->getGenre())
 		{
@@ -107,7 +108,15 @@ bool MovieInventory::addMovie (Movie* moviePtr)
 				break;
 				
 			case 'C':
-				movieType[1].addMovie(moviePtr);
+				if (movieType[1].getMovie(*moviePtr, classicMovie))
+				{
+					classicMovie -> addToStock(moviePtr -> getStock());
+					classicMovie -> addActor(moviePtr -> getActor(), moviePtr -> getStock());
+				}
+				else 
+				{
+					movieType[1].addMovie(moviePtr);
+				} 
 				return true;
 				break;
 				
@@ -129,10 +138,13 @@ bool MovieInventory::borrowMovie (Movie* moviePtr)
     {
         if (getMovie(moviePtr)->getStock() > 0)
         {
-			cout << " movie enough stock " << endl;
-            getMovie(moviePtr)->subtractFromStock();
+            getMovie(moviePtr)->subtractFromStock(1);
             return true;
         }
+		else if (getMovie(moviePtr) ->getGenre() == 'C')
+		{
+			//do something else
+		}
     }
     return false;
 }
@@ -141,7 +153,7 @@ bool MovieInventory::returnMovie (Movie* moviePtr)
 {
     if (movieExist(moviePtr))
     {
-        getMovie(moviePtr)->addToStock();
+        getMovie(moviePtr)->addToStock(1);
         return true;
     }
     else

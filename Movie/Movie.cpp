@@ -89,9 +89,9 @@ int Movie::getYearReleased() const
     return yearReleased;
 }
 
-bool Movie::addToStock()
+bool Movie::addToStock(int add)
 {
-    stock++;
+    stock += add;
     return true;
 }
 
@@ -105,11 +105,20 @@ string Movie::getActor() const
 	return "";
 }
 
-bool Movie::subtractFromStock()
+void Movie::addActor(string actor, int) 
+{
+	
+}
+bool Movie::actorExists(string) const
+{
+	return false;
+}
+
+bool Movie::subtractFromStock(int subtract)
 {
     if (stock > 0)
     {
-        stock--;
+        stock-= subtract;
         return true;
     }
     else

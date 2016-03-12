@@ -198,7 +198,7 @@ string Store::readStringStream (stringstream& in)
 {
 	string words, temp;
 	in >> words;
-	while(words[words.length() - 1] != ',' && !in.eof()) 
+	while(words[words.length() - 1] != ',') 
 	{
 		in >> temp;
 		words = words + " " + temp;
@@ -215,7 +215,7 @@ string Store::readStringStreamClassic (stringstream& in)
 	string words, temp;
 	in >> words;
 	in >> temp;
-	while(words[words.length() - 1] != ',' && !in.eof()) 
+	while(!in.eof()) 
 	{
 		words = words + " " + temp;
 		in >> temp;

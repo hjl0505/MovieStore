@@ -63,7 +63,7 @@ void Classic::display() const
     cout << "Stock: " << stock << endl;
 
     cout << "Month Released: " << monthReleased << endl;
-    cout << "Actor: " << actor << endl;
+    cout << "Actor: " << getActor() << endl;
 }
 
 //Get Movie Info

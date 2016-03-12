@@ -42,6 +42,8 @@ public:
 	string getDirector() const;
 	int getStock() const;
 	int getYearReleased() const;
+	virtual string getActor() const;
+	virtual int getMonth() const;
 
 	bool addToStock(); // add to stock by 1
 	bool subtractFromStock(); // subtract from stock by 1

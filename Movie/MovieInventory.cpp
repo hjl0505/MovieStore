@@ -123,19 +123,13 @@ bool MovieInventory::addMovie (Movie* moviePtr)
 	}
 }
 
-/*
-bool MovieInventory::removeMovie (Movie* moviePtr)
-{
-
-}
- */
-
 bool MovieInventory::borrowMovie (Movie* moviePtr)
 {
     if (movieExist(moviePtr))
     {
-        if (getMovie(moviePtr)->getStock() >= 1)
+        if (getMovie(moviePtr)->getStock() > 0)
         {
+			cout << " movie enough stock " << endl;
             getMovie(moviePtr)->subtractFromStock();
             return true;
         }

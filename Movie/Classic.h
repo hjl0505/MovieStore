@@ -23,7 +23,7 @@ public:
 	Classic(char genre, char mediaType, string title, string director, int stock, int yearRelease, int monthReleased, string actor);
 	~Classic();
 
-	virtual bool operator == (const Classic&) const; // check if movies are equal
+	virtual bool operator == (const Movie&) const; // check if movies are equal
 	virtual bool operator != (const Classic&) const; // check if movies are not equal
 	virtual bool operator > (const Classic&) const; // check if this movie is greater than rhs movie
 	virtual bool operator < (const Classic&) const; // check if this movie is less than rhs movie
@@ -33,8 +33,8 @@ public:
     virtual string getMovieInfo() const; //returns string of movie data variables
 
 	// get methods
-	int getMonth() const;
-	string getActor() const;
+	virtual int getMonth() const;
+	virtual string getActor() const;
 
 private:
 	int monthReleased; // month of the movie release

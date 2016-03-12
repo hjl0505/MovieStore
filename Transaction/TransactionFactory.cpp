@@ -37,21 +37,25 @@ Transaction* TransactionFactory::create(char type, int customerID, Movie* m)
 	{
 		case 'B':
 			transaction = new Borrow(customerID, m);
+			return transaction;
 			break;
 		case 'R':
 			transaction = new Return(customerID, m);
+			return transaction;
 			break;
 		case 'I':
 			transaction = new Inventory;
+			return transaction;
 			break;
 		case 'H':
 			transaction = new History(customerID);
+			return transaction;
 			break;
 		default:
-			cout << "Invalid Transaction Type. Try Again." << endl;
+			cout << "ERROR: " << type << " Invalid Transaction Type. Try Again." << endl;
+			return transaction;
 			break;
 	}
-	return transaction;
 }
 
 //////////////////////////////////////////////////

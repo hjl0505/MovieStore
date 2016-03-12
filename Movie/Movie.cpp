@@ -95,9 +95,19 @@ bool Movie::addToStock()
     return true;
 }
 
+int Movie::getMonth() const
+{
+	return 0;
+}
+
+string Movie::getActor() const
+{
+	return "";
+}
+
 bool Movie::subtractFromStock()
 {
-    if (stock != 0)
+    if (stock > 0)
     {
         stock--;
         return true;

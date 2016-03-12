@@ -69,8 +69,11 @@ bool BST::retrieveHelper (const Movie& movieSearch, Movie*& found, Node* cur) co
   	if (cur == NULL) // movie not found
 		return false;
 	else if (*cur -> movie == movieSearch) // movie found
-	{
+	{		
 		found = cur -> movie;
+		
+		cout << " MOVIE STOCK HERE: " << found -> getStock() << endl;
+		
 		return true;
 	}
 	else if (*cur -> movie > movieSearch) 

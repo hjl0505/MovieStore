@@ -9,7 +9,7 @@ int main()
 {
 	
 	ifstream customerFile("Store/data4customers.txt");
-	ifstream movieFile("Store/data4movies.txt");
+	ifstream movieFile("Store/movieShort.txt");
 	ifstream transactionFile("Store/commandShort.txt");
 	
 	if (!customerFile)  // repeat for movieFile and transactionFile
@@ -22,9 +22,8 @@ int main()
   	Store movieStore; //create a store
  	movieStore.readCustomerFile(customerFile); //create customer profiles from file
 	movieStore.readMovieFile(movieFile); //create movie inventory from file
-	//movieStore.readTransactionFile(transactionFile); //process transactions from file 
-	
-	
+	movieStore.readTransactionFile(transactionFile); //process transactions from file 
+
 	
 
 /* 	Movie* movie = new Movie('C', 'D', "title", "director", 5, 1231);

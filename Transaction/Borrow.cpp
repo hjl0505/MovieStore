@@ -40,7 +40,7 @@ int Borrow::getCustomerID()
 bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 {
 	// check if customer exists
-	if (customers.customerExist(customerID));
+	if (!customers.customerExist(customerID))
 	{
 		cout << "Borrow Transaction Failed" << endl;
 		cout << "Customer does not exist" << endl;
@@ -51,12 +51,12 @@ bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 	
 	// movie exists in the stock
 	if (movies.movieExist(movie))
-	{		
+	{	
 		// There was enough stock of movie to borrow from
-		if (movies.borrowMovie(movie)) {
-			
+		if (movies.borrowMovie(movie)) 
+		{		
 			// update summary of transaction if borrow performed correctly
-			string borrowSummary = "Borrow "; //+ movie -> getMovieInfo();
+			string borrowSummary = "Borrow " + movie -> getTitle();
 			Transaction::setSummary(borrowSummary);
 			
 			customer -> addCheckedOut (movie);
@@ -66,6 +66,7 @@ bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 		else
 		{
 			cout << "Borrow Transaction Failed" << endl;
+			cout << "Movie: " << movie -> getYearReleased() << endl;
 			cout << "Not enough in the Stock" << endl;
 		}
 	}

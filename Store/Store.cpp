@@ -52,8 +52,7 @@ void Store::readCustomerFile (ifstream& in)
 		readLine >> firstName;
 		
 		customerTable.addCustomer(id, firstName, lastName); 
-			
-		
+				
 		// read file by line
 		getline(in,line);
 	}
@@ -102,9 +101,13 @@ void Store::readMovieFile (ifstream& in)
 		// Create movie and add to the movieTree
  		Movie* newMovie = movieFactory.create(genre, title, director, actor, month, year, stock);
 		movieTree.addMovie(newMovie); 
-	
-		
+				
+		title = "";
+		director = "";
 		actor = "";
+		genre = 'Z';
+		stock = 0;
+		year = 0;
 		month = 0;		
 		getline(in,line);
 	}
@@ -146,6 +149,7 @@ void Store::readTransactionFile (ifstream& in)
 						case 'C': // classics
 							readLine >> month >> year;
 							actor = readStringStream(readLine);
+							cout << "READING IN ACTOR: " << actor << endl;
 							break;
 						case 'D': // drama
 							director = readStringStream(readLine);
@@ -160,11 +164,19 @@ void Store::readTransactionFile (ifstream& in)
 					movie = movieFactory.create(genre, title, director, actor, month, year, 0);
 				}
 			}
-			
-			//create new transaction and perform
-			Transaction* newTrans = transFactory.create(transType, id, movie);
-			performTransaction(newTrans);
 		}
+		
+		//create new transaction and perform
+		Transaction* newTrans = transFactory.create(transType, id, movie);
+		performTransaction(newTrans);
+		
+		title = "";
+		director = "";
+		actor = "";
+		genre = 'Z';
+		year = 0;
+		month = 0;	
+		
 		getline(in,line);
 	}
 }
@@ -189,6 +201,7 @@ string Store::readStringStream (stringstream& in)
 	while(words[words.length() - 1] != ',' && !in.eof()) 
 	{
 		in >> temp;
+		cout << "TEMP: " << temp << endl;
 		words = words + " " + temp;
 	}
 	

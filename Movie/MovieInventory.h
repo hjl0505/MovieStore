@@ -12,7 +12,7 @@
 #ifndef MOVIEINVENTORY_H
 #define MOVIEINVENTORY_H
 
-#include <vector> // set? TREE??
+#include <vector> 
 #include "Movie.h"
 #include "BST.h"
 
@@ -29,7 +29,6 @@ public:
 	void printInventory(); // print all the movies in the stock
 
 	bool addMovie (Movie*); // add new movie
-	bool removeMovie (Movie*); // remove a movie
 	bool borrowMovie (Movie*); // borrow a movie
 	bool returnMovie (Movie*); // return a movie
 

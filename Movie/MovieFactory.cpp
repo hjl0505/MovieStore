@@ -44,6 +44,7 @@ Movie* MovieFactory::create(char genre, string title, string director, string ac
             return newMovie;
 			break;
 		default:
+			cerr << "ERROR: " << genre << " Genre Not Found. Try Again." << endl;
 			return newMovie;
             break;
 	}

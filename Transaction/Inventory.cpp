@@ -32,6 +32,7 @@ Inventory::~Inventory()
 
 bool Inventory::perform(MovieInventory& movies, CustomerInventory& customers)
 {
+	//cout << "Inventory Perform called" << endl;
 	movies.printInventory();
 }
 

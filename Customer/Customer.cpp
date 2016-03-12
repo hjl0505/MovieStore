@@ -88,6 +88,7 @@ void Customer::display()
 // Most recent to Least recent (newest transaction to oldest transaction)
 void Customer::displayHistory()
 {
+	//cout << "DISPLAY HISTORY CALLED " << endl;
 	historyNode* temp = history;
 	while (temp!= NULL)
 	{

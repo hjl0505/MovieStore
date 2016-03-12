@@ -96,9 +96,9 @@ string Classic::getActor() const
 //Compares if the monthReleased is the same for both movies
 //Movies with different actors, but the same monthReleased are
 //considered to be equivalent
-bool Classic::operator == (const Classic& otherMovie) const
+bool Classic::operator == (const Movie& otherMovie) const
 {
-  if (monthReleased == otherMovie.getMonth())
+  if (monthReleased == otherMovie.getMonth() && yearReleased == otherMovie.getYearReleased())
   {
     return true;
   }

@@ -22,23 +22,23 @@ int main()
 {
     MovieInventory store;
     MovieFactory factory;
-    
+
     Movie* playTime = factory.create('F', "Play Time", "Jacques Tati", "", -1, 1968, 5);
-    
+
     Movie* leopard = factory.create('C', "The Leopard", "Luchino Visconti", "Alain Delon", 10, 1963, 7);
 
     Movie* holyGrail = factory.create('F', "Monty Python and the Holy Grail", "Terry Gilliam and Terry Jones", "", -1, 1975, 14);
-    
+
     Movie* socialNetwork = factory.create('D', "The Social Network", "David Fincher", "", -1, 2010, 7);
-    
+
     store.addMovie(playTime);
     store.addMovie(leopard);
     store.addMovie(holyGrail);
     store.addMovie(socialNetwork);
-    
+
     store.printInventory();
 
-    
+
 	return 0;
 }
 
@@ -46,23 +46,23 @@ int main()
 
 /*
  MovieInventory store;
- 
+
  Movie* playTime;
  playTime = new Comedy('F', 'D', "Play Time", "Jacques Tati", 5, 1968);
- 
+
  Movie* leopard;
  leopard = new Classic('C', 'B', "The Leopard", "Luchino Visconti", 10, 1963, 7, "Alain Delon");
- 
+
  Movie* holyGrail;
  holyGrail = new Comedy('F', 'D', "Monty Python and the Holy Grail", "Terry Gilliam and Terry Jones", 5, 1975);
- 
+
  Movie* socialNetwork;
  socialNetwork = new Drama('D', 'B', "The Social Network", "David Fincher", 7, 2010);
- 
+
  store.addMovie(playTime);
  store.addMovie(leopard);
  store.addMovie(holyGrail);
  store.addMovie(socialNetwork);
- 
+
  store.printInventory();
  */

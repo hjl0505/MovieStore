@@ -30,11 +30,12 @@ Classic::Classic(char genre, char mediaType, string title, string director,
    int stock, int yearReleased, int monthReleased, string actor)
     : Movie(genre, mediaType, title, director, stock, yearReleased)
 {
-  actorList = new actorNode;
-  actorList -> actor = actor;
-  actorList -> stock = stock;
+    actorList = new actorNode;
+    actorList -> actor = actor;
+    actorList -> stock = stock;
+    actorList->next = NULL;
   
-  this->monthReleased = monthReleased;
+    this->monthReleased = monthReleased;
 }
 
 //Destructor
@@ -83,7 +84,34 @@ int Classic::getMonth() const
 //Returns the actor
 string Classic::getActor() const
 {
-  return "";
+    actorNode* temp = actorList;
+    string returnString = "";
+    while (temp != NULL)
+    {
+        returnString += temp->actor;
+        returnString += " ";
+        temp = temp->next;
+    }
+    return returnString;
+}
+
+//Has Actor
+//Returns true if the actor is in the movie
+bool Classic::hasActor(string actor) const
+{
+    actorNode* temp = actorList;
+    while (temp != NULL)
+    {
+        if (temp->actor == actor)
+        {
+            return true;
+        }
+        else
+        {
+            temp = temp->next;
+        }
+    }
+    return false;
 }
 
 void Classic::addActor(string actor, int stock) 
@@ -119,7 +147,7 @@ void Classic::addActor(string actor, int stock)
 //considered to be equivalent
 bool Classic::operator == (const Movie& otherMovie) const
 {
-  if (monthReleased == otherMovie.getMonth() && yearReleased == otherMovie.getYearReleased() && actorExists(otherMovie.getActor()))
+  if (monthReleased == otherMovie.getMonth() && yearReleased == otherMovie.getYearReleased())
   {
     return true;
   }

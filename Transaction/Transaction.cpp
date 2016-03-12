@@ -35,6 +35,7 @@ Transaction::~Transaction()
 // Nothing performed
 bool Transaction::perform(MovieInventory& movies, CustomerInventory& customers)
 {
+	return true;
 }
 
 string Transaction::getSummary()

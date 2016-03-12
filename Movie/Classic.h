@@ -44,6 +44,7 @@ public:
 	virtual string getActor() const;
 	
 	virtual void addActor(string, int);
+	bool hasActor(string) const;
 	virtual bool actorExists(string) const;
 
 private:	

@@ -38,6 +38,8 @@ bool History::perform(MovieInventory& movies, CustomerInventory& customers)
 {
 	Customer* c = customers.getCustomer(customerID);
 	c -> displayHistory();
+	setSummary("History for " + c -> getName() + " performed.");
+	
 }
 
 //////////////////////////////////////////////////

@@ -29,11 +29,16 @@ CustomerInventory::CustomerInventory()
 
 CustomerInventory::~CustomerInventory()
 {
-/*       for (int i = 0; i < MAX; i++) 
+    for (int i = 0; i < MAX; i++) 
 	{
+		deleteHelper(hashTable[i] -> next);
+			
+		delete hashTable[i] -> customer;
+		hashTable[i] -> customer = NULL;
+
 		delete hashTable[i];
 		hashTable[i] = NULL; 
-	}   */ 	
+	}    
 } 
 
 //////////////////////////////////////////////////
@@ -44,61 +49,88 @@ CustomerInventory::~CustomerInventory()
 Customer* CustomerInventory::getCustomer (int customerID)
 {
 	int bucket = hashFunction(customerID);
-/*   	if (customerExist(customerID))
-		return hashTable[customerID];
-	return NULL;   */
+	customerNode* cur = hashTable[bucket] -> next;
+   	if (cur == NULL)
+		return NULL; // customer does not exist 
+	
+	// traverse the bucket to get customer
+	while (cur != NULL)
+	{
+		if (cur -> customer -> getID() == customerID)
+			return cur -> customer;
+		cur = cur -> next;
+	}
+	return NULL;  
 }
 
 bool CustomerInventory::customerExist (int customerID)
 {
 	int bucket = hashFunction(customerID);
- /*  	if (hashTable[customerID] == NULL)
+	customerNode* cur = hashTable[bucket] -> next;
+   	if (cur == NULL)
 		return false; // customer does not exist 
-	return true;   */
+	
+	// traverse the bucket
+	while (cur != NULL)
+	{
+		if (cur -> customer -> getID() == customerID)
+			return true;
+		cur = cur -> next;
+	}
+	return false;   
 }
 	
 bool CustomerInventory::addCustomer(int customerID, string firstName, string lastName)
 {
-	// check if customer already exists
-	if (getCustomer(customerID))
-		return false;
-	
+  	// check if customer already exists
+ 	if (customerExist(customerID))
+		return false;  
+	 
 	int bucket = hashFunction(customerID);
 	customerNode* cur = hashTable[bucket] -> next;
-	if (cur == NULL)
+	if (cur == NULL) // insert for first customer in bucket
 	{
 		cur = new customerNode;
-		cur -> customer = new Customer(id, firstName, lastName);
+		cur -> customer = new Customer(customerID, firstName, lastName);
 		cur -> next = NULL;
+		hashTable[bucket] -> next =  cur;
 	}
-	else
+	else // insert additional customers in the bucket
 	{
-		
+		customerNode* temp = new customerNode;
+		temp -> customer = new Customer(customerID, firstName, lastName);
+		temp -> next = cur;
+		hashTable[bucket] -> next = temp;
 	}
+	
 	return true;
-	
-	
-	
-/*    	if (!customerExist(id) && id < MAX) // add new customer if customer ID is unique
-	{
- 		hashTable[id] = new Customer (id, firstName, lastName);
-		return true; 
-	}  
-	
-	cout << "Customer Already Exists" << endl;
-	return false; // there is already customer with the ID.    */
 }
 
 bool CustomerInventory::removeCustomer(int customerID)
 {
-	int bucket = hashFunction(customerID);
-/* 	if (customerExist(customerID)) // delete only if customer exists
+ 	if (customerExist(customerID)) // delete only if customer exists
 	{
-		delete hashTable[customerID];
-		hashTable[customerID] = NULL; 
-		return true; 
+		int bucket = hashFunction(customerID);
+		customerNode* cur = hashTable[bucket] -> next;
+		customerNode* prev = hashTable[bucket];
+		while (cur != NULL)
+		{
+			if (cur -> customer -> getID() == customerID)
+			{
+				prev -> next = cur -> next;
+				cur -> next = NULL;
+				delete cur -> customer;
+				cur -> customer = NULL;
+				delete cur;
+				cur = NULL;
+				
+				return true;
+			}
+			prev = cur;
+			cur = cur -> next;
+		}
 	}
-	return false; */
+	return false; 
 }
 
 //////////////////////////////////////////////////
@@ -108,4 +140,18 @@ bool CustomerInventory::removeCustomer(int customerID)
 int CustomerInventory::hashFunction(int id)
 {
 	return id % MAX;
+}
+
+void CustomerInventory::deleteHelper(customerNode* cur)
+{
+	customerNode* deleteNode = cur;
+	while (cur != NULL)
+	{
+		cur = cur -> next;
+		delete deleteNode -> customer;
+		deleteNode -> customer = NULL;
+		delete deleteNode;
+		deleteNode = cur;
+		
+	}
 }

@@ -41,5 +41,6 @@ private:
 	
 	// helper functions
 	int hashFunction(int); // calculate which bucket to insert customer
+	void deleteHelper(customerNode*); // delete linked list in a hash bucket
 };
 #endif

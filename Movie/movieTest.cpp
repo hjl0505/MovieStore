@@ -23,19 +23,28 @@ int main()
     MovieInventory store;
     MovieFactory factory;
 
-    Movie* playTime = factory.create('F', "Play Time", "Jacques Tati", "", -1, 1968, 5);
+    Movie* playTime = factory.create('F', "Play Time", "Jacques Tati", "", -1, 1968, 10);
 
-    Movie* leopard = factory.create('C', "The Leopard", "Luchino Visconti", "Alain Delon", 10, 1963, 7);
+    Movie* leopard = factory.create('C', "The Leopard", "Luchino Visconti", "Alain Delon", 10, 1963, 10);
 
-    Movie* holyGrail = factory.create('F', "Monty Python and the Holy Grail", "Terry Gilliam and Terry Jones", "", -1, 1975, 14);
+    Movie* leopard2 = factory.create('C', "The Leopard", "Luchino Visconti", "Claudia Cardinale", 10, 1963, 10);
 
-    Movie* socialNetwork = factory.create('D', "The Social Network", "David Fincher", "", -1, 2010, 7);
+    Movie* leopard3 = factory.create('C', "The Leopard", "Luchino Visconti", "Burt Lancaster", 10, 1963, 10);
+
+    Movie* holyGrail = factory.create('F', "Monty Python and the Holy Grail", "Terry Gilliam and Terry Jones", "", -1, 1975, 10);
+
+    Movie* socialNetwork = factory.create('D', "The Social Network", "David Fincher", "", -1, 2010, 10);
+
 
     store.addMovie(playTime);
     store.addMovie(leopard);
+    store.addMovie(leopard2);
+    store.addMovie(leopard3);
     store.addMovie(holyGrail);
     store.addMovie(socialNetwork);
 
+    cout << store.getMovie(leopard)->getActor() << endl;
+    
     store.printInventory();
 
 

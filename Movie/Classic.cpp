@@ -30,8 +30,12 @@ Classic::Classic(char genre, char mediaType, string title, string director,
    int stock, int yearReleased, int monthReleased, string actor)
     : Movie(genre, mediaType, title, director, stock, yearReleased)
 {
-  this->monthReleased = monthReleased;
-  this->actor = actor;
+    actorList = new actorNode;
+    actorList -> actor = actor;
+    actorList -> stock = stock;
+    actorList->next = NULL;
+
+    this->monthReleased = monthReleased;
 }
 
 //Destructor
@@ -83,14 +87,52 @@ int Classic::getMonth() const
 //Returns a string of the actors associated with the Classic movie
 string Classic::getActor() const
 {
-    returnString = "";
-    actorNode temp = actorList;
+    actorNode* temp = actorList;
+    string returnString = "";
     while (temp != NULL)
     {
         returnString += temp->actor;
+        returnString += " ";
         temp = temp->next;
     }
     return returnString;
+}
+
+//Has Actor
+//Returns true if the actor is in the movie
+bool Classic::hasActor(string actor) const
+{
+    actorNode* temp = actorList;
+    while (temp != NULL)
+    {
+        if (temp->actor == actor)
+        {
+            return true;
+        }
+        else
+        {
+            temp = temp->next;
+        }
+    }
+    return false;
+}
+
+void Classic::addActor(string actor, int stock)
+{
+	actorNode* temp = new actorNode;
+	temp -> actor = actor;
+	temp -> stock = stock;
+	temp -> next = NULL;
+
+	if(actorList == NULL)
+	{
+		actorList = temp;
+	}
+	else
+	{
+		temp -> next = actorList;
+		actorList = temp;
+	}
 }
 
 

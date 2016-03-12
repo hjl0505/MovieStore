@@ -29,7 +29,7 @@ public:
 	void printInventory(); // print all the movies in the stock
 
 	bool addMovie (Movie*); // add new movie
-	bool borrowMovie (Movie*); // borrow a movie
+	bool borrowMovie (Movie*, string&); // borrow a movie, and updates string with movie info
 	bool returnMovie (Movie*); // return a movie
 
 private:

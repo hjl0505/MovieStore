@@ -25,11 +25,12 @@ public:
 	
 	void display(); // display customer's name and id
 	void displayHistory(); //display history of transactions
+	
 	int getID(); //return ID of customer
-	string getName();
+	string getName(); // return full name of customer
 	
  	void addHistory(string); // add transaction to history
-	bool addCheckedOut(Movie*); // add movie to customer's checkedOut list
+	void addCheckedOut(Movie*); // add movie to customer's checkedOut list
 	bool removeCheckedOut(Movie*); // remove movie from checkedOut list 
 
 private:

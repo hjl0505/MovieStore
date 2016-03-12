@@ -55,7 +55,7 @@ void Movie::display() const
 string Movie::getMovieInfo() const
 {
     string s;
-    //s = title + " " + director + " " + to_string(yearReleased) + " " + genre + " " + mediaType + " " + to_string(stock);
+    s = title + " " + director;
     return s;
 }
 
@@ -137,15 +137,16 @@ bool Movie::subtractFromStock(int subtract)
 
 bool Movie::operator == (const Movie& otherMovie) const
 {
-    if (this->title == otherMovie.title)
+/*     if (this->title == otherMovie.title)
     {
         return true;
     }
     else
     {
         return false;
-    }
+    } */
 
+	return true;
 }
 
 

@@ -58,16 +58,28 @@ void Classic::display() const
     cout << "Year Released: " << yearReleased << endl;
     cout << "Genre: " << getGenre() << endl;
     cout << "Media Type: " << mediaType << endl;
-    cout << "Stock: " << stock << endl;
+    cout << "Total Stock: " << stock << endl;
 
     cout << "Month Released: " << monthReleased << endl;
-    //cout << "Actor: " << actor << endl;
+    cout << "Actor(s): " << endl;
+	displayActors();
+}
+
+void Classic::displayActors() const 
+{
+	actorNode* cur = actorList;
+	while (cur != NULL)
+	{
+		cout << cur -> actor << " Stock: " << cur -> stock << endl;
+		cur = cur -> next;
+	}
+	
 }
 
 string Classic::getMovieInfo() const
 {
     string s;
-    //s = title + " " + director + " " + to_string(yearReleased) + " " + genre + " " + mediaType + " " + to_string(stock) + " " + to_string(monthReleased) + " " + actor;
+    s = title + " " + director;
     return s;
     
 }
@@ -88,6 +100,7 @@ string Classic::getActor() const
 
 void Classic::addActor(string actor, int stock) 
 {
+	cout << " ADDING actor " << actor << endl;
 	actorNode* temp = new actorNode;
 	temp -> actor = actor;
 	temp -> stock = stock;
@@ -132,7 +145,15 @@ bool Classic::operator == (const Movie& otherMovie) const
 
 bool Classic::actorExists(string actorName) const
 {
-	return true;
+	actorNode* cur = actorList;
+	cout << "Actor exists called, actor name: " << actorName << endl;
+	while(cur != NULL)
+	{
+		if (cur -> actor == actorName)
+			return true;
+		cur = cur -> next;
+	}
+	return false;
 }
 
 
@@ -165,11 +186,37 @@ bool Classic::operator < (const Classic& otherMovie) const
 //Copies all values from the source movie to this movie
 Classic& Classic::operator = (const Classic& source)
 {
-    monthReleased = source.getMonth();
-    //actor = source.getActor();
+	// copy month released
+    monthReleased = source.getMonth(); 
+	
+	// copy list of actors
+    actorNode* curOther = source.actorList; 
+	removeActorList();
+	actorNode* curThis = actorList;
+	while(curOther != NULL)
+	{
+		curThis -> actor = curOther -> actor;
+		curThis -> stock = curOther -> stock;
+		
+		curThis = curThis -> next;
+		curOther = curOther -> next;		
+	}
+	curThis -> next = NULL;
+	
     return *this;
 }
 
+void Classic::removeActorList() 
+{
+	actorNode* cur = actorList;
+	actorNode* prev = actorList;
+	while(cur != NULL)
+	{
+		cur = cur -> next;
+		delete prev;
+		prev = prev -> next;
+	}
+}
 
 //////////////////////////////////////////////////
 //////////////    I/O Stream   ///////////////////

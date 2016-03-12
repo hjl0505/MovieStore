@@ -48,15 +48,19 @@ bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 	}
 	
 	Customer* customer = customers.getCustomer(customerID);
+	cout << " HERRO 1" << endl;
 	
 	// movie exists in the stock
 	if (movies.movieExist(movie))
 	{	
+		cout << " HERRO 32 " << endl;
+		string movieInfo = "";
 		// There was enough stock of movie to borrow from
-		if (movies.borrowMovie(movie)) 
+		if (movies.borrowMovie(movie, movieInfo)) 
 		{		
+			cout << " HERRO " << endl;
 			// update summary of transaction if borrow performed correctly
-			string borrowSummary = "Borrow " + movie -> getTitle();
+			string borrowSummary = "Borrow " + movieInfo;
 			Transaction::setSummary(borrowSummary);
 			
 			customer -> addCheckedOut (movie);
@@ -65,6 +69,8 @@ bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 		} 
 		else
 		{
+			cout << " HERRO 3" << endl;
+			
 			cout << "Borrow Transaction Failed" << endl;
 			cout << "Movie: " << movie -> getYearReleased() << endl;
 			cout << "Not enough in the Stock" << endl;

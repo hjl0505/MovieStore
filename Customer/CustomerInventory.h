@@ -32,6 +32,14 @@ public:
 	bool removeCustomer(int); // remove customer from inventory
 
 private:
-	Customer* hashTable[MAX];
+	struct customerNode 
+	{
+		Customer* customer;
+		customerNode* next = NULL;
+	};
+	customerNode* hashTable[MAX];	
+	
+	// helper functions
+	int hashFunction(int); // calculate which bucket to insert customer
 };
 #endif

@@ -15,7 +15,7 @@
 #ifndef STORE_H
 #define STORE_H
 
-#include <iostream>
+#include <iostream> //input and output
 #include <fstream> // reading file
 #include <sstream> // reading string as input
 #include "../Customer/CustomerInventory.h"
@@ -45,6 +45,7 @@ private:
 	MovieFactory movieFactory; // movie factory
 	TransactionFactory transFactory; // transaction factory
 	
+	// helpers
 	string readStringStream(stringstream&);
 	string readStringStreamClassic(stringstream&);
 };

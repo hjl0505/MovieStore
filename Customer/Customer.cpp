@@ -119,54 +119,51 @@ void Customer::addHistory(string summary)
 
 // insert new checked out movie in front of the list of checked out list
 // customer can check out 2 copies of the same movie (do not check for double)
-bool Customer::addCheckedOut(Movie* movie)
+void Customer::addCheckedOut(Movie* movie)
 {
 	checkedOutNode* newMovie = new checkedOutNode;
 	newMovie -> movieBorrowed = movie;
 	newMovie -> next = checkedOut;
 	checkedOut = newMovie;
-	return true;
 }
 
 bool Customer::removeCheckedOut(Movie* movie)
 {
-	checkedOutNode* before = checkedOut;
-	if (before != NULL) 
-	{
-		checkedOutNode* cur = checkedOut -> next;
+/* 	cout << "REMOVE CHECKED OUT CALLED" << endl;
+	cout << (checkedOut -> movieBorrowed -> getTitle()) << endl;
+	cout << (checkedOut == NULL) << endl << endl;
+	 */
+	
+	checkedOutNode* cur = checkedOut;
+	if (cur != NULL) 
+	{	
+		// check the first checkedOutNode
+		if (cur -> movieBorrowed == movie)
+		{
+			checkedOut = cur -> next;
+			delete cur;
+			cur = NULL;
+			return true;
+		}
+		
+		// check all other checkedOutNode
+		checkedOutNode* prev = cur;
+		cur = cur -> next;
 		while (cur != NULL) 
 		{
 			if (cur -> movieBorrowed == movie) 
 			{
 				// remove movie from the list
-				before -> next = cur -> next; 
+				prev -> next = cur -> next; 
 				
 				// delete pointers
 				cur -> next = NULL;
 				delete cur;
 				return true;
 			}
+			prev = cur;
 			cur = cur -> next;
 		}
 	}
 	return false; // movie was not checked out by the customer
 }
-
-
-//////////////////////////////////////////////////
-////////////   Private Methods   /////////////////
-//////////////////////////////////////////////////
-
-//////////////////////////////////////////////////
-//////////     Operator Overloads   //////////////
-//////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////
-//////////////    I/O Stream   ///////////////////
-//////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////
-//////////////   Extra Code   ////////////////////
-//////////////////////////////////////////////////

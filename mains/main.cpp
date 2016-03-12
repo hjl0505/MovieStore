@@ -11,9 +11,7 @@
 
 #include <iostream>
 #include <fstream>
-#include "Comedy.h" // (Movie) Store class
-#include "Classic.h"
-#include "Drama.h"
+#include "Store/Store.h"
 using namespace std;
 
 int main() {
@@ -30,9 +28,9 @@ int main() {
 		cout << "Transaction file cannot be oppened" << endl;
 
 	Store movieStore; //create a store
- 	//movieStore.readCustomerFile(customerFile); //create customer profiles from file
-	//movieStore.readMovieFile(movieFile); //create movie inventory from file
-	//movieStore.readTransactionFile(transactionFile); //process transactions from file
+ 	movieStore.readCustomerFile(customerFile); //create customer profiles from file
+	movieStore.readMovieFile(movieFile); //create movie inventory from file
+	movieStore.readTransactionFile(transactionFile); //process transactions from file
 
 	return 0;
 }

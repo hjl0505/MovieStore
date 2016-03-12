@@ -60,6 +60,7 @@ Movie* MovieInventory::getMovie (Movie* moviePtr)
 
 bool MovieInventory::movieExist (Movie* moviePtr)
 {
+	cout << " Moie Exist Called " << endl;
     if (getMovie(moviePtr) != NULL)
     {
         return true;
@@ -132,18 +133,22 @@ bool MovieInventory::addMovie (Movie* moviePtr)
 	}
 }
 
-bool MovieInventory::borrowMovie (Movie* moviePtr)
+bool MovieInventory::borrowMovie (Movie* moviePtr, string& movieInfo)
 {
+	cout << " WHAT IS GOING ON HERE 2" << endl;
     if (movieExist(moviePtr))
     {
-        if (getMovie(moviePtr)->getStock() > 0)
+		cout << " WHAT IS GOING ON HERE" << endl;
+		Movie* movieToBorrow = getMovie(moviePtr);
+        if (movieToBorrow -> getStock() > 0)
         {
-            getMovie(moviePtr)->subtractFromStock(1);
-            return true;
+           movieToBorrow -> subtractFromStock(1);
+		   movieInfo = movieToBorrow -> getMovieInfo();
+           return true;
         }
-		else if (getMovie(moviePtr) ->getGenre() == 'C')
+		else if (getMovie(moviePtr) -> getGenre() == 'C')
 		{
-			//do something else
+			cout << " WHAT IS GOING ON" << endl;
 		}
     }
     return false;

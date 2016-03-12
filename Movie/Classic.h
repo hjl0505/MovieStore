@@ -48,14 +48,10 @@ public:
 
 private:	
 
-	actorNode* actorList;
-/* 	struct actorNode 
-	{
-		string actor; // major actor of the movie	
-		int stock;
-		actorNode* next;
-	}; */
-	
+	actorNode* actorList;	
 	int monthReleased; // month of the movie release
+	
+	void displayActors() const;
+	void removeActorList();
 };
 #endif

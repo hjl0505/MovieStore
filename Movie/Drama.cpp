@@ -45,6 +45,40 @@ Drama::~Drama()
 //////////////////////////////////////////////////
 //////////     Operator Overloads   //////////////
 //////////////////////////////////////////////////
+bool Drama::operator == (const Movie& otherMovie) const// check if movies are equal
+{
+  if (title == otherMovie.getTitle() && director == otherMovie.getDirector())
+   {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+/* 
+bool Drama::operator != (const Movie& otherMovie) const// check if movies are not equal
+{
+  return !(this == otherMovie);
+} */
+
+bool Drama::operator > (const Movie& otherMovie) const// check if this movie is greater than rhs movie
+{
+/*   if (this.yearReleased > otherMovie.yearReleased)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  } */
+}
+
+bool Drama::operator < (const Movie& otherMovie) const// check if this movie is less than rhs movie
+{
+/*   return !(this > otherMovie); */
+}
+
 
 
 //////////////////////////////////////////////////

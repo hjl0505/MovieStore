@@ -148,7 +148,7 @@ void Store::readTransactionFile (ifstream& in)
 					{
 						case 'C': // classics
 							readLine >> month >> year;
-							actor = readStringStream(readLine);
+							actor = readStringStreamClassic(readLine);
 							cout << "READING IN ACTOR: " << actor << endl;
 							break;
 						case 'D': // drama
@@ -201,8 +201,24 @@ string Store::readStringStream (stringstream& in)
 	while(words[words.length() - 1] != ',' && !in.eof()) 
 	{
 		in >> temp;
-		cout << "TEMP: " << temp << endl;
 		words = words + " " + temp;
+	}
+	
+	if (words[words.length() - 1] == ',')
+		words = words.substr(0, words.length() - 1);	
+	
+	return words;
+}
+
+string Store::readStringStreamClassic (stringstream& in)
+{
+	string words, temp;
+	in >> words;
+	in >> temp;
+	while(words[words.length() - 1] != ',' && !in.eof()) 
+	{
+		words = words + " " + temp;
+		in >> temp;
 	}
 	
 	if (words[words.length() - 1] == ',')

@@ -46,5 +46,6 @@ private:
 	TransactionFactory transFactory; // transaction factory
 	
 	string readStringStream(stringstream&);
+	string readStringStreamClassic(stringstream&);
 };
 #endif

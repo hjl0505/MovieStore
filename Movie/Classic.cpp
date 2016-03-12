@@ -1,9 +1,9 @@
-// Comedy.cpp--------------------------------------------------------------------
+// Classic.cpp--------------------------------------------------------------------
 // Hyungjin Lee, Chris Knakal
 // CSS 343 HW 4: Movie Store
 // 2/29/2016
 // ----------------------------------------------------------------------------
-// Sub class of Movie, Comedy
+// Sub class of Movie, classic
 // ----------------------------------------------------------------------------
 // Inherits methods from the Movie object
 // Contains overriden display method
@@ -19,8 +19,8 @@
 //Default constructor
 Classic::Classic()
 {
+  actorList = NULL;
   monthReleased = 0;
-  actor = "";
 }
 
 //Overload constructor
@@ -30,8 +30,11 @@ Classic::Classic(char genre, char mediaType, string title, string director,
    int stock, int yearReleased, int monthReleased, string actor)
     : Movie(genre, mediaType, title, director, stock, yearReleased)
 {
+  actorList = new actorNode;
+  actorList -> actor = actor;
+  actorList -> stock = stock;
+  
   this->monthReleased = monthReleased;
-  this->actor = actor;
 }
 
 //Destructor
@@ -58,7 +61,7 @@ void Classic::display() const
     cout << "Stock: " << stock << endl;
 
     cout << "Month Released: " << monthReleased << endl;
-    cout << "Actor: " << actor << endl;
+    //cout << "Actor: " << actor << endl;
 }
 
 string Classic::getMovieInfo() const
@@ -80,7 +83,25 @@ int Classic::getMonth() const
 //Returns the actor
 string Classic::getActor() const
 {
-  return actor;
+  return "";
+}
+
+void Classic::addActor(string actor, int stock) 
+{
+	actorNode* temp = new actorNode;
+	temp -> actor = actor;
+	temp -> stock = stock;
+	temp -> next = NULL;
+	
+	if(actorList == NULL)
+	{
+		actorList = temp;
+	}
+	else
+	{
+		temp -> next = actorList;
+		actorList = temp;
+	}
 }
 
 
@@ -98,7 +119,7 @@ string Classic::getActor() const
 //considered to be equivalent
 bool Classic::operator == (const Movie& otherMovie) const
 {
-  if (monthReleased == otherMovie.getMonth() && yearReleased == otherMovie.getYearReleased())
+  if (monthReleased == otherMovie.getMonth() && yearReleased == otherMovie.getYearReleased() && actorExists(otherMovie.getActor()))
   {
     return true;
   }
@@ -106,6 +127,12 @@ bool Classic::operator == (const Movie& otherMovie) const
   {
     return false;
   }
+}
+
+
+bool Classic::actorExists(string actorName) const
+{
+	return true;
 }
 
 
@@ -139,7 +166,7 @@ bool Classic::operator < (const Classic& otherMovie) const
 Classic& Classic::operator = (const Classic& source)
 {
     monthReleased = source.getMonth();
-    actor = source.getActor();
+    //actor = source.getActor();
     return *this;
 }
 

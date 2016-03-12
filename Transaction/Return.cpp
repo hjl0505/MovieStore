@@ -33,7 +33,7 @@ Return::~Return()
 
 int Return::getCustomerID()
 {
-
+	return customerID;
 }
 
 

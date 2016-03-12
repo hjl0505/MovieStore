@@ -15,6 +15,13 @@
 #include "Movie.h"
 using namespace std;
 
+struct actorNode 
+{
+	string actor; // major actor of the movie	
+	int stock;
+	actorNode* next;
+};
+
 class Classic : public Movie
 {
 
@@ -35,9 +42,20 @@ public:
 	// get methods
 	virtual int getMonth() const;
 	virtual string getActor() const;
+	
+	virtual void addActor(string, int);
+	virtual bool actorExists(string) const;
 
-private:
+private:	
+
+	actorNode* actorList;
+/* 	struct actorNode 
+	{
+		string actor; // major actor of the movie	
+		int stock;
+		actorNode* next;
+	}; */
+	
 	int monthReleased; // month of the movie release
-	string actor; // major actor of the movie
 };
 #endif

@@ -31,7 +31,7 @@ class BST {
 	
 public:
 	
-	// Constructors
+	// Constructor
 	BST ();
 	
 	// Desctructor
@@ -39,7 +39,6 @@ public:
 	
 	bool getMovie (const Movie&, Movie*&) const; // get movie from the tree 
 	bool addMovie(Movie*&); // add movie node
-	
 	
 private:
 	Node* root; // Points to the root of the BST

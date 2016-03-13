@@ -24,7 +24,6 @@ MovieInventory::MovieInventory()
 
 MovieInventory::~MovieInventory()
 {
-
 }
 
 //////////////////////////////////////////////////
@@ -60,7 +59,6 @@ Movie* MovieInventory::getMovie (Movie* moviePtr)
 
 bool MovieInventory::movieExist (Movie* moviePtr)
 {
-	cout << " Moie Exist Called " << endl;
     if (getMovie(moviePtr) != NULL)
     {
         return true;

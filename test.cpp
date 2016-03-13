@@ -24,117 +24,48 @@ int main()
 	//movieStore.readMovieFile(movieFile); //create movie inventory from file
 	//movieStore.readTransactionFile(transactionFile); //process transactions from file 
 
-	MovieInventory MI;
-	CustomerInventory CI;
-/* 	Transaction* trans = new Transaction ();
-	cout << trans -> getSummary() << endl;
-	trans -> setSummary ("testing Testing");
-	cout << trans -> getSummary() << endl;
-	trans -> perform(MI, CI); */
-/* 	Transaction* trans = new Inventory ();
-	cout << trans -> getSummary() << endl;
-	trans -> perform(MI, CI);
-	cout << trans -> getSummary() << endl; */
-	
-/*  	cout << "INSERT: "<< (CI.addCustomer(9999, "jin", "lee")) << endl;
-//	cout << "INSERT: "<< (CI.addCustomer(19999, "jin", "lee")) << endl;
-	Customer* c = CI.getCustomer(9999);	
-	c -> addHistory("some transaction");
-	c -> addHistory("some other transaction");
-	c -> addHistory("most recent transaction");
-	Transaction* trans = new History (9999);
-	
-	cout << trans -> getSummary() << endl;
-	trans -> perform(MI, CI);
-	cout << trans -> getSummary() << endl;
-	
-	delete trans; */
-	 
 /* 	MovieInventory MI;
 	CustomerInventory CI;
 	
-	Movie* movie = new Movie('C', 'D', "title", "director", 5, 1231);
-	TransactionFactory TF;
-	Transaction* borrow = TF.create('B', 5555, movie); 
- 	Transaction* history = TF.create('H', 5555, movie);
-	Transaction* inventory = TF.create('I', 5555, movie);
-	Transaction* returntrans = TF.create('R', 5555, movie);
-	Transaction* errorT = TF.create('q', 5555, movie);
-	
-	inventory->perform(MI, CI);
-	//history->perform(MI, CI);
-	
-	cout << borrow -> getSummary() << endl;
-	cout << history -> getSummary() << endl;
-	cout << inventory -> getSummary() << endl;
-	cout << returntrans -> getSummary() << endl; */
-	
-
-/*  	Movie* movie = new Movie('C', 'D', "title", "director", 5, 1231);
-	//cout << movie -> getGenre() << endl;
-	Movie* movieD = new Drama('D', 'D', "titleD", "directorD", 53, 1212);
-	//cout << movieD -> getGenre() << endl; 
-	Movie* movieA = new Classic('C', 'D', "titleA", "directorA", 2, 1231, 1, "actorName");
-	Movie* movieB = new Comedy('F', 'D', "titleB", "directorB", 34, 4534);
-	Movie* movieC = new Drama('D', 'D', "titleC", "directorC", 23, 1753);
-	 */
-
- 	//CI.getCustomer(0);
-/* 	cout << "exist " << CI.customerExist(0) << endl;
-	cout << "INSERT: "<< (CI.addCustomer(9999, "jin", "lee")) << endl;
-	cout << "INSERT: "<< (CI.addCustomer(19999, "jin", "lee")) << endl;
-	cout << "INSERT: "<< (CI.addCustomer(9, "jin", "lee")) << endl;; 
- 	cout << "exist " << CI.customerExist(9999) << endl;  
-	cout << "exist " << CI.customerExist(19999) << endl;
- 	cout << "REMOVE " << CI.removeCustomer(19999) << endl;
-	cout << "exist " << CI.customerExist(19999) << endl; 
-	cout << "REMOVE " << CI.removeCustomer(9999) << endl;
-	cout << "exist " << CI.customerExist(9999) << endl;
-	cout << "exist " << CI.customerExist(19999) << endl; 
- 	cout << "GET CUSTOMER: " << (CI.getCustomer(0) == NULL) << endl;
-	cout << "GET CUSTOMER: " << (CI.getCustomer(9) == NULL) << endl;
-	cout << "GET CUSTOMER: " << (CI.getCustomer(9) -> getID()) << endl;  */
-	
-/*  	Customer c(5, "jin", "lee");
- 	c.display();
-	cout << c.getID() << endl;
-	cout << c.getName() << endl;
-	c.displayHistory();
-	c.addHistory("some transaction");
-	c.addHistory("some other transaction");
-	c.addHistory("most recent transaction");
-	c.displayHistory();   */
-/* 		
-	Movie* C = new Drama('D', 'D', "titleC", "directorC", 0, 0);
-	Movie* B = new Comedy('F', 'D', "titleB", "", 0, 4534);
-	Movie* A = new Classic('C', 'D', "", "", 2, 1231, 1, "actorName");
-	c.addCheckedOut(movieC);
-	//c.addCheckedOut(movieA);
-	//c.addCheckedOut(movieB);
-	cout << "Removing drama movie: 1 = " << c.removeCheckedOut(C) << endl;
-	cout << "Removing drama movie again: 1 = " << c.removeCheckedOut(C) << endl; */
-	//cout << "Removing classic movie: 1 = " << c.removeCheckedOut(A) << endl;
-	
-/* 	cout << endl;
-	cout << (C == movieC) << endl;
-	cout << (B == movieB) << endl;
-	cout << (A == movieA) << endl;
-	 */
-	
-/* 	Movie* movieC = new Classic ('C', 'D', "title", "diretor", 10, 2342, 2, "actor name");
-	movieC -> display();
+ 	MovieFactory MF;
+	//Movie* C = MF.create('C', "classic movie" , "directorC", "actorC", 1, 1999, 3);
+	Movie* D = MF.create('D', "Drama movie" , "directorD", "actorD", 13, 1999, 43);
+	Movie* D2 = MF.create('D', "Drama movie2" , "directorD2", "actorD2", 132, 19992, 432);
+	//Movie* F = MF.create('F', "Comedy movie" , "directorF", "actorF", 11, 1999, 23);
+	//C -> display();
 	cout << endl;
-	
-	MovieFactory movieFact;
-	Movie movieC2 = movieFact.create('C', " title", "direcot", "actor", 4, 2343, 20);
-	movieC2.display();
+	D -> display();
 	cout << endl;
+	//F -> display();
+	//cout << endl;
+	
+	MI.addMovie(D);
+	MI.addMovie(D2);
+	
+	
+	//delete C;
+	delete D;
+	delete D2;
+	//delete F; 
 	 */
 	 
-/* 	Classic* clock = new Classic ('C', 'D', "clockwork orange", "director", 5, 1231, 1, "jin");
-	clock -> addActor("derek", 20);
-	cout << clock -> actorExists("derek") << endl;
-	clock -> display(); */
+	Movie* movie = new Movie ('F', 'D', "Comedy movie" , "directorF", 11, 1999);
+	Movie* movie1 = new Movie ('F', 'D', "Comedy movie2" , "directorF", 11, 2343);
+	Movie* movie2 = new Movie ('F', 'D', "Comedy movie" , "directorF", 11, 1999);
+	Movie* movie3 = movie;
 	
+	cout << (*movie == *movie1) << endl;
+	cout << (*movie == *movie2) << endl;
+	cout << (*movie == *movie3) << endl;
+	
+	delete movie;
+	delete movie1;
+	delete movie2;
+	//delete movie3;
+	
+	//movie->display();
+	
+	 
+	 
 	return 0;
 }

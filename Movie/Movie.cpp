@@ -44,18 +44,20 @@ Movie::~Movie()
 
 void Movie::display() const
 {
+	cout << setw(2) << getGenre() << setw(3) << getMediaType() << setw(20) << getTitle() << setw(15) << getDirector() << setw(7)<< getYearReleased()<< setw(7) <<getStock() << endl;
+	
+/* 	cout << "Genre: " << getGenre() << endl;
+    cout << "Media Type: " << mediaType << endl;
     cout << "Title: " << title << endl;
     cout << "Director: " << director << endl;
     cout << "Year Released: " << yearReleased << endl;
-    cout << "Genre: " << getGenre() << endl;
-    cout << "Media Type: " << mediaType << endl;
-    cout << "Stock: " << stock << endl;
+    cout << "Stock: " << stock << endl; */
 }
 
 string Movie::getMovieInfo() const
 {
     string s;
-    s = title + " " + director;
+    s = genre + " " + title + " " + director;
     return s;
 }
 
@@ -105,15 +107,6 @@ string Movie::getActor() const
 	return "";
 }
 
-void Movie::addActor(string actor, int) 
-{
-	
-}
-bool Movie::actorExists(string) const
-{
-	return false;
-}
-
 bool Movie::subtractFromStock(int subtract)
 {
     if (stock > 0)
@@ -127,24 +120,36 @@ bool Movie::subtractFromStock(int subtract)
     }
 }
 
-//////////////////////////////////////////////////
-////////////   Private Methods   /////////////////
-//////////////////////////////////////////////////
+//?????
+//?????
+//?????
+//?????
+void Movie::addActor(string actor, int) 
+{
+}
+bool Movie::actorExists(string) const
+{
+	return false;
+}
 
 //////////////////////////////////////////////////
 //////////     Operator Overloads   //////////////
 //////////////////////////////////////////////////
 
+// default compare by title only
 bool Movie::operator == (const Movie& otherMovie) const
 {
-/*     if (this->title == otherMovie.title)
+	cout << "THIS MOVIE TITLE: " << title << endl;
+	cout << "OTHER MOVIE TITLE: " << otherMovie.title << endl;
+	
+    if (this->title == otherMovie.title)
     {
         return true;
     }
     else
     {
         return false;
-    } */
+    } 
 
 	return true;
 }
@@ -153,19 +158,20 @@ bool Movie::operator == (const Movie& otherMovie) const
 bool Movie::operator != (const Movie& otherMovie) const
 {
     return !(*this == otherMovie);
-
 }
 
-
+// default sort by year only
 bool Movie::operator > (const Movie& otherMovie) const
 {
     return this->yearReleased > otherMovie.yearReleased;
 }
 
+// default sort by year only
 bool Movie::operator < (const Movie& otherMovie) const
 {
     return this->yearReleased < otherMovie.yearReleased;
 }
+
 
 Movie& Movie::operator = (const Movie& otherMovie)
 {

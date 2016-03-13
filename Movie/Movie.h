@@ -15,7 +15,8 @@
 #define MOVIE_H
 
 #include <iostream> // input and output
-#include <string>
+#include <iomanip> // formatting output
+//#include <string>
 using namespace std;
 
 class Movie
@@ -30,12 +31,19 @@ public:
 	virtual bool operator != (const Movie& otherMovie) const; // check if movies are not equal
 	virtual bool operator > (const Movie& otherMovie) const; // check if this movie is greater than rhs movie
 	virtual bool operator < (const Movie& otherMovie) const; // check if this movie is less than rhs movie
+	
+	//??????????????
+	//??????????????
+	//??????????????
 	virtual Movie& operator=(const Movie& source); // assignment operator
+	//??????????????
+	//??????????????
+	//??????????????
 
 	virtual void display() const; // print out movie data and return string
     virtual string getMovieInfo() const; //returns string of movie data variables
-
-	// Get methods
+	
+	// Accessor methods
 	char getGenre() const;
 	char getMediaType() const;
 	string getTitle() const;
@@ -44,11 +52,20 @@ public:
 	int getYearReleased() const;
 	virtual string getActor() const;
 	virtual int getMonth() const;
+	
 
+	// Mutator methods
 	bool addToStock(int); // add to stock
 	bool subtractFromStock(int); // subtract from stock
+	
+	//??????
+	//??????
+	//??????
 	virtual void addActor(string, int); // add actor to list
-	virtual bool actorExists(string) const;
+	virtual bool actorExists(string) const; // checks for the actor 
+	//??????
+	//??????
+	//??????
 
 protected:
 	char genre; // genre of the movie

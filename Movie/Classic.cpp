@@ -16,13 +16,6 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
-//Default constructor
-Classic::Classic()
-{
-  actorList = NULL;
-  monthReleased = 0;
-}
-
 //Overload constructor
 //Sets the monthReleased and actor based on passed in values
 //Uses Movie constructor for most values.
@@ -54,39 +47,17 @@ Classic::~Classic()
 //Displays the monthReleased and actor
 void Classic::display() const
 {
-    cout << "Title: " << title << endl;
-    cout << "Director: " << director << endl;
-    cout << "Year Released: " << yearReleased << endl;
-    cout << "Genre: " << getGenre() << endl;
-    cout << "Media Type: " << mediaType << endl;
-    cout << "Total Stock: " << stock << endl;
-
-    cout << "Month Released: " << monthReleased << endl;
-/* <<<<<<< HEAD */
-    cout << "Actor(s): " << endl;
+	cout << setw(2) << getGenre() << setw(3) << getMediaType() << setw(30) << getTitle() 
+		<< setw(20) << getDirector() << setw(4) << getMonth() << setw(7)<< getYearReleased()<< setw(7) <<getStock() << endl;
+		
+	//???????????
+	//???????????
+	//???????????
+    cout << "Stock by Actor(s): " << endl;
 	displayActors();
-}
-
-void Classic::displayActors() const 
-{
-	actorNode* cur = actorList;
-	while (cur != NULL)
-	{
-		cout << cur -> actor << " Stock: " << cur -> stock << endl;
-		cur = cur -> next;
-	}
-	
-/* =======
-    cout << "Actor: " << getActor() << endl;
->>>>>>> 238837a7efbadd84e8a9bccbf04f2d48c3c578b1 */
-}
-
-string Classic::getMovieInfo() const
-{
-    string s;
-    s = title + " " + director;
-    return s;
-    
+	//???????????
+	//???????????
+	//???????????
 }
 
 //Get month
@@ -97,7 +68,7 @@ int Classic::getMonth() const
 }
 
 //Get actor
-//Returns the actor
+//Returns all the major actors
 string Classic::getActor() const
 {
     actorNode* temp = actorList;
@@ -149,10 +120,20 @@ void Classic::addActor(string actor, int stock)
 	}
 }
 
-
 //////////////////////////////////////////////////
 ////////////   Private Methods   /////////////////
 //////////////////////////////////////////////////
+
+// display actor and the stock of movie with the actor
+void Classic::displayActors() const 
+{
+	actorNode* cur = actorList;
+	while (cur != NULL)
+	{
+		cout << cur -> actor << setw(15) << cur -> stock << endl;
+		cur = cur -> next;
+	}
+}
 
 //////////////////////////////////////////////////
 //////////     Operator Overloads   //////////////
@@ -164,34 +145,16 @@ void Classic::addActor(string actor, int stock)
 //considered to be equivalent
 bool Classic::operator == (const Movie& otherMovie) const
 {
-  if (monthReleased == otherMovie.getMonth() && yearReleased == otherMovie.getYearReleased())
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
+	if (monthReleased == otherMovie.getMonth() && 
+		yearReleased == otherMovie.getYearReleased() && getActor() == otherMovie.getActor())
+		return true;
+	else
+		return false;
 }
-
-
-bool Classic::actorExists(string actorName) const
-{
-	actorNode* cur = actorList;
-	cout << "Actor exists called, actor name: " << actorName << endl;
-	while(cur != NULL)
-	{
-		if (cur -> actor == actorName)
-			return true;
-		cur = cur -> next;
-	}
-	return false;
-}
-
 
 //Not equivalent operator
 //Returns the negation of the equivalence operator
-bool Classic::operator != (const Classic& otherMovie) const
+bool Classic::operator != (const Movie& otherMovie) const
 {
   return !(*this == otherMovie);
 }
@@ -200,23 +163,33 @@ bool Classic::operator != (const Classic& otherMovie) const
 //Greater than operator
 //Returns true if this movie was released after the
 //right hand side movie
-bool Classic::operator > (const Classic& otherMovie) const
+bool Classic::operator > (const Movie& otherMovie) const
 {
-  return this->monthReleased > otherMovie.getMonth();
+	if (yearReleased > otherMovie.getYearReleased())
+		return true;
+	else if (yearReleased == otherMovie.getYearReleased() && monthReleased > otherMovie.getMonth())
+		return true; 
+	else
+		return false;
 }
 
 //Less than operator
 //Returns true if this movie was released before the
 //right hand side movie
-bool Classic::operator < (const Classic& otherMovie) const
+bool Classic::operator < (const Movie& otherMovie) const
 {
-  return this->monthReleased < otherMovie.getMonth();
+	if (yearReleased < otherMovie.getYearReleased())
+		return true;
+	else if (yearReleased == otherMovie.getYearReleased() && monthReleased < otherMovie.getMonth())
+		return true; 
+	else
+		return false;
 }
 
 
-//Assignment operator
+/* //Assignment operator
 //Copies all values from the source movie to this movie
-Classic& Classic::operator = (const Classic& source)
+Classic& Classic::operator = (const Movie& source)
 {
 	// copy month released
     monthReleased = source.getMonth(); 
@@ -236,7 +209,7 @@ Classic& Classic::operator = (const Classic& source)
 	curThis -> next = NULL;
 	
     return *this;
-}
+} */
 
 void Classic::removeActorList() 
 {

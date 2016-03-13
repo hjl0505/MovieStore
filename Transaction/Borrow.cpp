@@ -42,62 +42,42 @@ bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 	// check if customer exists
 	if (!customers.customerExist(customerID))
 	{
-		cout << "Borrow Transaction Failed" << endl;
-		cout << "Customer does not exist" << endl;
+		cout << "ERROR: Borrow Transaction Failed -- " 
+			<< "Customer does not exist" << endl;
 		return false;
 	}
 	
 	Customer* customer = customers.getCustomer(customerID);
-	cout << " HERRO 1" << endl;
 	
 	// movie exists in the stock
 	if (movies.movieExist(movie))
 	{	
-		cout << " HERRO 32 " << endl;
+		cout << "MOVIE EXISTS? " << endl;
+		
 		string movieInfo = "";
 		// There was enough stock of movie to borrow from
 		if (movies.borrowMovie(movie, movieInfo)) 
 		{		
-			cout << " HERRO " << endl;
 			// update summary of transaction if borrow performed correctly
-			string borrowSummary = "Borrow " + movieInfo;
-			Transaction::setSummary(borrowSummary);
+			string borrowSummary = "Borrowed " + movieInfo;
 			
+			// add transaction summary to customer's history
 			customer -> addCheckedOut (movie);
 			customer -> addHistory(borrowSummary);
 			
+			return true;
 		} 
 		else
-		{
-			cout << " HERRO 3" << endl;
-			
-			cout << "Borrow Transaction Failed" << endl;
-			cout << "Movie: " << movie -> getYearReleased() << endl;
-			cout << "Not enough in the Stock" << endl;
+		{		
+			cout << "ERROR: Borrow Transaction Failed -- "
+				<< "Not enough in the Stock" << endl;
 		}
 	}
 	else
 	{
-		cout << "Borrow Transaction Failed" << endl;
-		cout << "Movie does not Exist in the Inventory" << endl;
+		cout << "ERROR:  Borrow Transaction Failed -- " 
+			<< "Movie does not Exist in the Inventory" << endl;
 	}
+	return false;
 			
 }
-
-//////////////////////////////////////////////////
-////////////   Private Methods   /////////////////
-//////////////////////////////////////////////////
-
-//////////////////////////////////////////////////
-//////////     Operator Overloads   //////////////
-//////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////
-//////////////    I/O Stream   ///////////////////
-//////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////
-//////////////   Extra Code   ////////////////////
-//////////////////////////////////////////////////

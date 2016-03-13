@@ -23,14 +23,17 @@ class Movie
 {
 
 public:
+
+	// Constructor and Destructor
 	Movie();
     Movie(char genre, char mediaType, string title, string director, int stock, int yearReleased);
 	virtual ~Movie();
 
+	// Overloaded operators
  	virtual bool operator==(const Movie& otherMovie) const; // check if movies are equal
 	virtual bool operator != (const Movie& otherMovie) const; // check if movies are not equal
-	virtual bool operator > (const Movie& otherMovie) const; // check if this movie is greater than rhs movie
-	virtual bool operator < (const Movie& otherMovie) const; // check if this movie is less than rhs movie
+	virtual bool operator > (const Movie& otherMovie) const; // check if this movie is greater than other movie
+	virtual bool operator < (const Movie& otherMovie) const; // check if this movie is less than other movie
 	
 	//??????????????
 	//??????????????
@@ -41,7 +44,7 @@ public:
 	//??????????????
 
 	virtual void display() const; // print out movie data and return string
-    virtual string getMovieInfo() const; //returns string of movie data variables
+    string getMovieInfo() const; //returns string of movie data variables
 	
 	// Accessor methods
 	char getGenre() const;

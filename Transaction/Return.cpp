@@ -41,10 +41,10 @@ bool Return::perform(MovieInventory& movies, CustomerInventory& customers)
 {
 
 	// check if customer exists
-	if (customers.customerExist(customerID));
+	if (!customers.customerExist(customerID))
 	{
-		cout << "Return Transaction Failed" << endl;
-		cout << "Return does not exist" << endl;
+		cout << "ERROR: Return Transaction Failed -- " 
+			<< "Customer does not exist" << endl;
 		return false;
 	}
 	
@@ -60,27 +60,27 @@ bool Return::perform(MovieInventory& movies, CustomerInventory& customers)
 		// movie exists in the stock
 		if (movies.movieExist(movie))
 		{		
-				movies.returnMovie(movie);
-				
-				// update summary of transaction if borrow performed correctly
-				string returnSummary = "Return "; //+ movie -> getMovieInfo();
-				Transaction::setSummary(returnSummary);
-				
-				customer -> addHistory(returnSummary);
+			string movieInfo = "";
+			movies.returnMovie(movie, movieInfo);
+			
+			// update summary of transaction if borrow performed correctly
+			string returnSummary = "Returned " + movieInfo;
+			customer -> addHistory(returnSummary);
+			return true;
 		}
 		else
 		{
-			cout << "Return Transaction Failed" << endl;
-			cout << "Movie does not Exist in the Inventory" << endl;
+			cout << "ERROR: Return Transaction Failed -- " 
+				<< "Movie does not Exist in the Inventory" << endl;
 		}
 			
 	}
 	else
 	{
-		cout << "Borrow Transaction Failed" << endl;
+		cout << "ERROR: Return Transaction Failed -- ";
 		cout << "Movie was Not Checked Out By the Customer" << endl;
 	}
-	
+	return false;
 }
 
 //////////////////////////////////////////////////

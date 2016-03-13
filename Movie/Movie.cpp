@@ -44,20 +44,14 @@ Movie::~Movie()
 
 void Movie::display() const
 {
-	cout << setw(2) << getGenre() << setw(3) << getMediaType() << setw(20) << getTitle() << setw(15) << getDirector() << setw(7)<< getYearReleased()<< setw(7) <<getStock() << endl;
-	
-/* 	cout << "Genre: " << getGenre() << endl;
-    cout << "Media Type: " << mediaType << endl;
-    cout << "Title: " << title << endl;
-    cout << "Director: " << director << endl;
-    cout << "Year Released: " << yearReleased << endl;
-    cout << "Stock: " << stock << endl; */
+	cout << setw(2) << getGenre() << setw(3) << getMediaType() << setw(30) << getTitle() 
+		<< setw(20) << getDirector() << setw(7)<< getYearReleased()<< setw(7) <<getStock() << endl;
 }
 
 string Movie::getMovieInfo() const
 {
     string s;
-    s = genre + " " + title + " " + director;
+    s = title + " by " + director;
     return s;
 }
 
@@ -115,9 +109,7 @@ bool Movie::subtractFromStock(int subtract)
         return true;
     }
     else
-    {
         return false;
-    }
 }
 
 //?????
@@ -139,19 +131,10 @@ bool Movie::actorExists(string) const
 // default compare by title only
 bool Movie::operator == (const Movie& otherMovie) const
 {
-	cout << "THIS MOVIE TITLE: " << title << endl;
-	cout << "OTHER MOVIE TITLE: " << otherMovie.title << endl;
-	
     if (this->title == otherMovie.title)
-    {
         return true;
-    }
     else
-    {
         return false;
-    } 
-
-	return true;
 }
 
 
@@ -172,7 +155,10 @@ bool Movie::operator < (const Movie& otherMovie) const
     return this->yearReleased < otherMovie.yearReleased;
 }
 
-
+//?????
+//?????
+//?????
+//?????
 Movie& Movie::operator = (const Movie& otherMovie)
 {
     this->genre = otherMovie.getGenre();

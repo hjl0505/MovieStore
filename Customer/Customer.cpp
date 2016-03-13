@@ -88,7 +88,8 @@ void Customer::display()
 // Most recent to Least recent (newest transaction to oldest transaction)
 void Customer::displayHistory()
 {
-	//cout << "DISPLAY HISTORY CALLED " << endl;
+	cout << endl;
+	cout << "History for " << getName() << endl;
 	historyNode* temp = history;
 	while (temp!= NULL)
 	{
@@ -129,16 +130,11 @@ void Customer::addCheckedOut(Movie* movie)
 
 bool Customer::removeCheckedOut(Movie* movie)
 {
-/* 	cout << "REMOVE CHECKED OUT CALLED" << endl;
-	cout << (checkedOut -> movieBorrowed -> getTitle()) << endl;
-	cout << (checkedOut == NULL) << endl << endl;
-	 */
-	
 	checkedOutNode* cur = checkedOut;
 	if (cur != NULL) 
 	{	
 		// check the first checkedOutNode
-		if (cur -> movieBorrowed == movie)
+		if (*(cur -> movieBorrowed) == *movie)
 		{
 			checkedOut = cur -> next;
 			delete cur;
@@ -151,7 +147,7 @@ bool Customer::removeCheckedOut(Movie* movie)
 		cur = cur -> next;
 		while (cur != NULL) 
 		{
-			if (cur -> movieBorrowed == movie) 
+			if (*(cur -> movieBorrowed) == *movie) 
 			{
 				// remove movie from the list
 				prev -> next = cur -> next; 

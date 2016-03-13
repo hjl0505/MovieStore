@@ -33,6 +33,5 @@ Inventory::~Inventory()
 bool Inventory::perform(MovieInventory& movies, CustomerInventory& customers)
 {
 	movies.printInventory();
-	setSummary("Inventory Performed");
 	return true;
 }

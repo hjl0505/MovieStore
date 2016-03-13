@@ -32,7 +32,7 @@ MovieInventory::~MovieInventory()
 
 Movie* MovieInventory::getMovie (Movie* moviePtr)
 {
-    Movie *foundPtr;
+    Movie *foundPtr = NULL;
     switch (moviePtr->getGenre())
     {
         case 'F':
@@ -60,13 +60,9 @@ Movie* MovieInventory::getMovie (Movie* moviePtr)
 bool MovieInventory::movieExist (Movie* moviePtr)
 {
     if (getMovie(moviePtr) != NULL)
-    {
         return true;
-    }
-    else
-    {
+    else 
         return false;
-    }
 }
 
 void MovieInventory::printInventory()
@@ -133,10 +129,8 @@ bool MovieInventory::addMovie (Movie* moviePtr)
 
 bool MovieInventory::borrowMovie (Movie* moviePtr, string& movieInfo)
 {
-	cout << " WHAT IS GOING ON HERE 2" << endl;
     if (movieExist(moviePtr))
     {
-		cout << " WHAT IS GOING ON HERE" << endl;
 		Movie* movieToBorrow = getMovie(moviePtr);
         if (movieToBorrow -> getStock() > 0)
         {
@@ -146,39 +140,22 @@ bool MovieInventory::borrowMovie (Movie* moviePtr, string& movieInfo)
         }
 		else if (getMovie(moviePtr) -> getGenre() == 'C')
 		{
-			cout << " WHAT IS GOING ON" << endl;
+			// DO OTHER STUFF
 		}
     }
     return false;
 }
 
-bool MovieInventory::returnMovie (Movie* moviePtr)
+bool MovieInventory::returnMovie (Movie* moviePtr, string& movieInfo)
 {
     if (movieExist(moviePtr))
     {
-        getMovie(moviePtr)->addToStock(1);
+		Movie* movieToReturn = getMovie(moviePtr);
+        movieToReturn->addToStock(1);
+		
+		movieInfo = movieToReturn -> getMovieInfo();
         return true;
     }
     else
-    {
         return false;
-    }
 }
-
-//////////////////////////////////////////////////
-////////////   Private Methods   /////////////////
-//////////////////////////////////////////////////
-
-//////////////////////////////////////////////////
-//////////     Operator Overloads   //////////////
-//////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////
-//////////////    I/O Stream   ///////////////////
-//////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////
-//////////////   Extra Code   ////////////////////
-//////////////////////////////////////////////////

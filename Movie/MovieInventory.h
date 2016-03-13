@@ -20,17 +20,19 @@ class MovieInventory
 {
 
 public:
-
+	// Constructor and Destructor
 	MovieInventory();
 	~MovieInventory();
 
+	// Accessor methods
 	Movie* getMovie (Movie*); // retrieves movie equal to the parameter movie
 	bool movieExist (Movie*); // checks if movie exists
 	void printInventory(); // print all the movies in the stock
 
+	// Mutator methods
 	bool addMovie (Movie*); // add new movie
 	bool borrowMovie (Movie*, string&); // borrow a movie, and updates string with movie info
-	bool returnMovie (Movie*); // return a movie
+	bool returnMovie (Movie*, string&); // return a movie, and updates string with movie info
 
 private:
 	vector<BST> movieType; // array of BSTs there are 3 for each genre of movies

@@ -16,11 +16,6 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
-//Default constructor
-Comedy::Comedy()
-{
-
-}
 
 Comedy::Comedy(char genre, char mediaType, string title,
    string director, int stock, int yearReleased)
@@ -34,60 +29,44 @@ Comedy::~Comedy()
 
 }
 
-
-//////////////////////////////////////////////////
-//////////     Public Methods    /////////////////
-//////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////
-////////////   Private Methods   /////////////////
-//////////////////////////////////////////////////
-
 //////////////////////////////////////////////////
 //////////     Operator Overloads   //////////////
 //////////////////////////////////////////////////
 
 bool Comedy::operator == (const Movie& otherMovie) const// check if movies are equal
 {
-  if (title == otherMovie.getTitle() && yearReleased == otherMovie.getYearReleased())
-   {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
+	if (title == otherMovie.getTitle() && yearReleased == otherMovie.getYearReleased())
+		return true;
+	else
+		return false;
 }
 
 
-/* bool Comedy::operator != (const Movie& otherMovie) const // check if movies are not equal
+bool Comedy::operator != (const Movie& otherMovie) const // check if movies are not equal
 {
-  return !(this == otherMovie);
-} */
+  return !(*this == otherMovie);
+} 
 
-bool Comedy::operator > (const Movie& otherMovie) const // check if this movie is greater than rhs movie
+// check if this movie is greater than other movie
+// by title and then year released
+bool Comedy::operator > (const Movie& otherMovie) const 
 {
-/*   if (this.yearReleased > otherMovie.yearReleased)
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  } */
+	if (title > otherMovie.getTitle())
+		return true;
+	else if (title == otherMovie.getTitle() && yearReleased > otherMovie.getYearReleased())
+		return true; 
+	else
+		return false;
 }
 
-bool Comedy::operator < (const Movie& otherMovie) const// check if this movie is less than rhs movie
+// check if this movie is less than other movie
+// by title and then year released
+bool Comedy::operator < (const Movie& otherMovie) const
 {
-/*   return !(this > otherMovie); */
+	if (title < otherMovie.getTitle())
+		return true;
+	else if (title == otherMovie.getTitle() && yearReleased < otherMovie.getYearReleased())
+		return true; 
+	else
+		return false;
 }
-
-//////////////////////////////////////////////////
-//////////////    I/O Stream   ///////////////////
-//////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////
-//////////////   Extra Code   ////////////////////
-//////////////////////////////////////////////////

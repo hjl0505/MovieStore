@@ -25,11 +25,8 @@ public:
 
 	// perform transaction
 	virtual bool perform(MovieInventory&, CustomerInventory&);
-	string getSummary(); //return summary of transactions
-	void setSummary(string); 
 
 private:
 	char transType; // type of transaction
-	string summary; // summary of transaction include all attributes
 };
 #endif

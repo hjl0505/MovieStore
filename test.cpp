@@ -19,10 +19,11 @@ int main()
 	if (!transactionFile)  // repeat for movieFile and transactionFile
 		cout << "Transaction file cannot be oppened" << endl; 
 
-  	//Store movieStore; //create a store
- 	//movieStore.readCustomerFile(customerFile); //create customer profiles from file
-	//movieStore.readMovieFile(movieFile); //create movie inventory from file
-	//movieStore.readTransactionFile(transactionFile); //process transactions from file 
+  	Store movieStore; //create a store
+ 	movieStore.readCustomerFile(customerFile); //create customer profiles from file
+	movieStore.readMovieFile(movieFile); //create movie inventory from file
+	movieStore.readTransactionFile(transactionFile); //process transactions from file 
+	
 
 /* 	MovieInventory MI;
 	CustomerInventory CI;
@@ -49,21 +50,37 @@ int main()
 	//delete F; 
 	 */
 	 
-	Movie* movie = new Movie ('F', 'D', "Comedy movie" , "directorF", 11, 1999);
-	Movie* movie1 = new Movie ('F', 'D', "Comedy movie2" , "directorF", 11, 2343);
-	Movie* movie2 = new Movie ('F', 'D', "Comedy movie" , "directorF", 11, 1999);
-	Movie* movie3 = movie;
+	// Movie* movie = new Classic ('F', 'D', "Comedy movie" , "directorF", 11, 1999, 2, "poopers");
+	// Movie* movie1 = new Classic ('F', 'D', "Comedy movie" , "directorG", 11, 2343, 2, "poopers" );
+	// Movie* movie2 = new Classic ('F', 'D', "Comedy movie" , "directorF", 11, 1999, 2, "poopers");
+	// Movie* movie4 = new Classic ('F', 'D', "Comedy movie5" , "directorF", 11, 1999, 2, "pooperscrap");
+	// Movie* movie5 = new Classic ('F', 'D', "Comedy movie" , "directorF", 11, 1999, 4, "poopers");
+	// Movie* movie3 = movie;
 	
-	cout << (*movie == *movie1) << endl;
-	cout << (*movie == *movie2) << endl;
-	cout << (*movie == *movie3) << endl;
 	
-	delete movie;
-	delete movie1;
-	delete movie2;
-	//delete movie3;
+ 	// cout << "0 = " << (*movie == *movie1) << endl;
+	// cout << "1 = " << (*movie == *movie2) << endl;
+	// cout << "0 = " <<(*movie == *movie4) << endl;
+	// cout << "1 = " <<(*movie == *movie3) << endl;
+	// cout << "0 = " <<(*movie == *movie5) << endl;
 	
-	//movie->display();
+	// cout << "0 = " << (*movie > *movie1) << endl;
+	// cout << "0 = " <<(*movie > *movie4) << endl;
+	// cout << "0 = " <<(*movie > *movie5) << endl;
+	// cout << "1 = " << (*movie < *movie1) << endl;
+	// cout << "1 = " <<(*movie < *movie4) << endl;
+	// cout << "1 = " <<(*movie > *movie5) << endl;
+	
+	// delete movie;
+	// delete movie1;
+	// delete movie2;
+	// delete movie4; 
+	// delete movie5;
+	
+	// movie->display();
+/* 	movie1->display();
+	movie2->display();
+	movie3->display(); */
 	
 	 
 	 

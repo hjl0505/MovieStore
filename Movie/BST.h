@@ -38,7 +38,10 @@ public:
 	~BST ();
 	
 	bool getMovie (const Movie&, Movie*&) const; // get movie from the tree 
-	bool addMovie(Movie*&); // add movie node
+	bool addMovie(Movie*&); // add movie node	
+	bool getMovieByTitle (string, int, Movie*&);
+	void resetCounted(); //reset movie counted status to false
+	
 	
 private:
 	Node* root; // Points to the root of the BST
@@ -47,7 +50,8 @@ private:
 	void makeEmptyHelper (Node* &);
 	void printHelper (Node* cur) const;
 	bool insertHelper (Node *&, Movie*&);
-	bool retrieveHelper (const Movie&, Movie*& , Node*) const ;
-	
+	bool retrieveHelper (const Movie&, Movie*& , Node*) const;	
+	void resetHelper(Node*);
+	bool getMovieByTitleHelper (string title, int year, Movie*&, Node*);
 };
 #endif

@@ -59,7 +59,8 @@ Movie* MovieInventory::getMovie (Movie* moviePtr)
 
 bool MovieInventory::movieExist (Movie* moviePtr)
 {
-    if (getMovie(moviePtr) != NULL)
+	Movie* foundPtr = getMovie(moviePtr);
+    if (foundPtr!= NULL)
         return true;
     else 
         return false;
@@ -88,12 +89,12 @@ void MovieInventory::printInventory()
                 break;
         }
         cout << movieType[i];
+		movieType[i].resetCounted();
     }
 }
 
 bool MovieInventory::addMovie (Movie* moviePtr)
 {
-	Movie* classicMovie = NULL;
 	if (moviePtr) {
 		 switch (moviePtr->getGenre())
 		{
@@ -103,15 +104,10 @@ bool MovieInventory::addMovie (Movie* moviePtr)
 				break;
 				
 			case 'C':
-				if (movieType[1].getMovie(*moviePtr, classicMovie))
-				{
-					classicMovie -> addToStock(moviePtr -> getStock());
-					classicMovie -> addActor(moviePtr -> getActor(), moviePtr -> getStock());
-				}
-				else 
-				{
-					movieType[1].addMovie(moviePtr);
-				} 
+				movieType[1].addMovie(moviePtr);
+				moviePtr -> setCounted(true);
+				addAllSameMovies(moviePtr, 1);
+				movieType[1].resetCounted();
 				return true;
 				break;
 				
@@ -132,15 +128,11 @@ bool MovieInventory::borrowMovie (Movie* moviePtr, string& movieInfo)
     if (movieExist(moviePtr))
     {
 		Movie* movieToBorrow = getMovie(moviePtr);
-        if (movieToBorrow -> getStock() > 0)
-        {
-           movieToBorrow -> subtractFromStock(1);
-		   movieInfo = movieToBorrow -> getMovieInfo();
-           return true;
-        }
-		else if (getMovie(moviePtr) -> getGenre() == 'C')
+		bool completeTrans = movieToBorrow -> subtractFromStock(1);
+		if (completeTrans)
 		{
-			// DO OTHER STUFF
+			movieInfo = movieToBorrow -> getMovieInfo();
+			return true;
 		}
     }
     return false;
@@ -158,4 +150,22 @@ bool MovieInventory::returnMovie (Movie* moviePtr, string& movieInfo)
     }
     else
         return false;
+}
+
+Movie* MovieInventory::getMovieByTitle (int genreIndex, string title, int year)
+{
+	Movie* found = NULL;
+	movieType[genreIndex].getMovieByTitle(title, year, found);
+	return found;
+}
+
+void MovieInventory::addAllSameMovies (Movie* current, int idx)
+{
+ 	Movie* found = getMovieByTitle(idx, current -> getTitle(), current -> getYearReleased());
+	while(found != NULL)
+	{
+ 		current -> addSameMovies(found);
+		found -> addSameMovies(current); 
+		found = getMovieByTitle(idx, current -> getTitle(), current -> getYearReleased());
+	} 
 }

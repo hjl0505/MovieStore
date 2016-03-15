@@ -1,4 +1,0 @@
-B 1000 D D Gus Van Sant, Good Will Hunting,
-B 1000 D D Jonathan Demme, Silence of the Lambs,
-H 1000
-I

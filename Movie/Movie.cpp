@@ -31,6 +31,8 @@ Movie::Movie(char genre, char mediaType, string title, string director, int stoc
     this->director = director;
     this->stock = stock;
     this->yearReleased = yearReleased;
+	
+	this->counted = false;
 }
 
 Movie::~Movie()
@@ -44,8 +46,9 @@ Movie::~Movie()
 
 void Movie::display() const
 {
+	cout << "Movie Display" << endl;
 	cout << setw(2) << getGenre() << setw(3) << getMediaType() << setw(30) << getTitle() 
-		<< setw(20) << getDirector() << setw(7)<< getYearReleased()<< setw(7) <<getStock() << endl;
+		<< setw(20) << getDirector() << setw(7)<< getYearReleased() << setw(7) <<getStock() << endl;
 }
 
 string Movie::getMovieInfo() const
@@ -101,39 +104,42 @@ string Movie::getActor() const
 	return "";
 }
 
-bool Movie::subtractFromStock(int subtract)
+bool Movie::getCountedStatus() const
 {
-    if (stock > 0)
+	return counted;
+}
+
+void Movie::setCounted(bool checked)
+{
+	counted = checked;
+}
+
+bool Movie::subtractFromStock(int count)
+{
+    if (stock >= count)
     {
-        stock-= subtract;
+        stock-= count;
         return true;
     }
     else
         return false;
 }
 
-//?????
-//?????
-//?????
-//?????
-void Movie::addActor(string actor, int) 
+void Movie::addSameMovies(Movie*& sameMovie)
 {
 }
-bool Movie::actorExists(string) const
-{
-	return false;
-}
+
 
 //////////////////////////////////////////////////
 //////////     Operator Overloads   //////////////
 //////////////////////////////////////////////////
 
-// default compare by title only
+// default compare by title and year
 bool Movie::operator == (const Movie& otherMovie) const
 {
-    if (this->title == otherMovie.title)
+    if (this -> title == otherMovie.title && this -> yearReleased == otherMovie.getYearReleased())
         return true;
-    else
+    else 
         return false;
 }
 

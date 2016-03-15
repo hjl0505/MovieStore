@@ -42,9 +42,6 @@ public:
 	//??????????????
 	//??????????????
 	//??????????????
-
-	virtual void display() const; // print out movie data and return string
-    string getMovieInfo() const; //returns string of movie data variables
 	
 	// Accessor methods
 	char getGenre() const;
@@ -53,22 +50,25 @@ public:
 	string getDirector() const;
 	int getStock() const;
 	int getYearReleased() const;
+	bool getCountedStatus() const;
+	
+	virtual void display() const; // print out movie data and return string
+    string getMovieInfo() const; //returns string of movie data variables
+	
+	//??????
+	//??????
+	//??????
 	virtual string getActor() const;
 	virtual int getMonth() const;
-	
+	virtual void addSameMovies(Movie*&); // add the same movie to the list of same movies
+	//??????
+	//??????
+	//??????
 
 	// Mutator methods
 	bool addToStock(int); // add to stock
-	bool subtractFromStock(int); // subtract from stock
-	
-	//??????
-	//??????
-	//??????
-	virtual void addActor(string, int); // add actor to list
-	virtual bool actorExists(string) const; // checks for the actor 
-	//??????
-	//??????
-	//??????
+	virtual bool subtractFromStock(int); // subtract from stock
+	void setCounted(bool); // mark movie as counted in inventory
 
 protected:
 	char genre; // genre of the movie
@@ -77,5 +77,6 @@ protected:
 	string director; // director of movie
 	int stock; // number of movie left in stock
 	int yearReleased; // year released
+	bool counted; // keeps track of inventory status of the movie
 };
 #endif

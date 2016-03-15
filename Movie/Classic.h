@@ -11,7 +11,7 @@
 
 #ifndef CLASSIC_H
 #define CLASSIC_H
-
+#include <vector> 
 #include "Movie.h"
 using namespace std;
 
@@ -40,20 +40,17 @@ public:
 
 	// Accessor methods
 	virtual int getMonth() const;
-	virtual string getActor() const; // get all the major actors for the movie
 	virtual void display() const; // print out movie data and return string
-	bool hasActor(string) const;
+	virtual string getActor() const; // get the major actor for the movie
+	virtual bool subtractFromStock(int); // subtract from stock
 	
-	// Mutator methods
-	virtual void addActor(string, int);
+	int getTotalStock() const; // get total stock of all the same movies
+	virtual void addSameMovies(Movie*&); // add the same movie to the list of same movies
 
 private:	
 
-	actorNode* actorList;	
+	vector<Movie*> sameMoviesList;
+	string actor;
 	int monthReleased; // month of the movie release
-	
-	// Helpers
-	void displayActors() const;
-	void removeActorList();
 };
 #endif

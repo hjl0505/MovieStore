@@ -107,3 +107,150 @@
 	clock -> addActor("derek", 20);
 	cout << clock -> actorExists("derek") << endl;
 	clock -> display(); */
+	
+/* 	MovieInventory MI;
+	CustomerInventory CI;
+	
+ 	MovieFactory MF;
+	//Movie* C = MF.create('C', "classic movie" , "directorC", "actorC", 1, 1999, 3);
+	Movie* D = MF.create('D', "Drama movie" , "directorD", "actorD", 13, 1999, 43);
+	Movie* D2 = MF.create('D', "Drama movie2" , "directorD2", "actorD2", 132, 19992, 432);
+	//Movie* F = MF.create('F', "Comedy movie" , "directorF", "actorF", 11, 1999, 23);
+	//C -> display();
+	cout << endl;
+	D -> display();
+	cout << endl;
+	//F -> display();
+	//cout << endl;
+	
+	MI.addMovie(D);
+	MI.addMovie(D2);
+	
+	
+	//delete C;
+	delete D;
+	delete D2;
+	//delete F; 
+	 */
+	 
+	 Movie* movie = new Classic ('F', 'D', "Comedy movie" , "directorF", 11, 1999, 2, "poopers");
+	Movie* movie1 = new Classic ('F', 'D', "Comedy movie" , "directorF", 11, 1222, 2, "poopers" );
+	Movie* movie2 = new Classic ('F', 'D', "Comedy movie" , "directorF", 11, 1999, 2, "poopers");
+	Movie* movie4 = new Classic ('F', 'D', "Comedy movie5" , "directorF", 11, 1999, 2, "pooperscrap");
+	Movie* movie5 = new Classic ('F', 'D', "Comedy movie" , "directorF", 11, 1999, 1, "poopers");
+	 Movie* movie3 = movie;
+	
+	
+/*  	 cout << "0 = " << (*movie == *movie1) << endl;
+	 cout << "1 = " << (*movie == *movie2) << endl;
+	 cout << "0 = " <<(*movie == *movie4) << endl;
+	 cout << "1 = " <<(*movie == *movie3) << endl;
+	 cout << "0 = " <<(*movie == *movie5) << endl; */
+	
+ 	 cout << "1 = " << (*movie > *movie1) << endl;
+	 cout << "0 = " <<(*movie > *movie4) << endl;
+/* 	 cout << "1 = " <<(*movie > *movie5) << endl;
+	 cout << "0 = " << (*movie < *movie1) << endl; 
+	 cout << "1 = " <<(*movie < *movie4) << endl;
+	 cout << "0 = " <<(*movie < *movie5) << endl; */
+	
+	// delete movie;
+	// delete movie1;
+	// delete movie2;
+	// delete movie4; 
+	// delete movie5;
+	
+	// movie->display();
+/* 	movie1->display();
+	movie2->display();
+	movie3->display(); */
+	
+	/*   	Store movieStore; //create a store
+ 	movieStore.readCustomerFile(customerFile); //create customer profiles from file
+	movieStore.readMovieFile(movieFile); //create movie inventory from file
+	movieStore.readTransactionFile(transactionFile); //process transactions from file  
+
+	Movie* clock = new Classic ('C', 'D', "clockwork orange", "director", 2, 1231, 1, "jin");
+	Movie* clock1 = new Classic ('C', 'D', "clockwork orange", "director", 1, 1231, 1, "jin");
+	Movie* clock2 = new Classic ('C', 'D', "clockwork orange", "director", 2, 1230, 1, "jin");
+	Movie* clock3 = new Classic ('C', 'D', "clockwork orange", "director", 2, 1231, 12, "jin");
+	Movie* clock4 = new Classic ('C', 'D', "clockwork orange", "director", 2, 1231, 12, "derek");
+	Movie* m = new Classic ('C', 'D', "clockwork orange", "director", 2, 1231, 12, "derek");
+ 	cout << clock ->getMonth() << endl;
+	cout << clock ->getActor() << endl;
+	cout << "equals 1 = " << (*clock == *clock1) << endl;
+	cout << "equals 0 = " << (*clock == *clock2) << endl;
+	cout << "equals 0 = " << (*clock == *clock3) << endl;
+	cout << "equals 0 = " << (*clock == *clock4) << endl; 
+	
+	clock ->subtractFromStock(1);
+	clock ->subtractFromStock(1);
+	//cout << "Out of stock? 0 = " << (clock ->subtractFromStock(1)) << endl;
+	//cout << "Total stock? 0 = " << clock -> getStock() << endl;
+	clock -> addSameMovies(clock1);
+ 	clock -> addSameMovies(clock2);
+	clock -> addSameMovies(clock3); 
+	cout << "Out of stock? 1 = " << (clock ->subtractFromStock(1)) << endl;
+	cout << "Out of stock? 0 = " << (clock ->subtractFromStock(1)) << endl;
+	clock->display();*/
+	
+	
+	/*BST test;
+	Movie* clock = new Classic ('C', 'D', "clockwork orange", "director", 2, 1231, 1, "jin");
+	Movie* clock1 = new Classic ('C', 'D', "clockwork orange", "director", 1, 1231, 1, "jin");
+	Movie* clock2 = new Classic ('C', 'D', "clockwork orange", "director", 2, 1230, 1, "jin");
+	Movie* clock3 = new Classic ('C', 'D', "clockwork orange", "director", 2, 1231, 12, "jin");
+	Movie* clock4 = new Classic ('C', 'D', "clockwork apple", "director", 2, 1231, 12, "derek");
+	Movie* temp = new Classic ('C', 'D', "clockwork orange", "director", 2, 1231, 1, "jin");
+	Movie* found;
+	
+	test.addMovie(clock);
+	//test.addMovie(clock1);
+ 	test.addMovie(clock2);
+	test.addMovie(clock3);
+	test.addMovie(clock4); 
+	
+	
+	test.getMovieByTitle("clockwork orange", 1230, found);
+	found -> display();
+	found = NULL;
+	test.getMovieByTitle("clockwork orange", 1231, found);
+	found -> display();
+	found = NULL;
+	test.getMovieByTitle("clockwork apple", 1231, found);
+	found -> display();
+	found = NULL;
+	test.getMovieByTitle("clockwork orange", 1231, found);
+	found -> display();
+	found = NULL;
+	
+ 	clock -> setCounted(true);
+	cout << clock -> getCountedStatus() << endl;
+	test.resetCounted();
+	cout << clock -> getCountedStatus() << endl; 
+	
+ 	test.getMovie(*temp, found);
+	found -> display();
+	cout << test << endl; */
+	
+			// stock year month
+	Movie* clock = new Classic ('C', 'D', "clockwork orange", "director", 2, 1231, 1, "jin");
+	
+ 	Movie* clock1 = new Classic ('C', 'D', "clockwork orange", "director", 1, 1231, 1, "derek");
+/*	Movie* clock2 = new Classic ('C', 'D', "clockwork orange", "director", 2, 1230, 1, "jin");
+	Movie* clock3 = new Classic ('C', 'D', "clockwork orange", "director", 2, 1231, 12, "jin");
+	Movie* clock4 = new Classic ('C', 'D', "clockwork apple", "director", 2, 1231, 12, "derek"); */
+	Movie* temp = new Classic ('C', 'D', "clockwork orange", "director", 2, 1231, 1, "jin"); 
+	Movie* found; 
+	
+	string s = "";
+	MovieInventory MI;
+	MI.addMovie(clock);
+	MI.addMovie(clock1);
+	MI.printInventory();
+	
+ 	
+	MI.borrowMovie(clock, s);
+	MI.borrowMovie(clock, s);
+	cout << (MI.borrowMovie(clock, s)) << endl;
+	MI.printInventory(); 

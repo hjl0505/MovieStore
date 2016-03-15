@@ -28,11 +28,15 @@ public:
 	Movie* getMovie (Movie*); // retrieves movie equal to the parameter movie
 	bool movieExist (Movie*); // checks if movie exists
 	void printInventory(); // print all the movies in the stock
+	
+	Movie* getMovieByTitle(int, string, int); // get movie by title and year
 
 	// Mutator methods
 	bool addMovie (Movie*); // add new movie
 	bool borrowMovie (Movie*, string&); // borrow a movie, and updates string with movie info
 	bool returnMovie (Movie*, string&); // return a movie, and updates string with movie info
+	
+	void addAllSameMovies(Movie*, int);
 
 private:
 	vector<BST> movieType; // array of BSTs there are 3 for each genre of movies

@@ -21,12 +21,10 @@ Comedy::Comedy(char genre, char mediaType, string title,
    string director, int stock, int yearReleased)
    : Movie(genre, mediaType, title, director, stock, yearReleased)
 {
-
 }
 
 Comedy::~Comedy()
 {
-
 }
 
 //////////////////////////////////////////////////

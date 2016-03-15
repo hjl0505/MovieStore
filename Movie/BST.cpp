@@ -70,10 +70,7 @@ bool BST::retrieveHelper (const Movie& movieSearch, Movie*& found, Node* cur) co
 		return false;
 	else if (*cur -> movie == movieSearch) // movie found
 	{		
-		found = cur -> movie;
-		
-		cout << " MOVIE STOCK HERE: " << found -> getStock() << endl;
-		
+		found = cur -> movie;		
 		return true;
 	}
 	else if (*cur -> movie > movieSearch) 
@@ -103,9 +100,48 @@ void BST::printHelper (Node* cur) const
   	if (cur != NULL) 
 	{
 		printHelper(cur -> left);
-        cur -> movie -> display();
-        cout << endl;
+		if (!cur -> movie -> getCountedStatus()) // if the movie has not been counted already
+		{
+			cur -> movie -> display();
+			cur -> movie -> setCounted(true);
+			cout << endl;
+		}
 		printHelper(cur -> right);
 	}  
 } 
 
+
+
+void BST::resetCounted() 
+{
+	resetHelper(root);
+} 
+
+void BST::resetHelper(Node* cur)
+{
+	if (cur != NULL) 
+	{
+		resetHelper(cur -> left);
+        cur -> movie -> setCounted(false);
+		resetHelper(cur -> right);
+	}  
+}
+
+bool BST::getMovieByTitle(string title, int year, Movie*& found)
+{
+	return getMovieByTitleHelper(title, year, found, root);
+}
+
+bool BST::getMovieByTitleHelper (string title, int year, Movie*& found,  Node* cur)
+{
+  	if (cur == NULL) // movie not found
+		return false;
+	else if (cur -> movie -> getTitle() == title && cur -> movie -> getYearReleased() == year && !cur -> movie -> getCountedStatus()) // movie found
+	{		
+		found = cur -> movie;	
+		found -> setCounted(true);
+		return true;
+	}
+	else 
+		return getMovieByTitleHelper (title, year, found, cur-> left) || getMovieByTitleHelper (title, year, found, cur-> right);
+}

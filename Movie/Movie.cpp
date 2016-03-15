@@ -45,7 +45,7 @@ Movie::~Movie()
 
 void Movie::display() const
 {
-	cout << setw(2) << getGenre() << setw(3) << getMediaType() << setw(35) << getTitle() 
+	cout << setw(7) << getGenre() << setw(7) << getMediaType() << setw(35) << getTitle() 
 		<< setw(20) << getDirector() << setw(7)<< getYearReleased() << setw(7) <<getStock() << endl;
 }
 
@@ -157,6 +157,18 @@ bool Movie::operator > (const Movie& otherMovie) const
 bool Movie::operator < (const Movie& otherMovie) const
 {
     return this->yearReleased < otherMovie.yearReleased;
+}
+
+Movie& Movie::operator = (const Movie& otherMovie)
+{
+	cout << "movie assignment" << endl;
+    this->genre = otherMovie.getGenre();
+    this->mediaType = otherMovie.getMediaType();
+    this->title = otherMovie.getTitle();
+    this->director = otherMovie.getDirector();
+    this->stock = otherMovie.getStock();
+    this->yearReleased = otherMovie.getYearReleased();
+    return *this;
 }
 
 //////////////////////////////////////////////////

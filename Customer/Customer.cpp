@@ -123,7 +123,8 @@ void Customer::addHistory(string summary)
 // customer can check out 2 copies of the same movie (do not check for double)
 void Customer::addCheckedOut(Movie* movie)
 {
-	checkedOutNode* newMovieNode = new checkedOutNode;
+	
+	checkedOutNode* newMovieNode = new checkedOutNode;	
 	newMovieNode -> movieBorrowed = movie;
 	newMovieNode -> next = checkedOut;
 	checkedOut = newMovieNode;  
@@ -137,6 +138,7 @@ bool Customer::removeCheckedOut(Movie* movie)
 		// check the first checkedOutNode
 		if (*(cur -> movieBorrowed) == *movie)
 		{
+			delete checkedOut -> movieBorrowed;
 			checkedOut = cur -> next;
 			delete cur;
 			cur = NULL;
@@ -150,6 +152,7 @@ bool Customer::removeCheckedOut(Movie* movie)
 		{
  			if (*(cur -> movieBorrowed) == *movie) 
 			{
+				delete cur -> movieBorrowed;
  				// remove movie from the list
 				prev -> next = cur -> next; 
 				

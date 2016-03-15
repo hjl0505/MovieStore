@@ -42,6 +42,9 @@ bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 	{
 		cout << "ERROR: Borrow Transaction Failed -- " 
 			<< "Customer " << customerID << " does not exist" << endl;
+			
+		delete movie;
+		movie = NULL;
 		return false;
 	}
 	
@@ -52,6 +55,7 @@ bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 		if (movies.movieExist(movie))
 		{		
 			string movieInfo = "";
+			
 			// There was enough stock of movie to borrow from
 			if (movies.borrowMovie(movie, movieInfo)) 
 			{		
@@ -59,10 +63,9 @@ bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 				string borrowSummary = "Borrowed " + movieInfo;
 				
 				// add transaction summary to customer's history
-				//customer -> addCheckedOut(*movie);
- 				//customer -> addCheckedOut(movie);
+ 				customer -> addCheckedOut(movie);
 				customer -> addHistory(borrowSummary); 
-
+				
 				return true;
 			} 
 			else
@@ -77,6 +80,9 @@ bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 		cout << "ERROR: Borrow Transaction Failed -- " 
 			<< "Movie does not Exist in the Inventory" << endl;
 	}
+	
+	delete movie;
+	movie = NULL;
 	return false; 
 			
 }

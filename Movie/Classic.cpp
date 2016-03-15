@@ -43,8 +43,16 @@ Classic::~Classic()
 //Displays the monthReleased 
 void Classic::display() const
 {
-	cout << setw(2) << getGenre() << setw(3) << getMediaType() << setw(35) << getTitle() << setw(20) 
-		<< getDirector() << setw(4) << getMonth() << setw(7)<< getYearReleased() << setw(7)  << getTotalStock() << endl;
+	cout << setw(7) << getGenre() << setw(7) << getMediaType() << setw(35) << getTitle() << setw(20) 
+		<< getDirector() << setw(7) << getMonth() << setw(7)<< getYearReleased() << setw(7)  << getTotalStock() << endl;
+	
+
+	cout << setw(73) << this -> getActor() << " -------------" << setw(3) << this -> getStock() << endl; 	
+	for (int i = 0; i < sameMoviesList.size(); i++)
+	{
+		cout << setw(73) << sameMoviesList[i] -> getActor() 
+			<< " -------------" << setw(3) << sameMoviesList[i] -> getStock() << endl; 
+	}
 }
 
 //Get month
@@ -154,4 +162,17 @@ bool Classic::operator < (const Movie& otherMovie) const
 			return true;
 	}
 	return false;
+}
+
+Movie& Classic::operator = (const Movie& otherMovie)
+{
+    this->genre = otherMovie.getGenre();
+    this->mediaType = otherMovie.getMediaType();
+    this->title = otherMovie.getTitle();
+    this->director = otherMovie.getDirector();
+    this->stock = otherMovie.getStock();
+    this->yearReleased = otherMovie.getYearReleased();
+	this->monthReleased = otherMovie.getMonth();
+	this->actor = otherMovie.getActor();
+    return *this;
 }

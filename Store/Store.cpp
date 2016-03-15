@@ -134,7 +134,7 @@ void Store::readTransactionFile (ifstream& in)
 		readLine >> transType; // read transaction type
 		
 		// continue reading for history, borrow and return transactions
-		if(transType != 'I') 
+		if(transType == 'H' || transType == 'B' || transType == 'R' ) 
 		{
 			readLine >> id;
 			
@@ -172,9 +172,6 @@ void Store::readTransactionFile (ifstream& in)
 		newTrans = transFactory.create(transType, id, movie);			
 		performTransaction(newTrans);
 		delete newTrans;
-		delete movie;
-		
-		
 		
 		// reset variables
 		title = "";

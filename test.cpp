@@ -11,8 +11,8 @@ int main()
 	ifstream customerFile("Store/data4customers.txt");
 	//ifstream movieFile("Store/movieShort.txt");
 	ifstream movieFile("Store/data4movies.txt");
-	//ifstream transactionFile("Store/commandShort.txt");
-	ifstream transactionFile("Store/data4commands.txt");
+	ifstream transactionFile("Store/commandShort.txt");
+	//ifstream transactionFile("Store/data4commands.txt");
 
 	if (!customerFile)  // repeat for movieFile and transactionFile
 		cout << "Customer file cannot be oppened" << endl;
@@ -27,6 +27,16 @@ int main()
 	movieStore.readTransactionFile(transactionFile); //process transactions from file
 	
 	
+	//Movie* C = new Drama('D', 'D', "titleC", "directorC", 0, 0);
+	//Movie* B = new Comedy('F', 'D', "titleB", "", 0, 4534);
+	//Movie* A = new Classic('C', 'D', "", "", 2, 1231, 1, "actorName");
+
+	
+/* 	Movie* D = new Movie();
+	*D = *C;
+	delete C;
+	D -> display();
+	delete D; */
 	
 /*   	MovieInventory MI;
 	CustomerInventory CI;

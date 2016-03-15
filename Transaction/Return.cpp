@@ -43,6 +43,7 @@ bool Return::perform(MovieInventory& movies, CustomerInventory& customers)
 	{
 		cout << "ERROR: Return Transaction Failed -- " 
 			<< "Customer " << customerID << " does not exist" << endl;
+			
 		delete movie;
 		movie = NULL;
 		return false;
@@ -69,6 +70,9 @@ bool Return::perform(MovieInventory& movies, CustomerInventory& customers)
 				// update summary of transaction if borrow performed correctly
 				string returnSummary = "Returned " + movieInfo;
 				customer -> addHistory(returnSummary); 
+				
+				delete movie;
+				movie = NULL;
 				return true; 
 			}
 			else
@@ -84,6 +88,9 @@ bool Return::perform(MovieInventory& movies, CustomerInventory& customers)
 			cout << "Movie was Not Checked Out By the Customer" << endl;
 		}
 	}
+	
+	delete movie;
+	movie = NULL;
 	return false; 
 }
 

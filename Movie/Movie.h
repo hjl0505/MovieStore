@@ -34,6 +34,7 @@ public:
 	virtual bool operator != (const Movie& otherMovie) const; // check if movies are not equal
 	virtual bool operator > (const Movie& otherMovie) const; // check if this movie is greater than other movie
 	virtual bool operator < (const Movie& otherMovie) const; // check if this movie is less than other movie
+	virtual Movie& operator=(const Movie& source); // assignment operator
 	
 	// Accessor methods
 	char getGenre() const;

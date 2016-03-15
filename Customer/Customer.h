@@ -14,6 +14,7 @@
 
 #include <iostream> // input and output
 #include "../Movie/Movie.h"
+#include "../Movie/MovieFactory.h"
 using namespace std;
 
 class Customer {

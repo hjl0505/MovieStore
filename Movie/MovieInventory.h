@@ -32,7 +32,7 @@ public:
 	Movie* getMovieByTitle(int, string, int); // get movie by title and year
 
 	// Mutator methods
-	bool addMovie (Movie*); // add new movie
+	bool addMovie (Movie*&); // add new movie
 	bool borrowMovie (Movie*, string&); // borrow a movie, and updates string with movie info
 	bool returnMovie (Movie*, string&); // return a movie, and updates string with movie info
 	

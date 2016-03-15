@@ -24,6 +24,7 @@ MovieInventory::MovieInventory()
 
 MovieInventory::~MovieInventory()
 {
+	movieType.clear();
 }
 
 //////////////////////////////////////////////////
@@ -74,15 +75,15 @@ void MovieInventory::printInventory()
         switch (i)
         {
             case 0:
-                cout << "Comedies:" << endl;
+                cout << "Comedies:" << endl << endl;
                 break;
                 
             case 1:
-                cout << "Classics:" << endl;
+                cout << "Classics:" << endl << endl;
                 break;
             
             case 2:
-                cout << "Dramas:" << endl;
+                cout << "Dramas:" << endl << endl;
                 break;
                 
             default:
@@ -93,31 +94,35 @@ void MovieInventory::printInventory()
     }
 }
 
-bool MovieInventory::addMovie (Movie* moviePtr)
+bool MovieInventory::addMovie (Movie*& moviePtr)
 {
+	bool success = false;
 	if (moviePtr) {
 		 switch (moviePtr->getGenre())
 		{
 			case 'F':
-				movieType[0].addMovie(moviePtr);
-				return true;
+				success = movieType[0].addMovie(moviePtr);
+				return success;
 				break;
 				
 			case 'C':
-				movieType[1].addMovie(moviePtr);
-				moviePtr -> setCounted(true);
-				addAllSameMovies(moviePtr, 1);
-				movieType[1].resetCounted();
-				return true;
+				success = movieType[1].addMovie(moviePtr);
+				if (success)
+				{
+					moviePtr -> setCounted(true);
+					addAllSameMovies(moviePtr, 1);
+					movieType[1].resetCounted();
+				}
+				return success;
 				break;
 				
 			case 'D':
-				movieType[2].addMovie(moviePtr);
-				return true;
+				success = movieType[2].addMovie(moviePtr);
+				return success;
 				break;
 				
 			default:
-				return false;
+				return success;
 				break;
 		}  
 	}

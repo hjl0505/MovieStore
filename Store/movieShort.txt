@@ -1,5 +1,2 @@
-F, 3, Nora Ephron, Sleepless in Seattle, 1993
-D, 10, Barry Levinson, Good Morning Vietnam, 1988
-D, 10, Gus Van Sant, Good Will Hunting, 2000
-C, 10, Hal Ashby, Harold and Maude, Ruth Gordon 3 1971
-C, 2, Hal Ashby, Harold and Maude, Bud Cort 3 1971
+F, 1, Nora Ephron, You've Got Mail, 1998
+F, 1, Nora Ephron, You've Got Mail, 1998

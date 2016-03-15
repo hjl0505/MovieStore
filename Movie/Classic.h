@@ -36,16 +36,15 @@ public:
 	virtual bool operator != (const Movie&) const; // check if movies are not equal
 	virtual bool operator > (const Movie&) const; // check if this movie is greater than rhs movie
 	virtual bool operator < (const Movie&) const; // check if this movie is less than rhs movie
-	//virtual Classic& operator=(const Movie&); // assign this movie to rhs
 
 	// Accessor methods
 	virtual int getMonth() const;
 	virtual void display() const; // print out movie data and return string
 	virtual string getActor() const; // get the major actor for the movie
 	virtual bool subtractFromStock(int); // subtract from stock
+	virtual void addSameMovies(Movie*&); // add the same movie to the list of same movies
 	
 	int getTotalStock() const; // get total stock of all the same movies
-	virtual void addSameMovies(Movie*&); // add the same movie to the list of same movies
 
 private:	
 

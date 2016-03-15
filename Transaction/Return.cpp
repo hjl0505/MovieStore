@@ -23,8 +23,6 @@ Return::Return(int id, Movie* m)
 
 Return::~Return()
 {
-	delete movie;
-	movie = NULL;
 }
 
 //////////////////////////////////////////////////
@@ -40,47 +38,53 @@ int Return::getCustomerID()
 bool Return::perform(MovieInventory& movies, CustomerInventory& customers)
 {
 
-	// check if customer exists
+ 	// check if customer exists
 	if (!customers.customerExist(customerID))
 	{
 		cout << "ERROR: Return Transaction Failed -- " 
-			<< "Customer does not exist" << endl;
+			<< "Customer " << customerID << " does not exist" << endl;
+		delete movie;
+		movie = NULL;
 		return false;
 	}
 	
 	Customer* customer = customers.getCustomer(customerID);
 	
-	// Check customer's list of movies checked out
-	// remove from the list if it exists
-	bool checkHistory = customer -> removeCheckedOut(movie);
-	
-	// movie was checked out by the customer
-	if (checkHistory) 
+	if (movie != NULL)
 	{
-		// movie exists in the stock
-		if (movies.movieExist(movie))
-		{		
-			string movieInfo = "";
-			movies.returnMovie(movie, movieInfo);
-			
-			// update summary of transaction if borrow performed correctly
-			string returnSummary = "Returned " + movieInfo;
-			customer -> addHistory(returnSummary);
-			return true;
+	
+		// Check customer's list of movies checked out
+		// remove from the list if it exists
+		bool checkHistory = customer -> removeCheckedOut(movie);
+
+		// movie was checked out by the customer
+		if (checkHistory) 
+		{
+			// movie exists in the stock
+			if (movies.movieExist(movie))
+			{		
+ 				string movieInfo = "";
+ 				movies.returnMovie(movie, movieInfo);
+				
+				// update summary of transaction if borrow performed correctly
+				string returnSummary = "Returned " + movieInfo;
+				customer -> addHistory(returnSummary); 
+				return true; 
+			}
+			else
+			{
+				cout << "ERROR: Return Transaction Failed -- " 
+					<< "Movie does not Exist in the Inventory" << endl;
+			}
+				
 		}
 		else
 		{
-			cout << "ERROR: Return Transaction Failed -- " 
-				<< "Movie does not Exist in the Inventory" << endl;
+			cout << "ERROR: Return Transaction Failed -- ";
+			cout << "Movie was Not Checked Out By the Customer" << endl;
 		}
-			
 	}
-	else
-	{
-		cout << "ERROR: Return Transaction Failed -- ";
-		cout << "Movie was Not Checked Out By the Customer" << endl;
-	}
-	return false;
+	return false; 
 }
 
 //////////////////////////////////////////////////

@@ -20,6 +20,7 @@
 
 Store::Store()
 {
+
 }
 
 
@@ -87,19 +88,17 @@ void Store::readMovieFile (ifstream& in)
  		// read classics actor and month
 		if (genre == 'C')
 		{
- 			readLine >> actor >> temp;
-			while (!isdigit(temp[0]))
-			{
-				actor = actor + " " + temp;
-				readLine >> temp;
-			} 
+ 			readLine >> actor >> temp;			
+			actor = actor + " " + temp;
+			readLine >> temp;
 			istringstream(temp) >> month;			
 		} 
 		readLine >> year; // read year
 		
 		// Create movie and add to the movieTree
  		Movie* newMovie = movieFactory.create(genre, title, director, actor, month, year, stock);
-		movieTree.addMovie(newMovie); 
+		if(!movieTree.addMovie(newMovie))
+			delete newMovie; 
 		
 		// reset variables
 		title = "";
@@ -123,6 +122,7 @@ void Store::readTransactionFile (ifstream& in)
 	int id, month, year;
 	string actor, director, title, temp;
 	Movie* movie = NULL;
+	Transaction* newTrans = NULL;
 	
 	// read file by line
 	string line;
@@ -143,7 +143,7 @@ void Store::readTransactionFile (ifstream& in)
 			{	
 				readLine >> mediaType;
 				if (mediaType != 'D') // invalid media type
-					cout << "ERROR: " << mediaType << "Invalid Media Type. Try Again." << endl;
+					cout << "ERROR: " << mediaType << " Invalid Media Type. Try Again." << endl;
 				else 
 				{
 					readLine >> genre;
@@ -169,8 +169,12 @@ void Store::readTransactionFile (ifstream& in)
 		}
 		
 		//create new transaction and perform
-		Transaction* newTrans = transFactory.create(transType, id, movie);
+		newTrans = transFactory.create(transType, id, movie);			
 		performTransaction(newTrans);
+		delete newTrans;
+		delete movie;
+		
+		
 		
 		// reset variables
 		title = "";
@@ -179,6 +183,8 @@ void Store::readTransactionFile (ifstream& in)
 		genre = 'Z';
 		year = 0;
 		month = 0;	
+		newTrans = NULL;
+		movie = NULL;
 		
 		// read file by line
 		getline(in,line);
@@ -189,7 +195,8 @@ void Store::readTransactionFile (ifstream& in)
 bool Store::performTransaction (Transaction* t)
 {
 	if (t != NULL)
-		t -> perform(movieTree, customerTable);
+		return (t -> perform(movieTree, customerTable));
+	return false;
 }
 
 //////////////////////////////////////////////////
@@ -218,7 +225,7 @@ string Store::readStringStream (stringstream& in)
 }
 
 // read part of the string stream and 
-// return group of words that are separated by end of file
+// return group of words read until end of file
 string Store::readStringStreamClassic (stringstream& in)
 {
 	string words, temp;

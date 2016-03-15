@@ -43,7 +43,7 @@ Classic::~Classic()
 //Displays the monthReleased 
 void Classic::display() const
 {
-	cout << setw(2) << getGenre() << setw(3) << getMediaType() << setw(30) << getTitle() << setw(20) 
+	cout << setw(2) << getGenre() << setw(3) << getMediaType() << setw(35) << getTitle() << setw(20) 
 		<< getDirector() << setw(4) << getMonth() << setw(7)<< getYearReleased() << setw(7)  << getTotalStock() << endl;
 }
 

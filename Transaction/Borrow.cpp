@@ -23,8 +23,6 @@ Borrow::Borrow(int id, Movie* m)
 
 Borrow::~Borrow()
 {
-	delete movie;
-	movie = NULL;
 }
 
 //////////////////////////////////////////////////
@@ -39,45 +37,46 @@ int Borrow::getCustomerID()
 
 bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 {
-	// check if customer exists
+ 	// check if customer exists
 	if (!customers.customerExist(customerID))
 	{
 		cout << "ERROR: Borrow Transaction Failed -- " 
-			<< "Customer does not exist" << endl;
+			<< "Customer " << customerID << " does not exist" << endl;
 		return false;
 	}
 	
 	Customer* customer = customers.getCustomer(customerID);
-	
-	// movie exists in the stock
-	if (movies.movieExist(movie))
-	{	
-		cout << "MOVIE EXISTS? " << endl;
-		
-		string movieInfo = "";
-		// There was enough stock of movie to borrow from
-		if (movies.borrowMovie(movie, movieInfo)) 
+	if (movie != NULL)
+	{
+		// movie exists in the stock
+		if (movies.movieExist(movie))
 		{		
-			// update summary of transaction if borrow performed correctly
-			string borrowSummary = "Borrowed " + movieInfo;
-			
-			// add transaction summary to customer's history
-			customer -> addCheckedOut (movie);
-			customer -> addHistory(borrowSummary);
-			
-			return true;
-		} 
-		else
-		{		
-			cout << "ERROR: Borrow Transaction Failed -- "
-				<< "Not enough in the Stock" << endl;
+			string movieInfo = "";
+			// There was enough stock of movie to borrow from
+			if (movies.borrowMovie(movie, movieInfo)) 
+			{		
+				// update summary of transaction if borrow performed correctly
+				string borrowSummary = "Borrowed " + movieInfo;
+				
+				// add transaction summary to customer's history
+				//customer -> addCheckedOut(*movie);
+ 				//customer -> addCheckedOut(movie);
+				customer -> addHistory(borrowSummary); 
+
+				return true;
+			} 
+			else
+			{		
+				cout << "ERROR: Borrow Transaction Failed -- " 
+					<< "Not enough in the Stock" << endl;
+			}
 		}
 	}
 	else
 	{
-		cout << "ERROR:  Borrow Transaction Failed -- " 
+		cout << "ERROR: Borrow Transaction Failed -- " 
 			<< "Movie does not Exist in the Inventory" << endl;
 	}
-	return false;
+	return false; 
 			
 }

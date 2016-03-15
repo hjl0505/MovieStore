@@ -89,13 +89,14 @@ void Customer::display()
 void Customer::displayHistory()
 {
 	cout << endl;
-	cout << "History for " << getName() << endl;
+	cout << "History for " << getName() << ":" <<endl;
 	historyNode* temp = history;
 	while (temp!= NULL)
 	{
 		cout << temp -> data << endl;
 		temp = temp -> next;
 	}
+	cout << endl;
 }
 
 int Customer::getID()
@@ -122,16 +123,16 @@ void Customer::addHistory(string summary)
 // customer can check out 2 copies of the same movie (do not check for double)
 void Customer::addCheckedOut(Movie* movie)
 {
-	checkedOutNode* newMovie = new checkedOutNode;
-	newMovie -> movieBorrowed = movie;
-	newMovie -> next = checkedOut;
-	checkedOut = newMovie;
+	checkedOutNode* newMovieNode = new checkedOutNode;
+	newMovieNode -> movieBorrowed = movie;
+	newMovieNode -> next = checkedOut;
+	checkedOut = newMovieNode;  
 }
 
 bool Customer::removeCheckedOut(Movie* movie)
 {
 	checkedOutNode* cur = checkedOut;
-	if (cur != NULL) 
+ 	if (cur != NULL) 
 	{	
 		// check the first checkedOutNode
 		if (*(cur -> movieBorrowed) == *movie)
@@ -142,24 +143,24 @@ bool Customer::removeCheckedOut(Movie* movie)
 			return true;
 		}
 		
-		// check all other checkedOutNode
+ 		// check all other checkedOutNode
 		checkedOutNode* prev = cur;
 		cur = cur -> next;
 		while (cur != NULL) 
 		{
-			if (*(cur -> movieBorrowed) == *movie) 
+ 			if (*(cur -> movieBorrowed) == *movie) 
 			{
-				// remove movie from the list
+ 				// remove movie from the list
 				prev -> next = cur -> next; 
 				
 				// delete pointers
 				cur -> next = NULL;
 				delete cur;
-				return true;
+				return true; 
 			}
 			prev = cur;
-			cur = cur -> next;
-		}
-	}
+			cur = cur -> next; 
+		} 
+	} 
 	return false; // movie was not checked out by the customer
 }

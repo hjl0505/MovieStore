@@ -48,5 +48,6 @@ private:
 	// helpers
 	string readStringStream(stringstream&);
 	string readStringStreamClassic(stringstream&);
+	
 };
 #endif

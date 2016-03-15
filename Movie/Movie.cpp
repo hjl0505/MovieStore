@@ -20,7 +20,6 @@
 //////////////////////////////////////////////////
 Movie::Movie()
 {
-
 }
 
 Movie::Movie(char genre, char mediaType, string title, string director, int stock, int yearReleased)
@@ -46,8 +45,7 @@ Movie::~Movie()
 
 void Movie::display() const
 {
-	cout << "Movie Display" << endl;
-	cout << setw(2) << getGenre() << setw(3) << getMediaType() << setw(30) << getTitle() 
+	cout << setw(2) << getGenre() << setw(3) << getMediaType() << setw(35) << getTitle() 
 		<< setw(20) << getDirector() << setw(7)<< getYearReleased() << setw(7) <<getStock() << endl;
 }
 
@@ -160,22 +158,6 @@ bool Movie::operator < (const Movie& otherMovie) const
 {
     return this->yearReleased < otherMovie.yearReleased;
 }
-
-//?????
-//?????
-//?????
-//?????
-Movie& Movie::operator = (const Movie& otherMovie)
-{
-    this->genre = otherMovie.getGenre();
-    this->mediaType = otherMovie.getMediaType();
-    this->title = otherMovie.getTitle();
-    this->director = otherMovie.getDirector();
-    this->stock = otherMovie.getStock();
-    this->yearReleased = otherMovie.getYearReleased();
-    return *this;
-}
-
 
 //////////////////////////////////////////////////
 //////////////    I/O Stream   ///////////////////

@@ -36,8 +36,16 @@ int History::getCustomerID()
 
 bool History::perform(MovieInventory& movies, CustomerInventory& customers)
 {
+	if (!customers.customerExist(customerID))
+	{
+		cout << "ERROR: History Transaction Failed -- " 
+			<< "Customer " << customerID << " does not exist" << endl;
+		return false;
+	}
+	
 	Customer* c = customers.getCustomer(customerID);
 	c -> displayHistory();
+	return true;
 	
 }
 

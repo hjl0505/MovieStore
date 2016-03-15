@@ -18,11 +18,13 @@
 // nothing initialized
 TransactionFactory::TransactionFactory()
 {
+	
 }
 
 // no memory leak possible
 TransactionFactory::~TransactionFactory()
 {
+	
 }
 
 //////////////////////////////////////////////////
@@ -30,7 +32,7 @@ TransactionFactory::~TransactionFactory()
 //////////////////////////////////////////////////
 
 
-Transaction* TransactionFactory::create(char type, int customerID, Movie* m)
+Transaction* TransactionFactory::create(char type, int customerID, Movie*& m)
 {
 	Transaction* transaction = NULL;
 	switch(type) 

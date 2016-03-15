@@ -163,16 +163,3 @@ bool Classic::operator < (const Movie& otherMovie) const
 	}
 	return false;
 }
-
-Movie& Classic::operator = (const Movie& otherMovie)
-{
-    this->genre = otherMovie.getGenre();
-    this->mediaType = otherMovie.getMediaType();
-    this->title = otherMovie.getTitle();
-    this->director = otherMovie.getDirector();
-    this->stock = otherMovie.getStock();
-    this->yearReleased = otherMovie.getYearReleased();
-	this->monthReleased = otherMovie.getMonth();
-	this->actor = otherMovie.getActor();
-    return *this;
-}

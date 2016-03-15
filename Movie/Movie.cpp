@@ -158,24 +158,3 @@ bool Movie::operator < (const Movie& otherMovie) const
 {
     return this->yearReleased < otherMovie.yearReleased;
 }
-
-Movie& Movie::operator = (const Movie& otherMovie)
-{
-	cout << "movie assignment" << endl;
-    this->genre = otherMovie.getGenre();
-    this->mediaType = otherMovie.getMediaType();
-    this->title = otherMovie.getTitle();
-    this->director = otherMovie.getDirector();
-    this->stock = otherMovie.getStock();
-    this->yearReleased = otherMovie.getYearReleased();
-    return *this;
-}
-
-//////////////////////////////////////////////////
-//////////////    I/O Stream   ///////////////////
-//////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////
-//////////////   Extra Code   ////////////////////
-//////////////////////////////////////////////////

@@ -36,7 +36,6 @@ public:
 	virtual bool operator != (const Movie&) const; // check if movies are not equal
 	virtual bool operator > (const Movie&) const; // check if this movie is greater than rhs movie
 	virtual bool operator < (const Movie&) const; // check if this movie is less than rhs movie
-	virtual Movie& operator=(const Movie& source); // assignment operator
 
 	// Accessor methods
 	virtual int getMonth() const;

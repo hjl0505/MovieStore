@@ -11,8 +11,8 @@ int main()
 	ifstream customerFile("Store/data4customers.txt");
 	//ifstream movieFile("Store/movieShort.txt");
 	ifstream movieFile("Store/data4movies.txt");
-	ifstream transactionFile("Store/commandShort.txt");
-	//ifstream transactionFile("Store/data4commands.txt");
+	//ifstream transactionFile("Store/commandShort.txt");
+	ifstream transactionFile("Store/data4commands.txt");
 
 	if (!customerFile)  // repeat for movieFile and transactionFile
 		cout << "Customer file cannot be oppened" << endl;

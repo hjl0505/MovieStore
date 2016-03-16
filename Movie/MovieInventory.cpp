@@ -14,6 +14,8 @@
 //////////////////////////////////////////////////
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
+
+//Default Constructor
 MovieInventory::MovieInventory()
 {
     BST comedy, classic, drama;
@@ -22,6 +24,8 @@ MovieInventory::MovieInventory()
     movieType.push_back(drama);
 }
 
+//Destructor
+//Delete the dynamic memory allocated by the movieType vector
 MovieInventory::~MovieInventory()
 {
 	movieType.clear();
@@ -31,6 +35,8 @@ MovieInventory::~MovieInventory()
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
+//Get Movie
+//Returns a pointer to the movie in the BSTree
 Movie* MovieInventory::getMovie (Movie* moviePtr)
 {
     Movie *foundPtr = NULL;
@@ -40,17 +46,17 @@ Movie* MovieInventory::getMovie (Movie* moviePtr)
             movieType[0].getMovie(*moviePtr, foundPtr);
             return foundPtr;
             break;
-            
+
         case 'C':
             movieType[1].getMovie(*moviePtr, foundPtr);
             return foundPtr;
             break;
-        
+
         case 'D':
             movieType[2].getMovie(*moviePtr, foundPtr);
             return foundPtr;
             break;
-            
+
         default:
             foundPtr = NULL;
             break;
@@ -58,15 +64,20 @@ Movie* MovieInventory::getMovie (Movie* moviePtr)
     return foundPtr;
 }
 
+//Movie Exists
+//Returns true if the movie is in the inventory
 bool MovieInventory::movieExist (Movie* moviePtr)
 {
 	Movie* foundPtr = getMovie(moviePtr);
     if (foundPtr!= NULL)
         return true;
-    else 
+    else
         return false;
 }
 
+//Print Inventory
+//Displays all the movies in the inventory by genre
+//Displays each movie's information
 void MovieInventory::printInventory()
 {
     for (int i = 0; i < movieType.size(); i++)
@@ -76,22 +87,22 @@ void MovieInventory::printInventory()
         {
             case 0:
                 cout << "Comedies:" << endl << endl;
-				cout << setw(7) << "Genre" << setw(7) << "Media" << setw(35) << "Title" << setw(20) 
+				cout << setw(7) << "Genre" << setw(7) << "Media" << setw(35) << "Title" << setw(20)
 					<< "Director" << setw(7) << "Year" << setw(7) << "Stock" << endl;
                 break;
-                
+
             case 1:
                 cout << "Classics:" << endl << endl;
-				cout << setw(7) << "Genre" << setw(7) << "Media" << setw(35) << "Title" << setw(20) 
+				cout << setw(7) << "Genre" << setw(7) << "Media" << setw(35) << "Title" << setw(20)
 					<< "Director" << setw(7) << "Month" << setw(7)<< "Year" << setw(7)  << "Stock" << endl;
                 break;
-            
+
             case 2:
                 cout << "Dramas:" << endl << endl;
-				cout << setw(7) << "Genre" << setw(7) << "Media" << setw(35) << "Title" << setw(20) 
+				cout << setw(7) << "Genre" << setw(7) << "Media" << setw(35) << "Title" << setw(20)
 					<< "Director" << setw(7) << "Year" << setw(7) << "Stock" << endl;
                 break;
-                
+
             default:
                 break;
         }
@@ -100,6 +111,8 @@ void MovieInventory::printInventory()
     }
 }
 
+//Add Movie
+//Returns true if the movie was added into the inventory
 bool MovieInventory::addMovie (Movie*& moviePtr)
 {
 	bool success = false;
@@ -110,7 +123,7 @@ bool MovieInventory::addMovie (Movie*& moviePtr)
 				success = movieType[0].addMovie(moviePtr);
 				return success;
 				break;
-				
+
 			case 'C':
 				success = movieType[1].addMovie(moviePtr);
 				if (success)
@@ -121,19 +134,23 @@ bool MovieInventory::addMovie (Movie*& moviePtr)
 				}
 				return success;
 				break;
-				
+
 			case 'D':
 				success = movieType[2].addMovie(moviePtr);
 				return success;
 				break;
-				
+
 			default:
 				return success;
 				break;
-		}  
+		}
 	}
+    return success;
 }
 
+//Borrow Movie
+//Returns true if the movie was able to be borrowed from the inventory
+//Subracts one from movie's stock if able to be borrowed
 bool MovieInventory::borrowMovie (Movie* moviePtr, string& movieInfo)
 {
 	bool successful = false;
@@ -146,20 +163,23 @@ bool MovieInventory::borrowMovie (Movie* moviePtr, string& movieInfo)
 			successful = true;
 		}
     }
-	
+
 	for (int i = 0; i < movieType.size(); i++)
 		movieType[i].resetCounted();
-	
+
     return successful;
 }
 
+//Return Movie
+//Returns true if the movie is able to be returned to the inventory
+//Adds one to the movies stock if able to be returned
 bool MovieInventory::returnMovie (Movie* moviePtr, string& movieInfo)
 {
     if (movieExist(moviePtr))
     {
 		Movie* movieToReturn = getMovie(moviePtr);
         movieToReturn->addToStock(1);
-		
+
 		movieInfo = movieToReturn -> getMovieInfo();
         return true;
     }
@@ -167,6 +187,8 @@ bool MovieInventory::returnMovie (Movie* moviePtr, string& movieInfo)
         return false;
 }
 
+//Get Movie By Title
+//Returns movie pointer to the movie in the BSTree/Inventory
 Movie* MovieInventory::getMovieByTitle (int genreIndex, string title, int year)
 {
 	Movie* found = NULL;
@@ -174,13 +196,17 @@ Movie* MovieInventory::getMovieByTitle (int genreIndex, string title, int year)
 	return found;
 }
 
+//Add All Same Movies
+//Used by Classics
+//Addds pointers to all movies with same title, but different actors to the
+//movie's sameMovieList vector
 void MovieInventory::addAllSameMovies (Movie* current, int idx)
 {
  	Movie* found = getMovieByTitle(idx, current -> getTitle(), current -> getYearReleased());
 	while(found != NULL)
 	{
  		current -> addSameMovies(found);
-		found -> addSameMovies(current); 
+		found -> addSameMovies(current);
 		found = getMovieByTitle(idx, current -> getTitle(), current -> getYearReleased());
-	} 
+	}
 }

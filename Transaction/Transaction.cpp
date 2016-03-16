@@ -15,6 +15,7 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
+// Default Constructor
 // initialize transaction type to "Z"
 // Summary indicates default transaction
 Transaction::Transaction()
@@ -22,6 +23,7 @@ Transaction::Transaction()
 	transType = 'Z';
 }
 
+// Destructor
 // No memory leak possible
 Transaction::~Transaction()
 {
@@ -31,6 +33,7 @@ Transaction::~Transaction()
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
+// Default perform
 // Nothing performed
 bool Transaction::perform(MovieInventory& movies, CustomerInventory& customers)
 {

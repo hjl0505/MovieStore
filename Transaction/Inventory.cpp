@@ -16,11 +16,13 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
+//Default Constructor
 Inventory::Inventory()
 {
 
 }
 
+//Default Destructor
 Inventory::~Inventory()
 {
 
@@ -30,6 +32,8 @@ Inventory::~Inventory()
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
+//Perform
+//Returns true if inventory print was performed successfully
 bool Inventory::perform(MovieInventory& movies, CustomerInventory& customers)
 {
 	movies.printInventory();

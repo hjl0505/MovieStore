@@ -15,12 +15,15 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
+//Input Constructor
 Borrow::Borrow(int id, Movie* m)
 {
 	customerID = id;
 	movie = m;
 }
 
+//Default Destructor
+//No dynamic memory allocated
 Borrow::~Borrow()
 {
 }
@@ -29,59 +32,62 @@ Borrow::~Borrow()
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
+//Get Customer ID
+//Returns customer ID
 int Borrow::getCustomerID()
 {
 	return customerID;
 }
 
-
+//Perform
+//Returns true if borrow was performed successfully
 bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 {
  	// check if customer exists
 	if (!customers.customerExist(customerID))
 	{
-		cout << "ERROR: Borrow Transaction Failed -- " 
+		cout << "ERROR: Borrow Transaction Failed -- "
 			<< "Customer " << customerID << " does not exist" << endl;
-			
+
 		delete movie;
 		movie = NULL;
 		return false;
 	}
-	
+
 	Customer* customer = customers.getCustomer(customerID);
 	if (movie != NULL)
 	{
 		// movie exists in the stock
 		if (movies.movieExist(movie))
-		{		
+		{
 			string movieInfo = "";
-			
+
 			// There was enough stock of movie to borrow from
-			if (movies.borrowMovie(movie, movieInfo)) 
-			{		
+			if (movies.borrowMovie(movie, movieInfo))
+			{
 				// update summary of transaction if borrow performed correctly
 				string borrowSummary = "Borrowed " + movieInfo;
-				
+
 				// add transaction summary to customer's history
  				customer -> addCheckedOut(movie);
-				customer -> addHistory(borrowSummary); 
+				customer -> addHistory(borrowSummary);
 				return true;
-			} 
+			}
 			else
-			{		
-				cout << "ERROR: Borrow Transaction Failed -- " 
+			{
+				cout << "ERROR: Borrow Transaction Failed -- "
 					<< "Not enough in the Stock" << endl;
 			}
 		}
 		else
 		{
-			cout << "ERROR: Borrow Transaction Failed -- " 
+			cout << "ERROR: Borrow Transaction Failed -- "
 				<< "Movie does not Exist in the Inventory" << endl;
 		}
 	}
-	
+
 	delete movie;
 	movie = NULL;
-	return false; 
-			
+	return false;
+
 }

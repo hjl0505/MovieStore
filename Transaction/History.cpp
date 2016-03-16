@@ -15,11 +15,14 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
+//Default Constructor
 History::History(int id)
 {
 	customerID = id;
 }
 
+//Destructor
+//No dynamic memory allocated
 History::~History()
 {
 
@@ -29,24 +32,28 @@ History::~History()
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
+//Get Customer ID
+//Returns customer ID
 int History::getCustomerID()
 {
 	return customerID;
 }
 
+//Perform
+//Returns true if history was perfomred successfully
 bool History::perform(MovieInventory& movies, CustomerInventory& customers)
 {
 	if (!customers.customerExist(customerID))
 	{
-		cout << "ERROR: History Transaction Failed -- " 
+		cout << "ERROR: History Transaction Failed -- "
 			<< "Customer " << customerID << " does not exist" << endl;
 		return false;
 	}
-	
+
 	Customer* c = customers.getCustomer(customerID);
 	c -> displayHistory();
 	return true;
-	
+
 }
 
 //////////////////////////////////////////////////

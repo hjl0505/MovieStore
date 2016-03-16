@@ -15,27 +15,30 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
+// Default Constructor
 // nothing initialized
 TransactionFactory::TransactionFactory()
 {
-	
+
 }
 
+// Destructor
 // no memory leak possible
 TransactionFactory::~TransactionFactory()
 {
-	
+
 }
 
 //////////////////////////////////////////////////
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
-
+//Create
+//Creates new transaction object based on type passed in
 Transaction* TransactionFactory::create(char type, int customerID, Movie*& m)
 {
 	Transaction* transaction = NULL;
-	switch(type) 
+	switch(type)
 	{
 		case 'B':
 			transaction = new Borrow(customerID, m);

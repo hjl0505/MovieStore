@@ -18,48 +18,53 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
+//Default Constructor
 Store::Store()
 {
 
 }
 
-
+//Default Destructor
+//No dynamic memory allocated
 Store::~Store()
-{	
-}	
-	
+{
+}
+
 
 //////////////////////////////////////////////////
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
+//Read Customer File
+//Reads specified file and creates customers from it
 void Store::readCustomerFile (ifstream& in)
 {
 	// variables for customer
 	int id;
 	string firstName, lastName;
-	
+
 	// read file by line
 	string line;
 	getline(in,line);
-		
+
 	while(!in.eof())
-	{		
+	{
 		// read string as input
 		stringstream readLine(line);
 		readLine >> id;
 		readLine >> lastName;
 		readLine >> firstName;
-		
+
 		// add new customer to customer hash table
-		customerTable.addCustomer(id, firstName, lastName); 
-				
+		customerTable.addCustomer(id, firstName, lastName);
+
 		// read file by line
 		getline(in,line);
 	}
 }
 
-
+//Read Movie File
+//Reads specified file and creates movies from it
 void Store::readMovieFile (ifstream& in)
 {
 	// variables for movie
@@ -68,38 +73,38 @@ void Store::readMovieFile (ifstream& in)
 	int month = 0;
 	int year = 0;
 	string director, title, actor;
-	
+
 	// read file by line
 	string line;
 	getline(in, line);
-	
+
 	while(!in.eof())
 	{
 		stringstream readLine(line);
 		string temp;
-		
+
 		readLine >> temp; // temporary string including commas
 		genre = temp[0]; // get first character as genre
-		readLine >> stock; 
+		readLine >> stock;
 		readLine >> temp; // read over the ','
-		director = readStringStream(readLine); 
-		title = readStringStream(readLine); 
-		
+		director = readStringStream(readLine);
+		title = readStringStream(readLine);
+
  		// read classics actor and month
 		if (genre == 'C')
 		{
- 			readLine >> actor >> temp;			
+ 			readLine >> actor >> temp;
 			actor = actor + " " + temp;
 			readLine >> temp;
-			istringstream(temp) >> month;			
-		} 
+			istringstream(temp) >> month;
+		}
 		readLine >> year; // read year
-		
+
 		// Create movie and add to the movieTree
  		Movie* newMovie = movieFactory.create(genre, title, director, actor, month, year, stock);
 		if(!movieTree.addMovie(newMovie))
-			delete newMovie; 
-		
+			delete newMovie;
+
 		// reset variables
 		title = "";
 		director = "";
@@ -107,15 +112,16 @@ void Store::readMovieFile (ifstream& in)
 		genre = 'Z';
 		stock = 0;
 		year = 0;
-		month = 0;	
-		
+		month = 0;
+
 		// read file by line
 		getline(in,line);
 	}
 }
 
-
-void Store::readTransactionFile (ifstream& in) 
+//Read Transaction File
+//Reads specified file and processes transactions from it
+void Store::readTransactionFile (ifstream& in)
 {
 	// variables for transaction and movie
 	char transType, mediaType, genre;
@@ -123,28 +129,28 @@ void Store::readTransactionFile (ifstream& in)
 	string actor, director, title, temp;
 	Movie* movie = NULL;
 	Transaction* newTrans = NULL;
-	
+
 	// read file by line
 	string line;
 	getline(in, line);
-	
+
 	while(!in.eof())
 	{
 		stringstream readLine(line);
 		readLine >> transType; // read transaction type
-		
+
 		// continue reading for history, borrow and return transactions
-		if(transType == 'H' || transType == 'B' || transType == 'R' ) 
+		if(transType == 'H' || transType == 'B' || transType == 'R' )
 		{
 			readLine >> id;
-			
+
 			// continue reading for borrow and return transactions
-			if(transType != 'H') 
-			{	
+			if(transType != 'H')
+			{
 				readLine >> mediaType;
 				if (mediaType != 'D') // invalid media type
 					cout << "ERROR: " << mediaType << " Invalid Media Type. Try Again." << endl;
-				else 
+				else
 				{
 					readLine >> genre;
 					switch (genre)
@@ -155,7 +161,7 @@ void Store::readTransactionFile (ifstream& in)
 							break;
 						case 'D': // drama
 							director = readStringStream(readLine);
-							title = readStringStream(readLine);	
+							title = readStringStream(readLine);
 							break;
 						case 'F': // comedy
 							title = readStringStream(readLine);
@@ -167,28 +173,29 @@ void Store::readTransactionFile (ifstream& in)
 				}
 			}
 		}
-		
+
 		//create new transaction and perform
-		newTrans = transFactory.create(transType, id, movie);			
+		newTrans = transFactory.create(transType, id, movie);
 		performTransaction(newTrans);
 		delete newTrans;
-		
+
 		// reset variables
 		title = "";
 		director = "";
 		actor = "";
 		genre = 'Z';
 		year = 0;
-		month = 0;	
+		month = 0;
 		newTrans = NULL;
 		movie = NULL;
-		
+
 		// read file by line
 		getline(in,line);
 	}
 }
 
-
+//Perform Transcation
+//Performs transactions from the transaction file
 bool Store::performTransaction (Transaction* t)
 {
 	if (t != NULL)
@@ -200,41 +207,43 @@ bool Store::performTransaction (Transaction* t)
 ////////////   Private Methods   /////////////////
 //////////////////////////////////////////////////
 
-// read part of the string stream and 
+// Read String Stream
+// read part of the string stream and
 // return group of words that are separated by comma
 string Store::readStringStream (stringstream& in)
 {
 	string words, temp;
 	in >> words;
-	
+
 	// read string stream until last character is a comma
-	while(words[words.length() - 1] != ',') 
+	while(words[words.length() - 1] != ',')
 	{
 		in >> temp;
 		words = words + " " + temp;
 	}
-	
+
 	// remove the last comma character
 	if (words[words.length() - 1] == ',')
-		words = words.substr(0, words.length() - 1);	
-	
+		words = words.substr(0, words.length() - 1);
+
 	return words;
 }
 
-// read part of the string stream and 
+// Read String Stream Classic
+// read part of the string stream and
 // return group of words read until end of file
 string Store::readStringStreamClassic (stringstream& in)
 {
 	string words, temp;
 	in >> words;
 	in >> temp;
-	
+
 	// read string stream until end of stream
-	while(!in.eof()) 
+	while(!in.eof())
 	{
 		words = words + " " + temp;
 		in >> temp;
 	}
-	
+
 	return words;
 }

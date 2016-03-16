@@ -16,6 +16,7 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
+//Input consturctor
 Drama::Drama(char genre, char mediaType, string title,
    string director, int stock, int yearReleased)
    : Movie(genre, mediaType, title, director, stock, yearReleased)
@@ -23,6 +24,8 @@ Drama::Drama(char genre, char mediaType, string title,
 
 }
 
+//Destructor
+//NO dynamic memory allocated
 Drama::~Drama()
 {
 
@@ -32,7 +35,10 @@ Drama::~Drama()
 //////////////////////////////////////////////////
 //////////     Operator Overloads   //////////////
 //////////////////////////////////////////////////
-bool Drama::operator == (const Movie& otherMovie) const// check if movies are equal
+
+//Equivalence operator
+//Returns true if both movies directors and titles are the same
+bool Drama::operator == (const Movie& otherMovie) const
 {
 	if (director == otherMovie.getDirector() && title == otherMovie.getTitle())
 		return true;
@@ -40,24 +46,27 @@ bool Drama::operator == (const Movie& otherMovie) const// check if movies are eq
 		return false;
 }
 
-
-bool Drama::operator != (const Movie& otherMovie) const // check if movies are not equal
+//Not equal operator
+//Returns true if both movies have different directors or titles
+bool Drama::operator != (const Movie& otherMovie) const
 {
   return !(*this == otherMovie);
-} 
+}
 
+// Greater than operator
 // check if this movie is greater than other movie
-// by director and then title 
-bool Drama::operator > (const Movie& otherMovie) const 
+// by director and then title
+bool Drama::operator > (const Movie& otherMovie) const
 {
 	if (director > otherMovie.getDirector())
 		return true;
 	else if (director == otherMovie.getDirector() && title > otherMovie.getTitle())
-		return true; 
+		return true;
 	else
 		return false;
 }
 
+//Less than operator
 // check if this movie is less than other movie
 // by director and then title
 bool Drama::operator < (const Movie& otherMovie) const
@@ -65,7 +74,7 @@ bool Drama::operator < (const Movie& otherMovie) const
 	if (director < otherMovie.getDirector())
 		return true;
 	else if (director == otherMovie.getDirector() && title < otherMovie.getTitle())
-		return true; 
+		return true;
 	else
 		return false;
 }

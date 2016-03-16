@@ -13,11 +13,15 @@
 //////////////////////////////////////////////////
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
+
+//Default Constructor
 MovieFactory::MovieFactory()
 {
 
 }
 
+//Destructor
+//No dynamic memory allocated
 MovieFactory::~MovieFactory()
 {
 
@@ -26,6 +30,9 @@ MovieFactory::~MovieFactory()
 //////////////////////////////////////////////////
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
+
+//Create
+//Creates a movie object based on the genre passed in
 Movie* MovieFactory::create(char genre, string title, string director, string actor, int month, int year, int stock)
 {
 	Movie* newMovie = NULL;

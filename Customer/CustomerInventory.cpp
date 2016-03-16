@@ -16,43 +16,47 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
+// Default Constructor
 // intialize hash table of dummy customer nodes
 CustomerInventory::CustomerInventory()
 {
-	for (int i = 0; i < MAX; i++) 
+	for (int i = 0; i < MAX; i++)
 	{
-		hashTable[i] = new customerNode; 
+		hashTable[i] = new customerNode;
 		hashTable[i] -> customer = NULL;
 		hashTable[i] -> next = NULL;
 	}
 }
 
+//Destructor
+//Deletes dynamic memeory allocated by hashTable
 CustomerInventory::~CustomerInventory()
 {
-    for (int i = 0; i < MAX; i++) 
+    for (int i = 0; i < MAX; i++)
 	{
 		deleteHelper(hashTable[i] -> next);
-			
+
 		delete hashTable[i] -> customer;
 		hashTable[i] -> customer = NULL;
 
 		delete hashTable[i];
-		hashTable[i] = NULL; 
-	}    
-} 
+		hashTable[i] = NULL;
+	}
+}
 
 //////////////////////////////////////////////////
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
 
+// Get Customer
 // return customer ptr or NULL if customer doesn't exist
 Customer* CustomerInventory::getCustomer (int customerID)
 {
 	int bucket = hashFunction(customerID);
 	customerNode* cur = hashTable[bucket] -> next;
    	if (cur == NULL)
-		return NULL; // customer does not exist 
-	
+		return NULL; // customer does not exist
+
 	// traverse the bucket to get customer
 	while (cur != NULL)
 	{
@@ -60,16 +64,18 @@ Customer* CustomerInventory::getCustomer (int customerID)
 			return cur -> customer;
 		cur = cur -> next;
 	}
-	return NULL;  
+	return NULL;
 }
 
+//Customer Exists
+//Returns true if the customer is in the hash table
 bool CustomerInventory::customerExist (int customerID)
 {
 	int bucket = hashFunction(customerID);
 	customerNode* cur = hashTable[bucket] -> next;
    	if (cur == NULL)
-		return false; // customer does not exist 
-	
+		return false; // customer does not exist
+
 	// traverse the bucket
 	while (cur != NULL)
 	{
@@ -77,15 +83,17 @@ bool CustomerInventory::customerExist (int customerID)
 			return true;
 		cur = cur -> next;
 	}
-	return false;   
+	return false;
 }
-	
+
+//Add Customer
+//Returns true if the customer was added to the hash table
 bool CustomerInventory::addCustomer(int customerID, string firstName, string lastName)
 {
   	// check if customer already exists
  	if (customerExist(customerID))
-		return false;  
-	 
+		return false;
+
 	int bucket = hashFunction(customerID);
 	customerNode* cur = hashTable[bucket] -> next;
 	if (cur == NULL) // insert for first customer in bucket
@@ -102,10 +110,12 @@ bool CustomerInventory::addCustomer(int customerID, string firstName, string las
 		temp -> next = cur;
 		hashTable[bucket] -> next = temp;
 	}
-	
+
 	return true;
 }
 
+//Remove Customer
+//Returns true if the customer was removed from the hash table
 bool CustomerInventory::removeCustomer(int customerID)
 {
  	if (customerExist(customerID)) // delete only if customer exists
@@ -123,25 +133,30 @@ bool CustomerInventory::removeCustomer(int customerID)
 				cur -> customer = NULL;
 				delete cur;
 				cur = NULL;
-				
+
 				return true;
 			}
 			prev = cur;
 			cur = cur -> next;
 		}
 	}
-	return false; 
+	return false;
 }
 
 //////////////////////////////////////////////////
 ////////////   Private Methods   /////////////////
 //////////////////////////////////////////////////
 
+//Hash Function
+//Returns the index where to store the customer in the hash table
 int CustomerInventory::hashFunction(int id)
 {
 	return id % MAX;
 }
 
+//Delete Helper
+//Recursive helper function for destructor
+//Deletes dynamic memory created by hash table
 void CustomerInventory::deleteHelper(customerNode* cur)
 {
 	customerNode* deleteNode = cur;
@@ -152,6 +167,6 @@ void CustomerInventory::deleteHelper(customerNode* cur)
 		deleteNode -> customer = NULL;
 		delete deleteNode;
 		deleteNode = cur;
-		
+
 	}
 }

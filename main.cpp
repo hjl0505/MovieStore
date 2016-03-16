@@ -11,16 +11,15 @@
 
 #include <iostream>
 #include <fstream>
-#include "Comedy.h" // (Movie) Store class
+#include "Store/Store.h"
 using namespace std;
 
-int main()
-{
-	/*
+int main() {
+
 	ifstream customerFile("Store/data4customers.txt");
 	ifstream movieFile("Store/data4movies.txt");
 	ifstream transactionFile("Store/data4commands.txt");
-	
+
 	if (!customerFile)  // repeat for movieFile and transactionFile
 		cout << "Customer file cannot be oppened" << endl;
 	if (!movieFile)  // repeat for movieFile and transactionFile
@@ -29,30 +28,9 @@ int main()
 		cout << "Transaction file cannot be oppened" << endl;
 
 	Store movieStore; //create a store
- 	//movieStore.readCustomerFile(customerFile); //create customer profiles from file
-	//movieStore.readMovieFile(movieFile); //create movie inventory from file
-	//movieStore.readTransactionFile(transactionFile); //process transactions from file
-     */
-    
-    Comedy playTime('C', 'D', "Play Time", "Jacques Tati", 5, 1968);
-    comedy.display();
-    cout << endl;
-    
-    Classic classic('C', 'B', "The Leopard", "Luchino Visconti", 10, 1963, 7, "Alain Delon");
-    classic.display();
-    
-    Comedy holyGrail('C', 'D', "Monty Python and the Holy Grail", "Terry Gilliam and Terry Jones", 5, 1975);
-    holyGrail.display();
-    cout << endl;
-    
-    if (playTime != holyGrail)
-    {
-        cout << "Play Time is not equal to Holy Grail" << endl;
-    }
+ 	movieStore.readCustomerFile(customerFile); //create customer profiles from file
+	movieStore.readMovieFile(movieFile); //create movie inventory from file
+	movieStore.readTransactionFile(transactionFile); //process transactions from file
 
-    
-    
-    
-	 
 	return 0;
 }

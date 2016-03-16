@@ -22,7 +22,7 @@
 Classic::Classic(char genre, char mediaType, string title, string director,
    int stock, int yearReleased, int monthReleased, string actor)
     : Movie(genre, mediaType, title, director, stock, yearReleased)
-{  
+{
 	this -> actor = actor;
     this->monthReleased = monthReleased;
 }
@@ -40,18 +40,19 @@ Classic::~Classic()
 //////////////////////////////////////////////////
 
 //Display
-//Displays the monthReleased 
+//Displays movie information with all actors listed
+//Only one movie is displayed, even if that movie has multiple actors
 void Classic::display() const
 {
-	cout << setw(7) << getGenre() << setw(7) << getMediaType() << setw(35) << getTitle() << setw(20) 
+	cout << setw(7) << getGenre() << setw(7) << getMediaType() << setw(35) << getTitle() << setw(20)
 		<< getDirector() << setw(7) << getMonth() << setw(7)<< getYearReleased() << setw(7)  << getTotalStock() << endl;
-	
 
-	cout << setw(73) << this -> getActor() << " -------------" << setw(3) << this -> getStock() << endl; 	
+
+	cout << setw(73) << this -> getActor() << " -------------" << setw(3) << this -> getStock() << endl;
 	for (int i = 0; i < sameMoviesList.size(); i++)
 	{
-		cout << setw(73) << sameMoviesList[i] -> getActor() 
-			<< " -------------" << setw(3) << sameMoviesList[i] -> getStock() << endl; 
+		cout << setw(73) << sameMoviesList[i] -> getActor()
+			<< " -------------" << setw(3) << sameMoviesList[i] -> getStock() << endl;
 	}
 }
 
@@ -69,6 +70,8 @@ string Classic::getActor() const
 	return actor;
 }
 
+//Get Total Stock
+//Returns number of stock of this movie from all actors
 int Classic::getTotalStock() const
 {
 	int totalStock = getStock();
@@ -83,7 +86,11 @@ int Classic::getTotalStock() const
 	return totalStock;
 }
 
-bool Classic::subtractFromStock(int count) 
+//Subtract From Stock
+//Returns true if subtracking from the movies stock was successful
+//If one actor doesn't have enough stock, the method searches for stock from
+//the other actors
+bool Classic::subtractFromStock(int count)
 {
 	if (stock >= count && stock > 0)
     {
@@ -96,7 +103,7 @@ bool Classic::subtractFromStock(int count)
 		for(int i = 0; i < sameMoviesList.size(); i++)
 		{
 			if (!sameMoviesList[i] -> getCountedStatus() && sameMoviesList[i] -> subtractFromStock(count))
-			{	
+			{
 				return true;
 			}
 			sameMoviesList[i] -> setCounted(true);
@@ -108,6 +115,9 @@ bool Classic::subtractFromStock(int count)
         return false;
 }
 
+//Add Same Movies
+//Adds movies with the same title but different actors to each
+//movie nodes' vector called sameMovieList
 void Classic::addSameMovies(Movie*& sameMovie)
 {
 	sameMoviesList.push_back(sameMovie); // add to this list
@@ -123,7 +133,7 @@ void Classic::addSameMovies(Movie*& sameMovie)
 //considered to be equivalent
 bool Classic::operator == (const Movie& otherMovie) const
 {
-	if (monthReleased == otherMovie.getMonth() && 
+	if (monthReleased == otherMovie.getMonth() &&
 		yearReleased == otherMovie.getYearReleased() && getActor() == otherMovie.getActor())
 		return true;
 	else

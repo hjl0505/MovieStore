@@ -65,7 +65,6 @@ bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 				// add transaction summary to customer's history
  				customer -> addCheckedOut(movie);
 				customer -> addHistory(borrowSummary); 
-				
 				return true;
 			} 
 			else
@@ -74,11 +73,11 @@ bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 					<< "Not enough in the Stock" << endl;
 			}
 		}
-	}
-	else
-	{
-		cout << "ERROR: Borrow Transaction Failed -- " 
-			<< "Movie does not Exist in the Inventory" << endl;
+		else
+		{
+			cout << "ERROR: Borrow Transaction Failed -- " 
+				<< "Movie does not Exist in the Inventory" << endl;
+		}
 	}
 	
 	delete movie;

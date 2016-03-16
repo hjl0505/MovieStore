@@ -85,15 +85,23 @@ int Classic::getTotalStock() const
 
 bool Classic::subtractFromStock(int count) 
 {
-	if (stock >= count)
+	if (stock >= count && stock > 0)
     {
         stock-= count;
         return true;
     }
 	else if (sameMoviesList.size() > 0) // check same movies stock and subtract
 	{
+		setCounted(true);
 		for(int i = 0; i < sameMoviesList.size(); i++)
-			return sameMoviesList[i] -> subtractFromStock(count);
+		{
+			if (!sameMoviesList[i] -> getCountedStatus() && sameMoviesList[i] -> subtractFromStock(count))
+			{	
+				return true;
+			}
+			sameMoviesList[i] -> setCounted(true);
+		}
+		return false;
 
 	}
     else //this and all the same movies did not have enough stock

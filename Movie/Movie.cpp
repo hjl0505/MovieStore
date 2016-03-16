@@ -114,7 +114,7 @@ void Movie::setCounted(bool checked)
 
 bool Movie::subtractFromStock(int count)
 {
-    if (stock >= count)
+    if (stock >= count && stock > 0)
     {
         stock-= count;
         return true;

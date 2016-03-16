@@ -136,17 +136,21 @@ bool MovieInventory::addMovie (Movie*& moviePtr)
 
 bool MovieInventory::borrowMovie (Movie* moviePtr, string& movieInfo)
 {
+	bool successful = false;
     if (movieExist(moviePtr))
     {
 		Movie* movieToBorrow = getMovie(moviePtr);
-		bool completeTrans = movieToBorrow -> subtractFromStock(1);
-		if (completeTrans)
+		if (movieToBorrow -> subtractFromStock(1))
 		{
 			movieInfo = movieToBorrow -> getMovieInfo();
-			return true;
+			successful = true;
 		}
     }
-    return false;
+	
+	for (int i = 0; i < movieType.size(); i++)
+		movieType[i].resetCounted();
+	
+    return successful;
 }
 
 bool MovieInventory::returnMovie (Movie* moviePtr, string& movieInfo)

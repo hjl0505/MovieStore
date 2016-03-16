@@ -16,6 +16,7 @@
 //////////////////////////////////////////////////
 
 //Input Constructor
+//Initialize customer and movie for borrow
 Borrow::Borrow(int id, Movie* m)
 {
 	customerID = id;
@@ -26,18 +27,12 @@ Borrow::Borrow(int id, Movie* m)
 //No dynamic memory allocated
 Borrow::~Borrow()
 {
+	
 }
 
 //////////////////////////////////////////////////
 //////////     Public Methods    /////////////////
 //////////////////////////////////////////////////
-
-//Get Customer ID
-//Returns customer ID
-int Borrow::getCustomerID()
-{
-	return customerID;
-}
 
 //Perform
 //Returns true if borrow was performed successfully
@@ -49,20 +44,22 @@ bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 		cout << "ERROR: Borrow Transaction Failed -- "
 			<< "Customer " << customerID << " does not exist" << endl;
 
+		// delete movie ptr after failed borrow transaction
 		delete movie;
 		movie = NULL;
+		
 		return false;
 	}
 
 	Customer* customer = customers.getCustomer(customerID);
 	if (movie != NULL)
 	{
-		// movie exists in the stock
+		// check if movie exists in the stock
 		if (movies.movieExist(movie))
 		{
 			string movieInfo = "";
 
-			// There was enough stock of movie to borrow from
+			// check if enough stock of movie to borrow from
 			if (movies.borrowMovie(movie, movieInfo))
 			{
 				// update summary of transaction if borrow performed correctly
@@ -86,8 +83,10 @@ bool Borrow::perform(MovieInventory& movies, CustomerInventory& customers)
 		}
 	}
 
+	// delete movie ptr after failed borrow transaction
 	delete movie;
 	movie = NULL;
+	
 	return false;
 
 }

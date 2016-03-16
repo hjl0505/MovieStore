@@ -34,12 +34,12 @@ CustomerInventory::~CustomerInventory()
 {
     for (int i = 0; i < MAX; i++)
 	{
-		deleteHelper(hashTable[i] -> next);
+		deleteHelper(hashTable[i] -> next); // delete list of customer in bucket
 
-		delete hashTable[i] -> customer;
+		delete hashTable[i] -> customer; // delete dummy node customer
 		hashTable[i] -> customer = NULL;
 
-		delete hashTable[i];
+		delete hashTable[i]; // delete dummy node
 		hashTable[i] = NULL;
 	}
 }
@@ -125,7 +125,8 @@ bool CustomerInventory::removeCustomer(int customerID)
 		customerNode* prev = hashTable[bucket];
 		while (cur != NULL)
 		{
-			if (cur -> customer -> getID() == customerID)
+			// delete customer ptr and customer node from hash table
+			if (cur -> customer -> getID() == customerID) 
 			{
 				prev -> next = cur -> next;
 				cur -> next = NULL;
@@ -136,6 +137,8 @@ bool CustomerInventory::removeCustomer(int customerID)
 
 				return true;
 			}
+			
+			// current ptr moves to next customer
 			prev = cur;
 			cur = cur -> next;
 		}

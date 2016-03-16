@@ -33,43 +33,30 @@ MovieFactory::~MovieFactory()
 
 //Create
 //Creates a movie object based on the genre passed in
+//Assume all movies are DVDs
 Movie* MovieFactory::create(char genre, string title, string director, string actor, int month, int year, int stock)
 {
 	Movie* newMovie = NULL;
 	switch(genre)
 	{
-		case 'C':
-			newMovie = new Classic (genre, 'D', title, director, stock, year, month, actor);
-            return newMovie;
-            break;
-		case 'D':
-			newMovie = new Drama (genre, 'D', title, director, stock, year);
-            return newMovie;
-			break;
-		case 'F':
+		case 'F': // Comedy
 			newMovie = new Comedy (genre, 'D', title, director, stock, year);
             return newMovie;
 			break;
+			
+		case 'C': // Classic
+			newMovie = new Classic (genre, 'D', title, director, stock, year, month, actor);
+            return newMovie;
+            break;
+			
+		case 'D': // Drama
+			newMovie = new Drama (genre, 'D', title, director, stock, year);
+            return newMovie;
+			break;
+
 		default:
 			cerr << "ERROR: " << genre << " Genre Not Found. Try Again." << endl;
 			return newMovie;
             break;
 	}
 }
-//////////////////////////////////////////////////
-////////////   Private Methods   /////////////////
-//////////////////////////////////////////////////
-
-//////////////////////////////////////////////////
-//////////     Operator Overloads   //////////////
-//////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////
-//////////////    I/O Stream   ///////////////////
-//////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////
-//////////////   Extra Code   ////////////////////
-//////////////////////////////////////////////////

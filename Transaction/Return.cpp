@@ -15,7 +15,8 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
-//Default Constructor
+//Input Constructor
+//Initialize customer and movie for Return
 Return::Return(int id, Movie* m)
 {
 	movie = m;
@@ -26,6 +27,7 @@ Return::Return(int id, Movie* m)
 //No dynamic memory allocated
 Return::~Return()
 {
+	
 }
 
 //////////////////////////////////////////////////
@@ -50,8 +52,10 @@ bool Return::perform(MovieInventory& movies, CustomerInventory& customers)
 		cout << "ERROR: Return Transaction Failed -- "
 			<< "Customer " << customerID << " does not exist" << endl;
 
+		// delete movie ptr after failed return transaction
 		delete movie;
 		movie = NULL;
+		
 		return false;
 	}
 
@@ -59,17 +63,14 @@ bool Return::perform(MovieInventory& movies, CustomerInventory& customers)
 
 	if (movie != NULL)
 	{
-
-
-		// movie exists in the stock
+		// check if movie exists in the stock
 		if (movies.movieExist(movie))
 		{
-
 			// Check customer's list of movies checked out
 			// remove from the list if it exists
 			bool checkHistory = customer -> removeCheckedOut(movie);
 
-			// movie was checked out by the customer
+			// check if movie was checked out by the customer
 			if (checkHistory)
 			{
 					string movieInfo = "";
@@ -79,8 +80,10 @@ bool Return::perform(MovieInventory& movies, CustomerInventory& customers)
 					string returnSummary = "Returned " + movieInfo;
 					customer -> addHistory(returnSummary);
 
-					delete movie;
+					// delete movie ptr after return transaction
+					delete movie; 
 					movie = NULL;
+					
 					return true;
 			}
 			else
@@ -94,28 +97,11 @@ bool Return::perform(MovieInventory& movies, CustomerInventory& customers)
 			cout << "ERROR: Return Transaction Failed -- "
 				<< "Movie does not Exist in the Inventory" << endl;
 		}
-
 	}
-
+	
+	// delete movie ptr after failed return transaction
 	delete movie;
 	movie = NULL;
+	
 	return false;
 }
-
-//////////////////////////////////////////////////
-////////////   Private Methods   /////////////////
-//////////////////////////////////////////////////
-
-//////////////////////////////////////////////////
-//////////     Operator Overloads   //////////////
-//////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////
-//////////////    I/O Stream   ///////////////////
-//////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////
-//////////////   Extra Code   ////////////////////
-//////////////////////////////////////////////////

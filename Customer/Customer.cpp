@@ -77,6 +77,7 @@ Customer::~Customer()
 void Customer::display()
 {
 	// set preceding 0 for 4 digit ID
+	// for IDs less than 4 digits
 	string zeros = "";
 	if (ID < 10)
 		zeros = "000";
@@ -98,9 +99,10 @@ void Customer::display()
 void Customer::displayHistory()
 {
 	cout << endl;
-	cout << "History for " << getName() << ":" <<endl;
+	cout << "History for " << getName() << ":" <<endl; // print header
+	
 	historyNode* temp = history;
-	while (temp!= NULL)
+	while (temp!= NULL) // print history
 	{
 		cout << temp -> data << endl;
 		temp = temp -> next;
@@ -145,9 +147,9 @@ void Customer::addCheckedOut(Movie* movie)
 	checkedOut = newMovieNode;
 }
 
-//Remove Checked Out
-//Returns true if customer was able to return a movie from their
-//movieBorrowed linked list
+// Remove Checked Out
+// Returns true if customer was able to return a movie from their
+// movieBorrowed linked list
 bool Customer::removeCheckedOut(Movie* movie)
 {
 	checkedOutNode* cur = checkedOut;

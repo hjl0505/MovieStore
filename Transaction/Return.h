@@ -21,6 +21,8 @@ using namespace std;
 class Return: public Transaction {
 
 public:
+
+	// Constructor and Destructor
 	Return(int, Movie*);
 	virtual ~Return();
 	

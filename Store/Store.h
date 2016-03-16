@@ -30,13 +30,15 @@ using namespace std;
 class Store {
 
 public:
+
+	// constructor and destructor
 	Store();
 	~Store();
 	
+	// Mutators
 	void readCustomerFile (ifstream&); // load customers into customerTable
 	void readMovieFile (ifstream&); // load movies into movieTable
 	void readTransactionFile (ifstream&); // read transactions and execute 
-	
 	bool performTransaction (Transaction*); // execute a transaction
 	
 private: 
@@ -47,7 +49,6 @@ private:
 	
 	// helpers
 	string readStringStream(stringstream&);
-	string readStringStreamClassic(stringstream&);
 	
 };
 #endif

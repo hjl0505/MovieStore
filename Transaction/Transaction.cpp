@@ -27,6 +27,7 @@ Transaction::Transaction()
 // No memory leak possible
 Transaction::~Transaction()
 {
+	
 }
 
 //////////////////////////////////////////////////

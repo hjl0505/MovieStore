@@ -23,6 +23,8 @@ using namespace std;
 class Inventory: public Transaction {
 
 public:
+
+	// Constructor and Destructor
 	Inventory();
 	virtual ~Inventory();
 		

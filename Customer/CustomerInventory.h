@@ -22,12 +22,15 @@ class CustomerInventory {
 public:
 	static const int MAX = 10000; // max number of IDs
 	
+	// Constructor and Destructor
 	CustomerInventory();
 	~CustomerInventory();
 	
+	// Accessors
 	Customer* getCustomer (int); // get Customer with ID
-	bool customerExist (int); // Check if customer exists with ID
-		
+	bool customerExist (int); // check if customer exists with ID
+	
+	// Mutators
 	bool addCustomer(int, string, string); // add customer to inventory
 	bool removeCustomer(int); // remove customer from inventory
 
@@ -35,9 +38,9 @@ private:
 	struct customerNode 
 	{
 		Customer* customer;
-		customerNode* next = NULL;
+		customerNode* next;
 	};
-	customerNode* hashTable[MAX];	
+	customerNode* hashTable[MAX]; // open hash table for customer nodes
 	
 	// helper functions
 	int hashFunction(int); // calculate which bucket to insert customer

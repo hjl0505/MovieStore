@@ -16,7 +16,7 @@
 //////////   Constructors/Destructor   ///////////
 //////////////////////////////////////////////////
 
-//Overload constructor
+//Constructor
 //Sets the monthReleased and actor based on passed in values
 //Uses Movie constructor for most values.
 Classic::Classic(char genre, char mediaType, string title, string director,
@@ -44,11 +44,14 @@ Classic::~Classic()
 //Only one movie is displayed, even if that movie has multiple actors
 void Classic::display() const
 {
+	// Print movie info and total stock
 	cout << setw(7) << getGenre() << setw(7) << getMediaType() << setw(35) << getTitle() << setw(20)
 		<< getDirector() << setw(7) << getMonth() << setw(7)<< getYearReleased() << setw(7)  << getTotalStock() << endl;
 
-
+	// print actor and stock for this movie
 	cout << setw(73) << this -> getActor() << " -------------" << setw(3) << this -> getStock() << endl;
+	
+	// print actor and stock for all other movies with same title
 	for (int i = 0; i < sameMoviesList.size(); i++)
 	{
 		cout << setw(73) << sameMoviesList[i] -> getActor()
@@ -97,15 +100,15 @@ bool Classic::subtractFromStock(int count)
         stock-= count;
         return true;
     }
-	else if (sameMoviesList.size() > 0) // check same movies stock and subtract
+	else if (sameMoviesList.size() > 0) // check same movies stock and borrow 
 	{
 		setCounted(true);
 		for(int i = 0; i < sameMoviesList.size(); i++)
 		{
 			if (!sameMoviesList[i] -> getCountedStatus() && sameMoviesList[i] -> subtractFromStock(count))
-			{
 				return true;
-			}
+			
+			// mark the movie as counted
 			sameMoviesList[i] -> setCounted(true);
 		}
 		return false;

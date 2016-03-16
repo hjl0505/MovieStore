@@ -16,6 +16,7 @@
 //////////////////////////////////////////////////
 
 //Default Constructor
+//Initialize 3 BST for each movie genre
 MovieInventory::MovieInventory()
 {
     BST comedy, classic, drama;
@@ -42,17 +43,17 @@ Movie* MovieInventory::getMovie (Movie* moviePtr)
     Movie *foundPtr = NULL;
     switch (moviePtr->getGenre())
     {
-        case 'F':
+        case 'F': // Comedy
             movieType[0].getMovie(*moviePtr, foundPtr);
             return foundPtr;
             break;
 
-        case 'C':
+        case 'C': // Classic
             movieType[1].getMovie(*moviePtr, foundPtr);
             return foundPtr;
             break;
 
-        case 'D':
+        case 'D': // Drama
             movieType[2].getMovie(*moviePtr, foundPtr);
             return foundPtr;
             break;
@@ -82,22 +83,23 @@ void MovieInventory::printInventory()
 {
     for (int i = 0; i < movieType.size(); i++)
     {
+		// Print Headers
         cout << "---------------------------" << endl;
         switch (i)
         {
-            case 0:
+            case 0: // Comedy
                 cout << "Comedies:" << endl << endl;
 				cout << setw(7) << "Genre" << setw(7) << "Media" << setw(35) << "Title" << setw(20)
 					<< "Director" << setw(7) << "Year" << setw(7) << "Stock" << endl;
                 break;
 
-            case 1:
+            case 1: // Classic
                 cout << "Classics:" << endl << endl;
 				cout << setw(7) << "Genre" << setw(7) << "Media" << setw(35) << "Title" << setw(20)
 					<< "Director" << setw(7) << "Month" << setw(7)<< "Year" << setw(7)  << "Stock" << endl;
                 break;
 
-            case 2:
+            case 2: // Drama
                 cout << "Dramas:" << endl << endl;
 				cout << setw(7) << "Genre" << setw(7) << "Media" << setw(35) << "Title" << setw(20)
 					<< "Director" << setw(7) << "Year" << setw(7) << "Stock" << endl;
@@ -106,6 +108,8 @@ void MovieInventory::printInventory()
             default:
                 break;
         }
+		
+		// print movie inventory, then reset movies counted back to false
         cout << movieType[i];
 		movieType[i].resetCounted();
     }
@@ -119,14 +123,14 @@ bool MovieInventory::addMovie (Movie*& moviePtr)
 	if (moviePtr) {
 		 switch (moviePtr->getGenre())
 		{
-			case 'F':
+			case 'F': // Comedy
 				success = movieType[0].addMovie(moviePtr);
 				return success;
 				break;
 
-			case 'C':
+			case 'C': // Classic
 				success = movieType[1].addMovie(moviePtr);
-				if (success)
+				if (success) // insert pointers to the same movies with different actors
 				{
 					moviePtr -> setCounted(true);
 					addAllSameMovies(moviePtr, 1);
@@ -135,7 +139,7 @@ bool MovieInventory::addMovie (Movie*& moviePtr)
 				return success;
 				break;
 
-			case 'D':
+			case 'D': // Drama
 				success = movieType[2].addMovie(moviePtr);
 				return success;
 				break;
@@ -157,14 +161,15 @@ bool MovieInventory::borrowMovie (Movie* moviePtr, string& movieInfo)
     if (movieExist(moviePtr))
     {
 		Movie* movieToBorrow = getMovie(moviePtr);
-		if (movieToBorrow -> subtractFromStock(1))
+		if (movieToBorrow -> subtractFromStock(1)) // borrow movie
 		{
-			movieInfo = movieToBorrow -> getMovieInfo();
+			movieInfo = movieToBorrow -> getMovieInfo(); // title and year of the movie borrowed
 			successful = true;
 		}
     }
 
-	for (int i = 0; i < movieType.size(); i++)
+	// reset movie counted back to false
+	for (int i = 0; i < movieType.size(); i++) 
 		movieType[i].resetCounted();
 
     return successful;
@@ -178,9 +183,9 @@ bool MovieInventory::returnMovie (Movie* moviePtr, string& movieInfo)
     if (movieExist(moviePtr))
     {
 		Movie* movieToReturn = getMovie(moviePtr);
-        movieToReturn->addToStock(1);
+        movieToReturn->addToStock(1); // return movie
 
-		movieInfo = movieToReturn -> getMovieInfo();
+		movieInfo = movieToReturn -> getMovieInfo(); // title and year of the movie borrowed
         return true;
     }
     else
@@ -198,15 +203,15 @@ Movie* MovieInventory::getMovieByTitle (int genreIndex, string title, int year)
 
 //Add All Same Movies
 //Used by Classics
-//Addds pointers to all movies with same title, but different actors to the
+//Adds pointers to all movies with same title, but different actors to the
 //movie's sameMovieList vector
 void MovieInventory::addAllSameMovies (Movie* current, int idx)
 {
  	Movie* found = getMovieByTitle(idx, current -> getTitle(), current -> getYearReleased());
 	while(found != NULL)
 	{
- 		current -> addSameMovies(found);
-		found -> addSameMovies(current);
+ 		current -> addSameMovies(found); // add same movie to current movie's sameMovielist
+		found -> addSameMovies(current); // add current movie to the other movie's  sameMovielist
 		found = getMovieByTitle(idx, current -> getTitle(), current -> getYearReleased());
 	}
 }

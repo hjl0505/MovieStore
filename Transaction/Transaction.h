@@ -20,6 +20,8 @@ using namespace std;
 class Transaction {
 	
 public:
+
+	// Constructor and Destructor
 	Transaction();
 	virtual ~Transaction();
 

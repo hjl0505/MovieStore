@@ -40,19 +40,19 @@ Transaction* TransactionFactory::create(char type, int customerID, Movie*& m)
 	Transaction* transaction = NULL;
 	switch(type)
 	{
-		case 'B':
+		case 'B': // Borrow
 			transaction = new Borrow(customerID, m);
 			return transaction;
 			break;
-		case 'R':
+		case 'R': // Return
 			transaction = new Return(customerID, m);
 			return transaction;
 			break;
-		case 'I':
+		case 'I': // Inventory
 			transaction = new Inventory;
 			return transaction;
 			break;
-		case 'H':
+		case 'H': // History
 			transaction = new History(customerID);
 			return transaction;
 			break;

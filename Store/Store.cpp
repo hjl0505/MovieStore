@@ -28,6 +28,7 @@ Store::Store()
 //No dynamic memory allocated
 Store::~Store()
 {
+	
 }
 
 
@@ -58,7 +59,7 @@ void Store::readCustomerFile (ifstream& in)
 		// add new customer to customer hash table
 		customerTable.addCustomer(id, firstName, lastName);
 
-		// read file by line
+		// read next line
 		getline(in,line);
 	}
 }
@@ -87,8 +88,8 @@ void Store::readMovieFile (ifstream& in)
 		genre = temp[0]; // get first character as genre
 		readLine >> stock;
 		readLine >> temp; // read over the ','
-		director = readStringStream(readLine);
-		title = readStringStream(readLine);
+		director = readStringStream(readLine); // read director until next ','
+		title = readStringStream(readLine); // read title until next ','
 
  		// read classics actor and month
 		if (genre == 'C')
@@ -114,7 +115,7 @@ void Store::readMovieFile (ifstream& in)
 		year = 0;
 		month = 0;
 
-		// read file by line
+		// read next line
 		getline(in,line);
 	}
 }
@@ -157,12 +158,15 @@ void Store::readTransactionFile (ifstream& in)
 					{
 						case 'C': // classics
 							readLine >> month >> year;
-							actor = readStringStreamClassic(readLine);
+							readLine >> actor >> temp; // read actor's first and last name
+							actor = actor + " " + temp;
 							break;
+							
 						case 'D': // drama
 							director = readStringStream(readLine);
 							title = readStringStream(readLine);
 							break;
+							
 						case 'F': // comedy
 							title = readStringStream(readLine);
 							readLine >> year;
@@ -225,25 +229,6 @@ string Store::readStringStream (stringstream& in)
 	// remove the last comma character
 	if (words[words.length() - 1] == ',')
 		words = words.substr(0, words.length() - 1);
-
-	return words;
-}
-
-// Read String Stream Classic
-// read part of the string stream and
-// return group of words read until end of file
-string Store::readStringStreamClassic (stringstream& in)
-{
-	string words, temp;
-	in >> words;
-	in >> temp;
-
-	// read string stream until end of stream
-	while(!in.eof())
-	{
-		words = words + " " + temp;
-		in >> temp;
-	}
 
 	return words;
 }

@@ -25,8 +25,6 @@ public:
 	Borrow(int, Movie*);
 	virtual ~Borrow();
 	
-	int getCustomerID(); // get ID of the customer of the transaction
-	
 	// perform borrow movie
 	virtual bool perform(MovieInventory&, CustomerInventory&); 
 

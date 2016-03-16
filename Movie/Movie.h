@@ -26,7 +26,7 @@ public:
 
 	// Constructor and Destructor
 	Movie();
-    Movie(char genre, char mediaType, string title, string director, int stock, int yearReleased);
+    Movie(char, char, string, string, int, int); // genre, mediatype, title, director, stock, year released
 	virtual ~Movie();
 
 	// Overloaded operators
@@ -35,32 +35,25 @@ public:
 	virtual bool operator > (const Movie& otherMovie) const; // check if this movie is greater than other movie
 	virtual bool operator < (const Movie& otherMovie) const; // check if this movie is less than other movie
 	
-	// Accessor methods
-	char getGenre() const;
+	// Accessors
+	char getGenre() const; 
 	char getMediaType() const;
 	string getTitle() const;
 	string getDirector() const;
 	int getStock() const;
 	int getYearReleased() const;
 	bool getCountedStatus() const;
+	virtual string getActor() const;
+	virtual int getMonth() const;
 	
 	virtual void display() const; // print out movie data and return string
     string getMovieInfo() const; //returns string of movie data variables
-	
-	//??????
-	//??????
-	//??????
-	virtual string getActor() const;
-	virtual int getMonth() const;
-	virtual void addSameMovies(Movie*&); // add the same movie to the list of same movies
-	//??????
-	//??????
-	//??????
 
-	// Mutator methods
+	// Mutators
 	bool addToStock(int); // add to stock
 	virtual bool subtractFromStock(int); // subtract from stock
 	void setCounted(bool); // mark movie as counted in inventory
+	virtual void addSameMovies(Movie*&); // add the same movie to the list of same movies
 
 protected:
 	char genre; // genre of the movie

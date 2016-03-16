@@ -24,10 +24,12 @@ using namespace std;
 class TransactionFactory {
 
 public:
+
+	// Constructor and Destructor
 	TransactionFactory();
 	~TransactionFactory();
 	
 	// create transactions
-	Transaction* create(char type, int customerID, Movie*& m);
+	Transaction* create(char type, int customerID, Movie*& m); 
 };
 #endif

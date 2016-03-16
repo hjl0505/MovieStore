@@ -20,22 +20,24 @@ using namespace std;
 class Customer {
 
 public:
+	// Constructor and Destructor
 	Customer();
 	Customer(int, string, string); // ID, first, last
 	~Customer();
 	
+	// Accessors
 	void display(); // display customer's name and id
 	void displayHistory(); //display history of transactions
-	
+
 	int getID(); //return ID of customer
 	string getName(); // return full name of customer
 	
+	// Mutators
  	void addHistory(string); // add transaction to history
 	void addCheckedOut(Movie*); // add movie to customer's checkedOut list
 	bool removeCheckedOut(Movie*); // remove movie from checkedOut list 
 
 private:
-
 	struct historyNode { // Node to keep track of history
 		historyNode* next;
 		string data; // transaction summary
